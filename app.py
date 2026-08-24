@@ -21,6 +21,41 @@ DB_PATH = Path(os.getenv("QUIZZLE_DB_PATH", ROOT / "quizzle.db"))
 UPLOADS = ROOT / "uploads"
 UPLOADS.mkdir(exist_ok=True)
 
+COURSE_CATALOG = {
+    "Computer Science": {
+        "100": ["CSC 101 · Introduction to Computer Science", "CSC 102 · Introduction to Programming", "MTH 101 · Elementary Mathematics I"],
+        "200": ["CSC 201 · Computer Programming I", "CSC 202 · Data Structures and Algorithms", "CSC 203 · Computer Architecture"],
+        "300": ["CSC 301 · Operating Systems", "CSC 302 · Database Systems", "CSC 303 · Software Engineering"],
+        "400": ["CSC 401 · Artificial Intelligence", "CSC 402 · Computer Networks", "CSC 403 · Final Year Project"],
+        "500": ["CSC 501 · Advanced Algorithms", "CSC 502 · Machine Learning", "CSC 503 · Research Methods"],
+        "Postgraduate": ["CSC 701 · Advanced Computing", "CSC 702 · Data Science", "CSC 703 · Graduate Seminar"],
+    },
+    "Education": {
+        "100": ["EDU 101 · Introduction to Education", "EDU 102 · Foundations of Teaching"],
+        "200": ["EDU 201 · Educational Psychology", "EDU 202 · Curriculum Studies"],
+        "300": ["EDU 301 · Measurement and Evaluation", "EDU 302 · Teaching Practice"],
+        "400": ["EDU 401 · Educational Management", "EDU 402 · Research Project"],
+        "500": ["EDU 501 · Advanced Curriculum Theory"],
+        "Postgraduate": ["EDU 701 · Advanced Educational Research", "EDU 702 · Policy and Leadership"],
+    },
+    "Business Administration": {
+        "100": ["BUS 101 · Introduction to Business", "ACC 101 · Principles of Accounting"],
+        "200": ["BUS 201 · Organisational Behaviour", "MKT 201 · Principles of Marketing"],
+        "300": ["BUS 301 · Operations Management", "FIN 301 · Business Finance"],
+        "400": ["BUS 401 · Strategic Management", "BUS 402 · Entrepreneurship"],
+        "500": ["BUS 501 · Advanced Management"],
+        "Postgraduate": ["BUS 701 · Corporate Strategy", "BUS 702 · Graduate Research Seminar"],
+    },
+    "Mass Communication": {
+        "100": ["MAC 101 · Introduction to Mass Communication", "MAC 102 · Writing for the Media"],
+        "200": ["MAC 201 · News Reporting", "MAC 202 · Broadcast Production"],
+        "300": ["MAC 301 · Media Law and Ethics", "MAC 302 · Public Relations"],
+        "400": ["MAC 401 · Communication Research", "MAC 402 · Media Project"],
+        "500": ["MAC 501 · Advanced Media Studies"],
+        "Postgraduate": ["MAC 701 · Communication Theory", "MAC 702 · Digital Media Research"],
+    },
+}
+
 st.set_page_config(page_title="Quizzle", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
@@ -193,8 +228,13 @@ def init_db():
     CREATE TABLE IF NOT EXISTS activity_events(id INTEGER PRIMARY KEY, attempt_id INTEGER NOT NULL, event_type TEXT NOT NULL, started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER DEFAULT 0, FOREIGN KEY(attempt_id) REFERENCES attempts(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS resources(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, kind TEXT NOT NULL, location TEXT NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     """)
+    existing_columns = {item[1] for item in con.execute("PRAGMA table_info(users)").fetchall()}
+    for column in ("university_type", "university", "faculty", "department"):
+        if column not in existing_columns:
+            con.execute(f"ALTER TABLE users ADD COLUMN {column} TEXT")
     for role, name, email, password in [("admin", "Quizzle Administrator", "admin@quizzle.app", "Admin123!"), ("teacher", "Demo Teacher", "teacher@quizzle.app", "Teacher123!")]:
         con.execute("INSERT OR IGNORE INTO users(role,name,email,password_hash) VALUES(?,?,?,?)", (role, name, email, password_hash(password)))
+    con.execute("UPDATE users SET department='Computer Science' WHERE email='teacher@quizzle.app' AND (department IS NULL OR department='')")
     con.commit(); con.close()
 
 
@@ -244,7 +284,7 @@ def login():
                 name=st.text_input("Full name"); email=st.text_input("Institutional email"); password=st.text_input("Create password",type="password")
                 university_type=st.selectbox("University type",["Federal","State","Private"]); university=st.text_input("University"); faculty=st.text_input("Faculty"); department=st.text_input("Department")
                 if st.form_submit_button("Create account"):
-                    try: run("INSERT INTO users(role,name,email,password_hash) VALUES('teacher',?,?,?)",(name,email.lower(),password_hash(password))); st.success("Account created. Please sign in.")
+                    try: run("INSERT INTO users(role,name,email,password_hash,university_type,university,faculty,department) VALUES('teacher',?,?,?,?,?,?,?)",(name,email.lower(),password_hash(password),university_type,university,faculty,department)); st.success("Account created. Please sign in.")
                     except sqlite3.IntegrityError: st.error("That email is already registered.")
     with student:
         st.markdown('<div class="qz-form-heading"><h2>Student access</h2><p>Enter your class or live quiz code.</p></div>', unsafe_allow_html=True)
@@ -278,9 +318,9 @@ def student_signin(join,number,name):
 def teacher_app():
     user=st.session_state.user
     with st.sidebar:
-        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Classes","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); st.button("Sign out",on_click=logout)
+        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Courses","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); st.button("Sign out",on_click=logout)
     if page=="Overview": teacher_overview(user)
-    elif page=="Classes": classes_page(user)
+    elif page=="Courses": courses_page(user)
     elif page=="My quizzes": quizzes_page(user)
     elif page=="Monitoring": monitoring_page(user)
     elif page=="Reports": reports_page(user)
@@ -291,16 +331,31 @@ def teacher_app():
 def teacher_overview(user):
     title("Overview","Live summary of teaching activity")
     cs=rows("SELECT * FROM classes WHERE teacher_id=?",(user["id"],)); qs=rows("SELECT * FROM quizzes WHERE teacher_id=?",(user["id"],)); reports=teacher_attempts(user["id"])
-    a,b,c,d=st.columns(4); a.metric("Classes",len(cs)); b.metric("Quizzes",len(qs)); c.metric("Submissions",sum(x["status"]=="submitted" for x in reports)); d.metric("Activity alerts",sum(x["alert_count"] for x in reports))
+    a,b,c,d=st.columns(4); a.metric("Courses",len(cs)); b.metric("Quizzes",len(qs)); c.metric("Submissions",sum(x["status"]=="submitted" for x in reports)); d.metric("Activity alerts",sum(x["alert_count"] for x in reports))
     st.subheader("Recent activity"); st.dataframe(pd.DataFrame(reports[:10]) if reports else pd.DataFrame(columns=["student","quiz","status"]),use_container_width=True,hide_index=True)
 
 
-def classes_page(user):
-    title("Classes","Levels and academic sessions organise courses")
-    with st.expander("Create class",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
+def department_catalog(department, level):
+    department = (department or "").strip().lower()
+    matched = next((name for name in COURSE_CATALOG if name.lower() == department or name.lower() in department or department in name.lower()), None)
+    return COURSE_CATALOG.get(matched, {}).get(level, []) if matched else []
+
+
+def courses_page(user):
+    department = user.get("department") or "Not configured"
+    title("Courses", f"Courses for {department} are organised by level and academic session")
+    with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
         with st.form("new_class"):
-            name=st.text_input("Class name"); level=st.selectbox("Level",["100","200","300","400","500","Postgraduate"]); session=st.text_input("Session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}"); course=st.text_input("Course")
-            if st.form_submit_button("Create class"):
+            level=st.selectbox("Level",["100","200","300","400","500","Postgraduate"])
+            available=department_catalog(department,level)
+            if available:
+                course=st.selectbox("Department course",available,help=f"Automatically populated from the {department} course catalogue")
+            else:
+                st.warning(f"No course catalogue is currently available for {department} at {level} level. Ask an administrator to add it.")
+                course=None
+            name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L")
+            session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}")
+            if st.form_submit_button("Add course",disabled=not available):
                 run("INSERT INTO classes(teacher_id,name,level,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?)",(user["id"],name,level,session,course,code("CL"),now_iso())); st.rerun()
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
         with st.expander(f"{cls['level']} · {cls['name']} — {cls['course']}"):
