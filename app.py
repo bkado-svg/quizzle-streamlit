@@ -203,12 +203,17 @@ def password_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
 
+def course_semester(course_code):
+    digits = "".join(character for character in str(course_code) if character.isdigit())
+    return "First semester" if digits and int(digits[-1]) % 2 else "Second semester"
+
+
 @st.cache_resource
 def init_db():
     con = db()
     con.executescript("""
     CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, role TEXT NOT NULL, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, active INTEGER DEFAULT 1);
-    CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, name TEXT NOT NULL, level TEXT, session TEXT, course TEXT, join_code TEXT UNIQUE NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(teacher_id) REFERENCES users(id));
+    CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, name TEXT NOT NULL, level TEXT, semester TEXT, session TEXT, course TEXT, join_code TEXT UNIQUE NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(teacher_id) REFERENCES users(id));
     CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, class_id INTEGER NOT NULL, name TEXT NOT NULL, student_number TEXT, phone TEXT, email TEXT, UNIQUE(class_id,student_number), FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS quizzes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, status TEXT DEFAULT 'Draft', share_code TEXT UNIQUE NOT NULL, time_limit INTEGER DEFAULT 30, show_results INTEGER DEFAULT 1, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, prompt TEXT NOT NULL, question_type TEXT DEFAULT 'Multiple choice', options_json TEXT DEFAULT '[]', correct_answer TEXT, points REAL DEFAULT 1, FOREIGN KEY(quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE);
@@ -218,12 +223,16 @@ def init_db():
     CREATE TABLE IF NOT EXISTS universities(id INTEGER PRIMARY KEY, ownership_type TEXT NOT NULL, name TEXT UNIQUE NOT NULL, website TEXT, year_established TEXT, source_url TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS faculties(id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, source_url TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS departments(id INTEGER PRIMARY KEY, faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(faculty_id,name), FOREIGN KEY(faculty_id) REFERENCES faculties(id));
-    CREATE TABLE IF NOT EXISTS course_catalog(id INTEGER PRIMARY KEY, department_id INTEGER NOT NULL, level TEXT NOT NULL, code TEXT NOT NULL, title TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(department_id,level,code), FOREIGN KEY(department_id) REFERENCES departments(id));
+    CREATE TABLE IF NOT EXISTS course_catalog(id INTEGER PRIMARY KEY, department_id INTEGER NOT NULL, level TEXT NOT NULL, semester TEXT NOT NULL, code TEXT NOT NULL, title TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(department_id,level,code), FOREIGN KEY(department_id) REFERENCES departments(id));
     """)
     existing_columns = {item[1] for item in con.execute("PRAGMA table_info(users)").fetchall()}
     for column in ("university_type", "university", "faculty", "department"):
         if column not in existing_columns:
             con.execute(f"ALTER TABLE users ADD COLUMN {column} TEXT")
+    class_columns = {item[1] for item in con.execute("PRAGMA table_info(classes)").fetchall()}
+    if "semester" not in class_columns: con.execute("ALTER TABLE classes ADD COLUMN semester TEXT")
+    catalog_columns = {item[1] for item in con.execute("PRAGMA table_info(course_catalog)").fetchall()}
+    if "semester" not in catalog_columns: con.execute("ALTER TABLE course_catalog ADD COLUMN semester TEXT")
     for role, name, email, password in [("admin", "Quizzle Administrator", "admin@quizzle.app", "Admin123!"), ("teacher", "Demo Teacher", "teacher@quizzle.app", "Teacher123!")]:
         con.execute("INSERT OR IGNORE INTO users(role,name,email,password_hash) VALUES(?,?,?,?)", (role, name, email, password_hash(password)))
     con.execute("UPDATE users SET faculty='Computing' WHERE email='teacher@quizzle.app' AND (faculty IS NULL OR faculty='')")
@@ -240,7 +249,9 @@ def init_db():
     course_data = json.loads((ROOT / "data" / "nuc_courses.json").read_text())
     if con.execute("SELECT COUNT(*) FROM course_catalog").fetchone()[0] < len(course_data["courses"]):
         department_ids = {(row["faculty"],row["department"]):row["id"] for row in con.execute("SELECT d.id,f.name faculty,d.name department FROM departments d JOIN faculties f ON f.id=d.faculty_id")}
-        con.executemany("INSERT OR IGNORE INTO course_catalog(department_id,level,code,title,source_url) VALUES(?,?,?,?,?)", [(department_ids[(item["faculty"],item["department"])],item["level"],item["code"],item["title"],item["source_url"]) for item in course_data["courses"] if (item["faculty"],item["department"]) in department_ids])
+        con.executemany("INSERT OR IGNORE INTO course_catalog(department_id,level,semester,code,title,source_url) VALUES(?,?,?,?,?,?)", [(department_ids[(item["faculty"],item["department"])],item["level"],course_semester(item["code"]),item["code"],item["title"],item["source_url"]) for item in course_data["courses"] if (item["faculty"],item["department"]) in department_ids])
+    for catalog_row in con.execute("SELECT id,code FROM course_catalog WHERE semester IS NULL OR semester='' ").fetchall():
+        con.execute("UPDATE course_catalog SET semester=? WHERE id=?", (course_semester(catalog_row["code"]), catalog_row["id"]))
     con.commit(); con.close()
 
 
@@ -356,21 +367,23 @@ def teacher_overview(user):
     st.subheader("Recent activity"); st.dataframe(pd.DataFrame(reports[:10]) if reports else pd.DataFrame(columns=["student","quiz","status"]),use_container_width=True,hide_index=True)
 
 
-def department_catalog(faculty, department, level):
-    catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? ORDER BY cc.code""", (faculty or "", department or "", level))
+def department_catalog(faculty, department, level, semester):
+    catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? AND cc.semester=? ORDER BY cc.code""", (faculty or "", department or "", level, semester))
     return [f"{item['code']} · {item['title']}" for item in catalog]
 
 
 def courses_page(user):
     department = user.get("department") or "Not configured"
     faculty = user.get("faculty") or ""
-    title("Courses", f"Courses for {department} are organised by level and academic session")
+    title("Courses", f"Courses for {department} are organised by level, semester, and academic session")
     if st.session_state.pop("course_added", False): st.success("Course added successfully and is now available for quizzes, results, reports, and resources.")
     with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
         with st.form("new_class"):
             level_options=[item["level"] for item in rows("SELECT DISTINCT cc.level FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) ORDER BY CAST(cc.level AS INTEGER)",(faculty,department))]
             level=st.selectbox("Level",level_options,disabled=not level_options)
-            available=department_catalog(faculty,department,level)
+            semester_options=[item["semester"] for item in rows("SELECT DISTINCT cc.semester FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? ORDER BY CASE cc.semester WHEN 'First semester' THEN 1 ELSE 2 END",(faculty,department,level))] if level else []
+            semester=st.selectbox("Semester",semester_options,disabled=not semester_options)
+            available=department_catalog(faculty,department,level,semester)
             if available:
                 course=st.selectbox("Department course",available,help=f"Automatically populated from the NUC CCMAS catalogue for {department}")
             else:
@@ -379,11 +392,11 @@ def courses_page(user):
             name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L")
             session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}")
             if st.form_submit_button("Add course",disabled=not available):
-                run("INSERT INTO classes(teacher_id,name,level,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?)",(user["id"],name or f"{department} {level}L",level,session,course,code("CL"),now_iso()))
+                run("INSERT INTO classes(teacher_id,name,level,semester,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?,?)",(user["id"],name or f"{department} {level}L",level,semester,session,course,code("CL"),now_iso()))
                 st.session_state.course_added=True
                 st.rerun()
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
-        with st.expander(f"{cls['level']} · {cls['name']} — {cls['course']}"):
+        with st.expander(f"{cls['level']} · {cls.get('semester') or 'Semester not set'} · {cls['name']} — {cls['course']}"):
             st.code(cls["join_code"]); roster=rows("SELECT * FROM students WHERE class_id=?",(cls["id"],)); st.dataframe(roster,use_container_width=True,hide_index=True)
             upload=st.file_uploader("Replace/upload student list (CSV)",type=["csv"],key=f"roster{cls['id']}")
             if upload:
