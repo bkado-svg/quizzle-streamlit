@@ -43,13 +43,6 @@ NUC_PROGRAMMES = {
     "Agriculture": ["Agricultural Economics", "Agricultural Extension", "Animal Science", "Crop Science", "Fisheries and Aquaculture", "Food Science and Technology", "Forestry and Wildlife Management", "Soil Science"],
 }
 
-COMPUTER_SCIENCE_CCMAS = {
-    "100": ["GST 111 · Communication in English", "GST 112 · Nigerian Peoples and Culture", "MTH 101 · Elementary Mathematics I", "MTH 102 · Elementary Mathematics II", "PHY 101 · General Physics I", "PHY 102 · General Physics II", "PHY 107 · General Practical Physics I", "PHY 108 · General Practical Physics II", "STA 111 · Descriptive Statistics", "COS 101 · Introduction to Computing Sciences", "COS 102 · Problem Solving"],
-    "200": ["GST 212 · Philosophy, Logic and Human Existence", "ENT 211 · Entrepreneurship and Innovation", "MTH 201 · Mathematical Methods I", "MTH 202 · Elementary Differential Equations", "COS 201 · Computer Programming I", "COS 202 · Computer Programming II", "CSC 203 · Discrete Structures", "CSC 299 · SIWES I", "IFT 211 · Digital Logic Design", "IFT 212 · Computer Architecture and Organisation", "SEN 201 · Introduction to Software Engineering"],
-    "300": ["GST 312 · Peace and Conflict Resolution", "ENT 312 · Venture Creation", "CSC 301 · Data Structures", "CSC 308 · Operating Systems", "CSC 309 · Artificial Intelligence", "CSC 322 · Computer Science Innovation and New Technologies", "CSC 399 · SIWES II", "CYB 201 · Introduction to Cybersecurity and Strategy", "DTS 304 · Data Management I", "ICT 305 · Data Communication System and Network"],
-    "400": ["COS 409 · Research Methodology and Technical Report Writing", "CSC 401 · Algorithms and Complexity Analysis", "CSC 402 · Ethics and Legal Issues in Computer Science", "CSC 497 · Final Year Project I", "CSC 498 · Final Year Project II", "INS 401 · Project Management"],
-}
-
 st.set_page_config(page_title="Quizzle", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
 
 st.markdown("""
@@ -210,6 +203,7 @@ def password_hash(value):
     return hashlib.sha256(value.encode()).hexdigest()
 
 
+@st.cache_resource
 def init_db():
     con = db()
     con.executescript("""
@@ -232,6 +226,7 @@ def init_db():
             con.execute(f"ALTER TABLE users ADD COLUMN {column} TEXT")
     for role, name, email, password in [("admin", "Quizzle Administrator", "admin@quizzle.app", "Admin123!"), ("teacher", "Demo Teacher", "teacher@quizzle.app", "Teacher123!")]:
         con.execute("INSERT OR IGNORE INTO users(role,name,email,password_hash) VALUES(?,?,?,?)", (role, name, email, password_hash(password)))
+    con.execute("UPDATE users SET faculty='Computing' WHERE email='teacher@quizzle.app' AND (faculty IS NULL OR faculty='')")
     con.execute("UPDATE users SET department='Computer Science' WHERE email='teacher@quizzle.app' AND (department IS NULL OR department='')")
     university_data = json.loads((ROOT / "data" / "nuc_universities.json").read_text())
     for item in university_data["universities"]:
@@ -242,13 +237,10 @@ def init_db():
         faculty_id = con.execute("SELECT id FROM faculties WHERE name=?", (faculty_name,)).fetchone()[0]
         for department_name in department_names:
             con.execute("INSERT OR IGNORE INTO departments(faculty_id,name,source_url) VALUES(?,?,?)", (faculty_id, department_name, ccmas_url))
-    cs_row = con.execute("SELECT d.id FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name='Computing' AND d.name='Computer Science'").fetchone()
-    if cs_row:
-        computing_source = "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Computing-CCMAS-2023-FINAL.pdf"
-        for level, course_names in COMPUTER_SCIENCE_CCMAS.items():
-            for course_name in course_names:
-                code_value, course_title = course_name.split(" · ", 1)
-                con.execute("INSERT OR IGNORE INTO course_catalog(department_id,level,code,title,source_url) VALUES(?,?,?,?,?)", (cs_row[0], level, code_value, course_title, computing_source))
+    course_data = json.loads((ROOT / "data" / "nuc_courses.json").read_text())
+    if con.execute("SELECT COUNT(*) FROM course_catalog").fetchone()[0] < len(course_data["courses"]):
+        department_ids = {(row["faculty"],row["department"]):row["id"] for row in con.execute("SELECT d.id,f.name faculty,d.name department FROM departments d JOIN faculties f ON f.id=d.faculty_id")}
+        con.executemany("INSERT OR IGNORE INTO course_catalog(department_id,level,code,title,source_url) VALUES(?,?,?,?,?)", [(department_ids[(item["faculty"],item["department"])],item["level"],item["code"],item["title"],item["source_url"]) for item in course_data["courses"] if (item["faculty"],item["department"]) in department_ids])
     con.commit(); con.close()
 
 
@@ -364,18 +356,21 @@ def teacher_overview(user):
     st.subheader("Recent activity"); st.dataframe(pd.DataFrame(reports[:10]) if reports else pd.DataFrame(columns=["student","quiz","status"]),use_container_width=True,hide_index=True)
 
 
-def department_catalog(department, level):
-    catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id WHERE lower(d.name)=lower(?) AND cc.level=? ORDER BY cc.code""", (department or "", level))
+def department_catalog(faculty, department, level):
+    catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? ORDER BY cc.code""", (faculty or "", department or "", level))
     return [f"{item['code']} · {item['title']}" for item in catalog]
 
 
 def courses_page(user):
     department = user.get("department") or "Not configured"
+    faculty = user.get("faculty") or ""
     title("Courses", f"Courses for {department} are organised by level and academic session")
+    if st.session_state.pop("course_added", False): st.success("Course added successfully and is now available for quizzes, results, reports, and resources.")
     with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
         with st.form("new_class"):
-            level=st.selectbox("Level",["100","200","300","400","500","Postgraduate"])
-            available=department_catalog(department,level)
+            level_options=[item["level"] for item in rows("SELECT DISTINCT cc.level FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) ORDER BY CAST(cc.level AS INTEGER)",(faculty,department))]
+            level=st.selectbox("Level",level_options,disabled=not level_options)
+            available=department_catalog(faculty,department,level)
             if available:
                 course=st.selectbox("Department course",available,help=f"Automatically populated from the NUC CCMAS catalogue for {department}")
             else:
@@ -384,7 +379,9 @@ def courses_page(user):
             name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L")
             session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}")
             if st.form_submit_button("Add course",disabled=not available):
-                run("INSERT INTO classes(teacher_id,name,level,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?)",(user["id"],name,level,session,course,code("CL"),now_iso())); st.rerun()
+                run("INSERT INTO classes(teacher_id,name,level,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?)",(user["id"],name or f"{department} {level}L",level,session,course,code("CL"),now_iso()))
+                st.session_state.course_added=True
+                st.rerun()
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
         with st.expander(f"{cls['level']} · {cls['name']} — {cls['course']}"):
             st.code(cls["join_code"]); roster=rows("SELECT * FROM students WHERE class_id=?",(cls["id"],)); st.dataframe(roster,use_container_width=True,hide_index=True)
