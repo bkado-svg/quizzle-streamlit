@@ -49,8 +49,15 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"] {
     #f7f8fc;
 }
 
-/* Hide Streamlit's hosted-app action bar (Share/Fork/Deploy). */
-[data-testid="stHeader"], #MainMenu, footer { display: none !important; }
+/* Hide Streamlit's hosted-app chrome (Share/Fork/Deploy and hosting badge). */
+[data-testid="stHeader"],
+[data-testid="stToolbar"],
+[data-testid="stDecoration"],
+[data-testid="stStatusWidget"],
+[data-testid="stFooter"],
+#MainMenu,
+footer,
+.viewerBadge_container__1QSob { display: none !important; }
 [data-testid="stAppViewContainer"] > .main { padding-top: 0 !important; }
 
 [data-testid="stMainBlockContainer"] { max-width: 1240px; padding: 2.2rem 3rem 4rem; }
