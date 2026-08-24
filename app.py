@@ -21,39 +21,33 @@ DB_PATH = Path(os.getenv("QUIZZLE_DB_PATH", ROOT / "quizzle.db"))
 UPLOADS = ROOT / "uploads"
 UPLOADS.mkdir(exist_ok=True)
 
-COURSE_CATALOG = {
-    "Computer Science": {
-        "100": ["CSC 101 · Introduction to Computer Science", "CSC 102 · Introduction to Programming", "MTH 101 · Elementary Mathematics I"],
-        "200": ["CSC 201 · Computer Programming I", "CSC 202 · Data Structures and Algorithms", "CSC 203 · Computer Architecture"],
-        "300": ["CSC 301 · Operating Systems", "CSC 302 · Database Systems", "CSC 303 · Software Engineering"],
-        "400": ["CSC 401 · Artificial Intelligence", "CSC 402 · Computer Networks", "CSC 403 · Final Year Project"],
-        "500": ["CSC 501 · Advanced Algorithms", "CSC 502 · Machine Learning", "CSC 503 · Research Methods"],
-        "Postgraduate": ["CSC 701 · Advanced Computing", "CSC 702 · Data Science", "CSC 703 · Graduate Seminar"],
-    },
-    "Education": {
-        "100": ["EDU 101 · Introduction to Education", "EDU 102 · Foundations of Teaching"],
-        "200": ["EDU 201 · Educational Psychology", "EDU 202 · Curriculum Studies"],
-        "300": ["EDU 301 · Measurement and Evaluation", "EDU 302 · Teaching Practice"],
-        "400": ["EDU 401 · Educational Management", "EDU 402 · Research Project"],
-        "500": ["EDU 501 · Advanced Curriculum Theory"],
-        "Postgraduate": ["EDU 701 · Advanced Educational Research", "EDU 702 · Policy and Leadership"],
-    },
-    "Business Administration": {
-        "100": ["BUS 101 · Introduction to Business", "ACC 101 · Principles of Accounting"],
-        "200": ["BUS 201 · Organisational Behaviour", "MKT 201 · Principles of Marketing"],
-        "300": ["BUS 301 · Operations Management", "FIN 301 · Business Finance"],
-        "400": ["BUS 401 · Strategic Management", "BUS 402 · Entrepreneurship"],
-        "500": ["BUS 501 · Advanced Management"],
-        "Postgraduate": ["BUS 701 · Corporate Strategy", "BUS 702 · Graduate Research Seminar"],
-    },
-    "Mass Communication": {
-        "100": ["MAC 101 · Introduction to Mass Communication", "MAC 102 · Writing for the Media"],
-        "200": ["MAC 201 · News Reporting", "MAC 202 · Broadcast Production"],
-        "300": ["MAC 301 · Media Law and Ethics", "MAC 302 · Public Relations"],
-        "400": ["MAC 401 · Communication Research", "MAC 402 · Media Project"],
-        "500": ["MAC 501 · Advanced Media Studies"],
-        "Postgraduate": ["MAC 701 · Communication Theory", "MAC 702 · Digital Media Research"],
-    },
+# NUC CCMAS national discipline/programme baseline. Individual institutions may
+# offer a subset; Quizzle preserves the selected institution alongside this data.
+NUC_PROGRAMMES = {
+    "Administration and Management": ["Accounting", "Actuarial Science", "Aviation Management", "Finance", "Business Administration", "Business Information Technology", "Co-operative and Rural Development", "Employment and Human Resource Management", "Entrepreneurship", "Hospitality and Tourism Management", "Information Resource Management", "Insurance", "Local Government and Development Studies", "Logistics and Supply Chain Management", "Marketing", "Office and Information Management", "Petroleum Information Management", "Procurement Management", "Project Management", "Public Administration", "Securities and Investments Management", "Taxation", "Transport Management"],
+    "Allied Health Sciences": ["Medical Laboratory Science", "Nursing Science", "Nutrition and Dietetics", "Occupational Therapy", "Optometry", "Physiotherapy", "Prosthetics and Orthotics", "Radiography and Radiation Science"],
+    "Architecture": ["Architecture", "Landscape Architecture"],
+    "Arts": ["African Languages and Literature", "Arabic", "Archaeology", "English Language", "History and International Studies", "Linguistics", "Modern European Languages", "Music", "Philosophy", "Religious Studies", "Theatre and Film Studies"],
+    "Basic Medical Sciences": ["Anatomy", "Biochemistry", "Human Nutrition", "Physiology"],
+    "Computing": ["Computer Science", "Cybersecurity", "Data Science", "Information and Communication Technology", "Information Systems", "Information Technology", "Software Engineering"],
+    "Communication and Media Studies": ["Advertising", "Broadcasting", "Development Communication Studies", "Film and Multimedia Studies", "Information and Media Studies", "Journalism and Media Studies", "Mass Communication", "Public Relations", "Strategic Communication"],
+    "Education": ["Adult Education", "Arts Education", "Business Education", "Curriculum and Instruction", "Early Childhood Education", "Educational Management", "Educational Technology", "Guidance and Counselling", "Health Education", "Library and Information Science", "Science Education", "Social Science Education", "Special Education"],
+    "Engineering and Technology": ["Agricultural and Biosystems Engineering", "Chemical Engineering", "Civil Engineering", "Computer Engineering", "Electrical and Electronics Engineering", "Food Engineering", "Industrial and Production Engineering", "Marine Engineering", "Materials and Metallurgical Engineering", "Mechanical Engineering", "Mechatronics Engineering", "Petroleum and Gas Engineering"],
+    "Environmental Sciences": ["Building", "Estate Management", "Geography", "Quantity Surveying", "Surveying and Geoinformatics", "Urban and Regional Planning"],
+    "Law": ["Law"],
+    "Medicine and Dentistry": ["Dentistry", "Medicine and Surgery"],
+    "Pharmacy and Pharmaceutical Sciences": ["Pharmacy"],
+    "Sciences": ["Biology", "Biotechnology", "Botany", "Chemistry", "Geology", "Mathematics", "Microbiology", "Physics", "Statistics", "Zoology"],
+    "Social Sciences": ["Criminology and Security Studies", "Demography and Social Statistics", "Economics", "Geography", "International Relations", "Peace and Conflict Studies", "Political Science", "Psychology", "Social Work", "Sociology"],
+    "Veterinary Medicine": ["Veterinary Medicine"],
+    "Agriculture": ["Agricultural Economics", "Agricultural Extension", "Animal Science", "Crop Science", "Fisheries and Aquaculture", "Food Science and Technology", "Forestry and Wildlife Management", "Soil Science"],
+}
+
+COMPUTER_SCIENCE_CCMAS = {
+    "100": ["GST 111 · Communication in English", "GST 112 · Nigerian Peoples and Culture", "MTH 101 · Elementary Mathematics I", "MTH 102 · Elementary Mathematics II", "PHY 101 · General Physics I", "PHY 102 · General Physics II", "PHY 107 · General Practical Physics I", "PHY 108 · General Practical Physics II", "STA 111 · Descriptive Statistics", "COS 101 · Introduction to Computing Sciences", "COS 102 · Problem Solving"],
+    "200": ["GST 212 · Philosophy, Logic and Human Existence", "ENT 211 · Entrepreneurship and Innovation", "MTH 201 · Mathematical Methods I", "MTH 202 · Elementary Differential Equations", "COS 201 · Computer Programming I", "COS 202 · Computer Programming II", "CSC 203 · Discrete Structures", "CSC 299 · SIWES I", "IFT 211 · Digital Logic Design", "IFT 212 · Computer Architecture and Organisation", "SEN 201 · Introduction to Software Engineering"],
+    "300": ["GST 312 · Peace and Conflict Resolution", "ENT 312 · Venture Creation", "CSC 301 · Data Structures", "CSC 308 · Operating Systems", "CSC 309 · Artificial Intelligence", "CSC 322 · Computer Science Innovation and New Technologies", "CSC 399 · SIWES II", "CYB 201 · Introduction to Cybersecurity and Strategy", "DTS 304 · Data Management I", "ICT 305 · Data Communication System and Network"],
+    "400": ["COS 409 · Research Methodology and Technical Report Writing", "CSC 401 · Algorithms and Complexity Analysis", "CSC 402 · Ethics and Legal Issues in Computer Science", "CSC 497 · Final Year Project I", "CSC 498 · Final Year Project II", "INS 401 · Project Management"],
 }
 
 st.set_page_config(page_title="Quizzle", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
@@ -227,6 +221,10 @@ def init_db():
     CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, student_id INTEGER NOT NULL, status TEXT DEFAULT 'in_progress', started_at TEXT NOT NULL, submitted_at TEXT, score REAL DEFAULT 0, max_score REAL DEFAULT 0, answers_json TEXT DEFAULT '{}', last_seen TEXT, UNIQUE(quiz_id,student_id,status), FOREIGN KEY(quiz_id) REFERENCES quizzes(id), FOREIGN KEY(student_id) REFERENCES students(id));
     CREATE TABLE IF NOT EXISTS activity_events(id INTEGER PRIMARY KEY, attempt_id INTEGER NOT NULL, event_type TEXT NOT NULL, started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER DEFAULT 0, FOREIGN KEY(attempt_id) REFERENCES attempts(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS resources(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, kind TEXT NOT NULL, location TEXT NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS universities(id INTEGER PRIMARY KEY, ownership_type TEXT NOT NULL, name TEXT UNIQUE NOT NULL, website TEXT, year_established TEXT, source_url TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS faculties(id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, source_url TEXT NOT NULL);
+    CREATE TABLE IF NOT EXISTS departments(id INTEGER PRIMARY KEY, faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(faculty_id,name), FOREIGN KEY(faculty_id) REFERENCES faculties(id));
+    CREATE TABLE IF NOT EXISTS course_catalog(id INTEGER PRIMARY KEY, department_id INTEGER NOT NULL, level TEXT NOT NULL, code TEXT NOT NULL, title TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(department_id,level,code), FOREIGN KEY(department_id) REFERENCES departments(id));
     """)
     existing_columns = {item[1] for item in con.execute("PRAGMA table_info(users)").fetchall()}
     for column in ("university_type", "university", "faculty", "department"):
@@ -235,6 +233,22 @@ def init_db():
     for role, name, email, password in [("admin", "Quizzle Administrator", "admin@quizzle.app", "Admin123!"), ("teacher", "Demo Teacher", "teacher@quizzle.app", "Teacher123!")]:
         con.execute("INSERT OR IGNORE INTO users(role,name,email,password_hash) VALUES(?,?,?,?)", (role, name, email, password_hash(password)))
     con.execute("UPDATE users SET department='Computer Science' WHERE email='teacher@quizzle.app' AND (department IS NULL OR department='')")
+    university_data = json.loads((ROOT / "data" / "nuc_universities.json").read_text())
+    for item in university_data["universities"]:
+        con.execute("INSERT OR REPLACE INTO universities(ownership_type,name,website,year_established,source_url) VALUES(?,?,?,?,?)", (item["type"], item["name"], item.get("website"), item.get("year"), university_data["sources"][item["type"]]))
+    ccmas_url = "https://www.nuc.edu.ng/ccmas/"
+    for faculty_name, department_names in NUC_PROGRAMMES.items():
+        con.execute("INSERT OR IGNORE INTO faculties(name,source_url) VALUES(?,?)", (faculty_name, ccmas_url))
+        faculty_id = con.execute("SELECT id FROM faculties WHERE name=?", (faculty_name,)).fetchone()[0]
+        for department_name in department_names:
+            con.execute("INSERT OR IGNORE INTO departments(faculty_id,name,source_url) VALUES(?,?,?)", (faculty_id, department_name, ccmas_url))
+    cs_row = con.execute("SELECT d.id FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name='Computing' AND d.name='Computer Science'").fetchone()
+    if cs_row:
+        computing_source = "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Computing-CCMAS-2023-FINAL.pdf"
+        for level, course_names in COMPUTER_SCIENCE_CCMAS.items():
+            for course_name in course_names:
+                code_value, course_title = course_name.split(" · ", 1)
+                con.execute("INSERT OR IGNORE INTO course_catalog(department_id,level,code,title,source_url) VALUES(?,?,?,?,?)", (cs_row[0], level, code_value, course_title, computing_source))
     con.commit(); con.close()
 
 
@@ -280,10 +294,18 @@ def login():
             email = st.text_input("Official institutional email", key="te"); password = st.text_input("Password", type="password", key="tp")
             if st.form_submit_button("Continue", use_container_width=True): authenticate(email, password, "teacher")
         with st.expander("Create teacher account"):
-            with st.form("register"):
-                name=st.text_input("Full name"); email=st.text_input("Institutional email"); password=st.text_input("Create password",type="password")
-                university_type=st.selectbox("University type",["Federal","State","Private"]); university=st.text_input("University"); faculty=st.text_input("Faculty"); department=st.text_input("Department")
-                if st.form_submit_button("Create account"):
+            name=st.text_input("Full name",key="reg_name"); email=st.text_input("Institutional email",key="reg_email"); password=st.text_input("Create password",type="password",key="reg_password")
+            university_type=st.selectbox("University type",["Public","State","Private"],key="reg_type")
+            university_options=[x["name"] for x in rows("SELECT name FROM universities WHERE ownership_type=? ORDER BY name",(university_type,))]
+            university=st.selectbox("University",university_options,key="reg_university",help="Official NUC licensed-university register; type to search")
+            faculty_options=[x["name"] for x in rows("SELECT name FROM faculties ORDER BY name")]
+            faculty=st.selectbox("Faculty / NUC discipline",faculty_options,key="reg_faculty",help="NUC CCMAS national discipline catalogue; type to search")
+            department_options=[x["name"] for x in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name",(faculty,))]
+            department=st.selectbox("Department / programme",department_options,key="reg_department",help="Filtered by the selected NUC discipline")
+            st.caption("University names are from the NUC register. Faculty and programme choices use the national NUC CCMAS baseline; each university may offer only a subset.")
+            if st.button("Create account",use_container_width=True,key="register_teacher"):
+                if not name or not email or not password: st.error("Name, email, and password are required.")
+                else:
                     try: run("INSERT INTO users(role,name,email,password_hash,university_type,university,faculty,department) VALUES('teacher',?,?,?,?,?,?,?)",(name,email.lower(),password_hash(password),university_type,university,faculty,department)); st.success("Account created. Please sign in.")
                     except sqlite3.IntegrityError: st.error("That email is already registered.")
     with student:
@@ -336,9 +358,8 @@ def teacher_overview(user):
 
 
 def department_catalog(department, level):
-    department = (department or "").strip().lower()
-    matched = next((name for name in COURSE_CATALOG if name.lower() == department or name.lower() in department or department in name.lower()), None)
-    return COURSE_CATALOG.get(matched, {}).get(level, []) if matched else []
+    catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id WHERE lower(d.name)=lower(?) AND cc.level=? ORDER BY cc.code""", (department or "", level))
+    return [f"{item['code']} · {item['title']}" for item in catalog]
 
 
 def courses_page(user):
@@ -349,9 +370,9 @@ def courses_page(user):
             level=st.selectbox("Level",["100","200","300","400","500","Postgraduate"])
             available=department_catalog(department,level)
             if available:
-                course=st.selectbox("Department course",available,help=f"Automatically populated from the {department} course catalogue")
+                course=st.selectbox("Department course",available,help=f"Automatically populated from the NUC CCMAS catalogue for {department}")
             else:
-                st.warning(f"No course catalogue is currently available for {department} at {level} level. Ask an administrator to add it.")
+                st.warning(f"No verified NUC course list is currently loaded for {department} at {level} level. Ask an administrator to add the institution's approved curriculum.")
                 course=None
             name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L")
             session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}")

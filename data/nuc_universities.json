@@ -1,0 +1,1978 @@
+{
+  "retrieved": "2026-08-24",
+  "sources": {
+    "Public": "https://www.nuc.edu.ng/nigerian-univerisities/federal-univeristies/",
+    "State": "https://www.nuc.edu.ng/nigerian-univerisities/state-univerisity/",
+    "Private": "https://www.nuc.edu.ng/nigerian-univerisities/private-univeristies/"
+  },
+  "universities": [
+    {
+      "type": "Public",
+      "name": "Abubakar Tafawa Balewa University, Bauchi",
+      "website": "https://www.atbu.edu.ng",
+      "year": "1988"
+    },
+    {
+      "type": "Public",
+      "name": "Ahmadu Bello University, Zaria",
+      "website": "https://www.abu.edu.ng",
+      "year": "1962"
+    },
+    {
+      "type": "Public",
+      "name": "Bayero University, Kano",
+      "website": "https://www.buk.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University Gashua, Yobe",
+      "website": "https://www.fugashua.edu.ng",
+      "year": "2013"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Petroleum Resources, Effurun",
+      "website": "https://www.fupre.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology, Akure",
+      "website": "https://www.futa.edu.ng",
+      "year": "1981"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology, Minna",
+      "website": "https://www.futminna.edu.ng",
+      "year": "1982"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology, Owerri",
+      "website": "https://www.futo.edu.ng",
+      "year": "1980"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Dutse, Jigawa State",
+      "website": "https://www.fud.edu.ng/",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Dutsin-Ma, Katsina",
+      "website": "https://www.fudutsinma.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Kashere, Gombe State",
+      "website": "https://www.fukashere.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Lafia, Nasarawa State",
+      "website": "https://www.fulafia.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Lokoja, Kogi State",
+      "website": "https://www.fulokoja.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Alex Ekwueme University, Ndufu-Alike, Ebonyi State",
+      "website": "https://www.funai.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Otuoke, Bayelsa",
+      "website": "https://www.fuotuoke.edu.ng/",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Oye-Ekiti, Ekiti State",
+      "website": "https://www.fuoye.edu.ng/",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Wukari, Taraba State",
+      "website": "https://www.fuwukari.edu.ng/",
+      "year": "2011"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Birnin Kebbi",
+      "website": "https://www.fubk.edu.ng",
+      "year": "2013"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University, Gusau Zamfara",
+      "website": "https://www.fugusau.edu.ng",
+      "year": "2013"
+    },
+    {
+      "type": "Public",
+      "name": "Michael Okpara University of Agricultural Umudike",
+      "website": "https://www.mouau.edu.ng",
+      "year": "1992"
+    },
+    {
+      "type": "Public",
+      "name": "Modibbo Adama University of Technology, Yola",
+      "website": "https://www.mautech.edu.ng",
+      "year": "1981"
+    },
+    {
+      "type": "Public",
+      "name": "National Open University of Nigeria, Abuja",
+      "website": "https://www.nou.edu.ng",
+      "year": "2002"
+    },
+    {
+      "type": "Public",
+      "name": "Nigeria Police Academy Wudil",
+      "website": "https://polac.edu.ng/",
+      "year": "2013"
+    },
+    {
+      "type": "Public",
+      "name": "Nigerian Defence Academy Kaduna",
+      "website": "https://www.nda.edu.ng",
+      "year": "1985"
+    },
+    {
+      "type": "Public",
+      "name": "Nnamdi Azikiwe University, Awka",
+      "website": "https://www.unizik.edu.ng",
+      "year": "1992"
+    },
+    {
+      "type": "Public",
+      "name": "Obafemi Awolowo University,Ile-Ife",
+      "website": "https://www.oauife.edu.ng",
+      "year": "1962"
+    },
+    {
+      "type": "Public",
+      "name": "University of Abuja, Gwagwalada",
+      "website": "https://www.uniabuja.edu.ng",
+      "year": "1988"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture, Abeokuta",
+      "website": "https://www.unaab.edu.ng",
+      "year": "1988"
+    },
+    {
+      "type": "Public",
+      "name": "Joseph Sarwuan Tarka University, Makurdi",
+      "website": "https://www.uam.edu.ng",
+      "year": "1988"
+    },
+    {
+      "type": "Public",
+      "name": "University of Benin",
+      "website": "https://www.uniben.edu.ng",
+      "year": "1970"
+    },
+    {
+      "type": "Public",
+      "name": "University of Calabar",
+      "website": "https://www.unical.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "University of Ibadan",
+      "website": "https://www.ui.edu.ng",
+      "year": "1948"
+    },
+    {
+      "type": "Public",
+      "name": "University of Ilorin",
+      "website": "https://www.unilorin.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "University of Jos",
+      "website": "https://www.unijos.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "University of Lagos",
+      "website": "https://www.unilag.edu.ng",
+      "year": "1962"
+    },
+    {
+      "type": "Public",
+      "name": "University of Maiduguri",
+      "website": "https://www.unimaid.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "University of Nigeria, Nsukka",
+      "website": "https://www.unn.edu.ng",
+      "year": "1960"
+    },
+    {
+      "type": "Public",
+      "name": "University of Port-Harcourt",
+      "website": "https://www.uniport.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "University of Uyo",
+      "website": "https://www.uniuyo.edu.ng",
+      "year": "1991"
+    },
+    {
+      "type": "Public",
+      "name": "Usumanu Danfodiyo University",
+      "website": "https://www.udusok.edu.ng",
+      "year": "1975"
+    },
+    {
+      "type": "Public",
+      "name": "Nigerian Maritime University Okerenkoko, Delta State",
+      "website": "https://www.nmu.edu.ng",
+      "year": "2018"
+    },
+    {
+      "type": "Public",
+      "name": "Air Force Institute of Technology, Kaduna",
+      "website": "https://afit.edu.ng",
+      "year": "2018"
+    },
+    {
+      "type": "Public",
+      "name": "Nigerian Army University Biu",
+      "website": "https://naub.edu.ng/",
+      "year": "2018"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Sciences, Otukpo, Benue State",
+      "website": "",
+      "year": "2020"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture, Zuru, Kebbi State",
+      "website": "",
+      "year": "2020"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology, Babura, Jigawa State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology, Ikot Abasi, Akwa Ibom State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Sciences, Azare, Bauchi State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Sciences, Ila Orangun, Osun State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Public",
+      "name": "David Nweze Umahi Federal University of Medical Sciences, Uburu",
+      "website": "https://kdums.edu.ng/",
+      "year": "2022"
+    },
+    {
+      "type": "Public",
+      "name": "Admiralty University Ibusa, Delta State",
+      "website": "https://adun.edu.ng",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Transportation Daura, Katsina",
+      "website": "https://www.futd.edu.ng/",
+      "year": "2022"
+    },
+    {
+      "type": "Public",
+      "name": "African Aviation and Aerospace University",
+      "website": "https://aaau.edu.ng/",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "National University of Science and Technology, Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture Bassam-Biri, Bayelsa",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Sciences Kwale, Delta State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Sciences, Katsina",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture, Mubi",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Education, Zaria, Kaduna State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Alvan Ikoku Federal University of Education, Owerri, Imo State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Yusuf Maitama Sule Federal University of Education, Kano",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Adeyemi Federal University of Education, Ondo",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Allied Health Sciences, Enugu",
+      "website": "https://fuahse.edu.ng/",
+      "year": "2024"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Medicine and Medical Sciences, Abeokuta",
+      "website": "https://fummsa.net",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Education Pankshin, Plateau State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Education Kontagora, Niger State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Public",
+      "name": "University of Maritime Studies, Oron, Akwa Ibom State",
+      "website": "",
+      "year": "2024"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Environment and Technology, Tai Town, Ogoniland, Rivers State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Applied Sciences, Kachia, Kaduna State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Tai Solarin Federal University of Education, Ijagun, Ijebu Ode",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture and Developmental Studies, Iragbuji, Osun State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Technology and Environmental Studies, Iyin-Ekiti, Ekiti State.",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture and Technology Okeho, Oyo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Health Science and Technology, Tsafe",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Agriculture and Technology Obio-Akpa Akwa Ibom State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Science and Technology, Epe",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Public",
+      "name": "Federal University of Science and Technology, Kabo, Kano",
+      "website": "https://fustkabo.edu.ng/",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "Rivers State University",
+      "website": "https://www.rsu.edu.ng",
+      "year": "1979"
+    },
+    {
+      "type": "State",
+      "name": "Ambrose Alli University, Ekpoma",
+      "website": "https://www.aauekpoma.edu.ng",
+      "year": "1980"
+    },
+    {
+      "type": "State",
+      "name": "Abia State University, Uturu",
+      "website": "https://www.abiastateuniversity.edu.ng",
+      "year": "1981"
+    },
+    {
+      "type": "State",
+      "name": "Ekiti State University",
+      "website": "https://www.eksu.edu.ng",
+      "year": "1982"
+    },
+    {
+      "type": "State",
+      "name": "Enugu State University of Science and Technology, Enugu",
+      "website": "https://www.esut.edu.ng",
+      "year": "1982"
+    },
+    {
+      "type": "State",
+      "name": "Olabisi Onabanjo University, Ago Iwoye",
+      "website": "https://www.oouagoiwoye.edu.ng",
+      "year": "1982"
+    },
+    {
+      "type": "State",
+      "name": "Lagos State University, Ojo",
+      "website": "https://www.lasu.edu.ng",
+      "year": "1983"
+    },
+    {
+      "type": "State",
+      "name": "Ladoke Akintola University of Technology, Ogbomoso",
+      "website": "https://www.lautech.edu.ng",
+      "year": "1990"
+    },
+    {
+      "type": "State",
+      "name": "Rev. Fr. Moses Orshio Adasu (Formerly, Benue State University), Makurdi",
+      "website": "https://www.bsum.edu.ng",
+      "year": "1992"
+    },
+    {
+      "type": "State",
+      "name": "Delta State University Abraka",
+      "website": "https://www.delsu.edu.ng",
+      "year": "1992"
+    },
+    {
+      "type": "State",
+      "name": "Imo State University, Owerri",
+      "website": "https://www.imsu.edu.ng",
+      "year": "1992"
+    },
+    {
+      "type": "State",
+      "name": "Adekunle Ajasin University, Akungba",
+      "website": "https://www.aaua.edu.ng",
+      "year": "1999"
+    },
+    {
+      "type": "State",
+      "name": "Prince Abubakar Audu University Anyigba",
+      "website": "https://www.ksu.edu.ng",
+      "year": "1999"
+    },
+    {
+      "type": "State",
+      "name": "Chukwuemeka Odumegwu Ojukwu University, Uli",
+      "website": "https://coou.edu.ng/",
+      "year": "2000"
+    },
+    {
+      "type": "State",
+      "name": "Ebonyi State University, Abakaliki",
+      "website": "https://www.ebsu.edu.ng",
+      "year": "2000"
+    },
+    {
+      "type": "State",
+      "name": "Aliko Dangote university of Science & Technology, Wudil",
+      "website": "https://www.kust.edu.ng",
+      "year": "2000"
+    },
+    {
+      "type": "State",
+      "name": "Niger Delta University Yenagoa",
+      "website": "https://www.ndu.edu.ng",
+      "year": "2000"
+    },
+    {
+      "type": "State",
+      "name": "Adamawa State University Mubi",
+      "website": "https://www.adsu.edu.ng",
+      "year": "2002"
+    },
+    {
+      "type": "State",
+      "name": "Nasarawa State University Keffi",
+      "website": "https://www.nsuk.edu.ng",
+      "year": "2002"
+    },
+    {
+      "type": "State",
+      "name": "University of Cross River State, Calabar",
+      "website": "https://www.crutech.edu.ng",
+      "year": "2004"
+    },
+    {
+      "type": "State",
+      "name": "Gombe State Univeristy, Gombe",
+      "website": "https://www.gsu.edu.ng",
+      "year": "2004"
+    },
+    {
+      "type": "State",
+      "name": "Kaduna State University, Kaduna",
+      "website": "https://www.kasu.edu.ng",
+      "year": "2004"
+    },
+    {
+      "type": "State",
+      "name": "Ibrahim Badamasi Babangida University, Lapai",
+      "website": "https://www.ibbu.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "State",
+      "name": "Plateau State University Bokkos",
+      "website": "https://www.plasu.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "State",
+      "name": "Yobe State University, Damaturu",
+      "website": "https://www.ysu.edu.ng",
+      "year": "2006"
+    },
+    {
+      "type": "State",
+      "name": "Kebbi State University of Science and Technology, Aliero",
+      "website": "https://www.ksusta.edu.ng",
+      "year": "2006"
+    },
+    {
+      "type": "State",
+      "name": "Umar Musa Yar' Adua University Katsina",
+      "website": "https://www.umyu.edu.ng",
+      "year": "2006"
+    },
+    {
+      "type": "State",
+      "name": "Osun State University Osogbo",
+      "website": "https://www.uniosun.edu.ng",
+      "year": "2006"
+    },
+    {
+      "type": "State",
+      "name": "Olusegun Agagu University of Sc. & Tech., Okitipupa, Ondo",
+      "website": "https://www.osustech.edu.ng",
+      "year": "2008"
+    },
+    {
+      "type": "State",
+      "name": "Taraba State University, Jalingo",
+      "website": "https://www.tsuniversity.edu.ng",
+      "year": "2008"
+    },
+    {
+      "type": "State",
+      "name": "Kwara State University, Ilorin",
+      "website": "https://www.kwasu.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "State",
+      "name": "Sokoto State University",
+      "website": "https://www.ssu.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "State",
+      "name": "Akwa Ibom State University, Ikot Akpaden",
+      "website": "https://www.aksu.edu.ng",
+      "year": "2010"
+    },
+    {
+      "type": "State",
+      "name": "Ignatius Ajuru University of Education,Rumuolumeni",
+      "website": "https://www.iaue.edu.ng",
+      "year": "2010"
+    },
+    {
+      "type": "State",
+      "name": "Bauchi State University, Gadau",
+      "website": "https://www.basug.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "State",
+      "name": "Northwest University Kano",
+      "website": "https://www.nwu.edu.ng",
+      "year": "2012"
+    },
+    {
+      "type": "State",
+      "name": "First Technical University Ibadan",
+      "website": "https://tech-u.edu.ng/",
+      "year": "2012"
+    },
+    {
+      "type": "State",
+      "name": "Sule Lamido University, Kafin Hausa, Jigawa",
+      "website": "https://www.slu.edu.ng",
+      "year": "2013"
+    },
+    {
+      "type": "State",
+      "name": "University of Medical Sciences, Ondo City, Ondo State",
+      "website": "https://www.unimed.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "State",
+      "name": "Edo State University, Iyamho",
+      "website": "https://www.edouniversity.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "State",
+      "name": "Kingsley Ozumba Mbadiwe University Ogboko, Imo State",
+      "website": "https://www.komu.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "State",
+      "name": "University of Africa Toru Orua, Bayelsa State",
+      "website": "https://www.uat.edu.ng/public/",
+      "year": "2016"
+    },
+    {
+      "type": "State",
+      "name": "Kashim Ibrahim ( formerly Bornu State) University, Maiduguri",
+      "website": "",
+      "year": "2016"
+    },
+    {
+      "type": "State",
+      "name": "Moshood Abiola University of Science and Technology Abeokuta",
+      "website": "",
+      "year": "2017"
+    },
+    {
+      "type": "State",
+      "name": "Zamfara State University",
+      "website": "",
+      "year": "2018"
+    },
+    {
+      "type": "State",
+      "name": "Bayelsa Medical University",
+      "website": "https://bmu.edu.ng/",
+      "year": "2019"
+    },
+    {
+      "type": "State",
+      "name": "University of Agriculture and Environmental Sciences Umuagwo, Imo State",
+      "website": "https://www.uaes.edu.ng/",
+      "year": "2019"
+    },
+    {
+      "type": "State",
+      "name": "Confluence University of Science and Technology Osara, Kogi",
+      "website": "https://custech.edu.ng/",
+      "year": "2020"
+    },
+    {
+      "type": "State",
+      "name": "Bamidele Olumilua University of Science and Technology Ikere, Ekiti State",
+      "website": "https://bouesti.edu.ng/",
+      "year": "2020"
+    },
+    {
+      "type": "State",
+      "name": "University of Delta, Agbor",
+      "website": "https://unidel.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "State",
+      "name": "Delta University of Science and Technology, Ozoro",
+      "website": "https://dsust.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "State",
+      "name": "Dennis Osadebe University, Asaba",
+      "website": "https://www.dou.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "State",
+      "name": "Lagos State University of Education, Ijanikin",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "Lagos State University of Science and Technology Ikorodu",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "Shehu Shagari University of Education, Sokoto",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "State University of Medical and Applied Sciences, Igbo-Eno, Enugu",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "University of Ilesa, Osun State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "Emanuel Alayande University of Education Oyo",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "State",
+      "name": "Kogi State University, Kabba",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "State",
+      "name": "AbdulKadir Kure University, Minna Niger State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "State",
+      "name": "Kwara State University of Education, Ilorin, Kwara State",
+      "website": "",
+      "year": "2024"
+    },
+    {
+      "type": "State",
+      "name": "Abdulsalam Abubakar University of Agriculture and Climate Action, Mokwa, Niger State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "Ebonyi State University of ICT, Science and Technology, Oferekpe, Ebonyi State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "Cross River University of Education and Entrepeneurship, Akampa, Cross River State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "Benue State University of Agriculture Science and Technology, Ihugh.",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "University of Aeronautics and Aerospace Engineering Ezza, Ebonyi State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "University of Innovation, Science and Technology, Omuma, Imo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "State",
+      "name": "Taraba State University of Tropical Agriculture, Science, Technology and Climate Action, Gembu",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "State",
+      "name": "Jigawa State University of Medical and Allied Health Sciences, Majia",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Babcock University,Ilishan-Remo",
+      "website": "https://www.babcock.edu.ng",
+      "year": "1999"
+    },
+    {
+      "type": "Private",
+      "name": "Igbinedion University Okada",
+      "website": "https://www.iuokada.edu.ng",
+      "year": "1999"
+    },
+    {
+      "type": "Private",
+      "name": "Madonna University, Okija",
+      "website": "https://www.madonnauniversity.edu.ng",
+      "year": "1999"
+    },
+    {
+      "type": "Private",
+      "name": "Bowen University, Iwo",
+      "website": "https://www.bowen.edu.ng",
+      "year": "2001"
+    },
+    {
+      "type": "Private",
+      "name": "Benson Idahosa University, Benin City",
+      "website": "https://www.biu.edu.ng/",
+      "year": "2002"
+    },
+    {
+      "type": "Private",
+      "name": "Covenant University Ota",
+      "website": "https://www.covenantuniversity.edu.ng/",
+      "year": "2002"
+    },
+    {
+      "type": "Private",
+      "name": "Pan-Atlantic University, Lagos",
+      "website": "https://www.pau.edu.ng",
+      "year": "2002"
+    },
+    {
+      "type": "Private",
+      "name": "American University of Nigeria, Yola",
+      "website": "https://www.aun.edu.ng",
+      "year": "2003"
+    },
+    {
+      "type": "Private",
+      "name": "Ajayi Crowther University, Ibadan",
+      "website": "https://www.acu.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Hikmah University, Ilorin",
+      "website": "https://www.alhikmah.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Qalam University, Katsina",
+      "website": "https://www.auk.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Bells University of Technology, Otta",
+      "website": "https://www.bellsuniversity.edu.ng/",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Bingham University, New Karu",
+      "website": "https://www.binghamuni.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Caritas University, Enugu",
+      "website": "https://www.caritasuni.edu.ng/",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Crawford University Igbesa",
+      "website": "https://www.crawforduniversity.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Crescent University",
+      "website": "https://www.crescent-university.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Kwararafa University, Wukari",
+      "website": "https://www.kwararafauniversity.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Lead City University, Ibadan",
+      "website": "https://www.lcu.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Novena University, Ogume",
+      "website": "https://www.novenauniversity.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Redeemer's University, Ede",
+      "website": "https://www.run.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Renaissance University, Enugu",
+      "website": "https://www.rnu.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "University of Mkar, Mkar",
+      "website": "https://www.unimkar.edu.ng",
+      "year": "2005"
+    },
+    {
+      "type": "Private",
+      "name": "Joseph Ayo Babalola University, Ikeji-Arakeji",
+      "website": "https://www.jabu.edu.ng",
+      "year": "2006"
+    },
+    {
+      "type": "Private",
+      "name": "Achievers University, Owo",
+      "website": "https://www.achievers.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Caleb University, Lagos",
+      "website": "https://www.calebuniversity.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Fountain Unveristy, Oshogbo",
+      "website": "https://www.fuo.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "African University of Science and Technology, Abuja",
+      "website": "http://aust.edu.ng/",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Obong University, Obong Ntak",
+      "website": "https://www.obonguniversity.net",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Salem University, Lokoja",
+      "website": "https://www.salemuniversity.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Tansian University, Umunya",
+      "website": "https://tansianuniversity.edu.ng/",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Veritas University, Abuja",
+      "website": "https://www.veritas.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Wesley University Ondo",
+      "website": "https://www.wesleyuni.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Western Delta University, Oghara Delta State",
+      "website": "https://wdu.edu.ng",
+      "year": "2007"
+    },
+    {
+      "type": "Private",
+      "name": "Afe Babalola University, Ado-Ekiti - Ekiti State",
+      "website": "https://www.abuad.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Godfrey Okoye University, Ugwuomu-Nike - Enugu State",
+      "website": "https://www.gouni.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Nile University of Nigeria, Abuja",
+      "website": "https://www.nileuniversity.edu.ng/",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Oduduwa University, Ipetumodu - Osun State",
+      "website": "https://www.oduduwauniversity.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Paul University, Awka - Anambra State",
+      "website": "https://www.pauluniversity.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Rhema University, Obeama-Asa - Rivers State",
+      "website": "https://www.rhemauniversity.edu.ng",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Wellspring University, Evbuobanosa - Edo State",
+      "website": "https://www.wellspringuniversity.net",
+      "year": "2009"
+    },
+    {
+      "type": "Private",
+      "name": "Adeleke University, Ede",
+      "website": "https://www.adelekeuniversity.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Private",
+      "name": "Baze University",
+      "website": "https://www.bazeuniversity.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Private",
+      "name": "Landmark University, Omu-Aran.",
+      "website": "https://www.lmu.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Private",
+      "name": "Glorious Vision University, Ogwa, Edo State.",
+      "website": "https://www.sau.edu.ng",
+      "year": "2011"
+    },
+    {
+      "type": "Private",
+      "name": "Elizade University, Ilara-Mokin",
+      "website": "https://www.elizadeuniversity.edu.ng",
+      "year": "2012"
+    },
+    {
+      "type": "Private",
+      "name": "Evangel University, Akaeze",
+      "website": "https://www.evangeluniversity.edu.ng",
+      "year": "2012"
+    },
+    {
+      "type": "Private",
+      "name": "Gregory University, Uturu",
+      "website": "https://www.gregoryuniversity.com",
+      "year": "2012"
+    },
+    {
+      "type": "Private",
+      "name": "Mcpherson University, Seriki Sotayo, Ajebo",
+      "website": "https://www.mcu.edu.ng",
+      "year": "2012"
+    },
+    {
+      "type": "Private",
+      "name": "Southwestern University, Oku Owa",
+      "website": "https://www.southwesternuniversity.edu.ng",
+      "year": "2012"
+    },
+    {
+      "type": "Private",
+      "name": "Augustine University",
+      "website": "https://www.augustineuniversity.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Chrisland University",
+      "website": "https://www.chrislanduniversity.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Edwin Clark University, Kaigbodo",
+      "website": "https://www.edwinclarkuniversity.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Hallmark University, Ijebi Itele, Ogun",
+      "website": "https://www.hallmark.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Hezekiah University, Umudi",
+      "website": "https://hezekiah.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Kings University, Ode Omu",
+      "website": "https://www.kingsuniversity.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Micheal & Cecilia Ibru University",
+      "website": "https://mciu.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Mountain Top University",
+      "website": "https://www.mtu.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Ritman University, Ikot Ekpene, Akwa Ibom",
+      "website": "https://www.ritmanuniversity.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Summit University, Offa",
+      "website": "https://www.summituniversity.edu.ng",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Christopher University Mowe",
+      "website": "https://www.christopheruniversity.edu.ng/",
+      "year": "2015"
+    },
+    {
+      "type": "Private",
+      "name": "Kola Daisi University Ibadan, Oyo State",
+      "website": "https://www.koladaisiuniversity.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Anchor University Ayobo Lagos State",
+      "website": "https://www.aul.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Dominican University Ibadan Oyo State",
+      "website": "https://www.dui.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Legacy University, Okija Anambra State",
+      "website": "https://www.legacyuniversity.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Arthur Javis University Akpoyubo Cross river State",
+      "website": "https://www.arthurjarvisuniversity.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Ojaja University Eiyenkorin, Kwara State",
+      "website": "https://www.crownhilluniversity.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Coal City University Enugu State",
+      "website": "https://www.ccu.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Clifford University Owerrinta Abia State",
+      "website": "https://www.clifforduni.edu.ng/",
+      "year": "2016"
+    },
+    {
+      "type": "Private",
+      "name": "Spiritan University, Nneochi Abia State",
+      "website": "https://www.spiritanuniversity.edu.ng",
+      "year": "2017"
+    },
+    {
+      "type": "Private",
+      "name": "Precious Cornerstone University, Oyo",
+      "website": "https://www.pcu.edu.ng",
+      "year": "2017"
+    },
+    {
+      "type": "Private",
+      "name": "PAMO University of Medical Sciences, Portharcourt",
+      "website": "https://www.pums.edu.ng",
+      "year": "2017"
+    },
+    {
+      "type": "Private",
+      "name": "Atiba University Oyo",
+      "website": "",
+      "year": "2017"
+    },
+    {
+      "type": "Private",
+      "name": "Eko University of Medical and Health Sciences Ijanikin, Lagos",
+      "website": "https://www.ekounivmed.edu.ng",
+      "year": "2017"
+    },
+    {
+      "type": "Private",
+      "name": "Skyline University, Kano",
+      "website": "https://www.sun.edu.ng",
+      "year": "2018"
+    },
+    {
+      "type": "Private",
+      "name": "Greenfield University, Kaduna",
+      "website": "https://www.gfu.edu.ng",
+      "year": "2019"
+    },
+    {
+      "type": "Private",
+      "name": "Dominion University Ibadan, Oyo State",
+      "website": "https://www.dominionuniversity.edu.ng/",
+      "year": "2019"
+    },
+    {
+      "type": "Private",
+      "name": "Trinity University Ogun State",
+      "website": "https://www.trinityuniversity.edu.ng/",
+      "year": "2019"
+    },
+    {
+      "type": "Private",
+      "name": "Westland University Iwo, Osun State",
+      "website": "",
+      "year": "2019"
+    },
+    {
+      "type": "Private",
+      "name": "Topfaith University, Mkpatak, Akwa Ibom State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Thomas Adewumi University, Oko-Irese, Kwara State",
+      "website": "https://www.tau.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Maranatha University, Lagos",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Ave Maria University, Piyanko, Nasarawa State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Istiqama University, Sumaila, Kano State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Mudiame University, Irrua, Edo State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Havilla University, Nde-Ikom, Cross River State",
+      "website": "https://havillauniversity.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Claretian University of Nigeria, Nekede, Imo State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Karl-Kumm University, Vom, Plateau State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "James Hope University, Lagos, Lagos State",
+      "website": "https://www.jhu.edu.ng",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Maryam Abacha American University of Nigeria, Kano State",
+      "website": "https://www.maaun.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Capital City University, Kano State",
+      "website": "https://www.ccuk.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Ahman Pategi University, Kwara State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "University of Offa, Kwara State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Mewar International University, Masaka, Nasarawa State",
+      "website": "https://www.miu.edu.ng/",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Edusoko University, Bida, Niger State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Philomath University, Kuje, Abuja",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "Anan University, Kwall, Plateau State",
+      "website": "",
+      "year": "2021"
+    },
+    {
+      "type": "Private",
+      "name": "North Eastern University, Gombe",
+      "website": "https://pru.edu.ng/",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Ansar University, Maiduguri, Borno",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Margaret Lawrence University, Umunede, Delta State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Khalifa Isiyaku Rabiu University, Kano",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Sports University, Idumuje, Ugboko, Delta State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Baba Ahmed University, Kano State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Saisa University of Medical Sciences and Technology, Sokoto State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Nigerian British University, Asa, Abia State",
+      "website": "https://nbu.edu.ng/",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Peter University, Achina-Onneh Anambra State",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Newgate University, MInna, Niger State.",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "European University of Nigeria, Duboyi, FCT",
+      "website": "",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "NorthWest University Sokoto State",
+      "website": "https://nwus.edu.ng/",
+      "year": "2022"
+    },
+    {
+      "type": "Private",
+      "name": "Rayhaan University, Kebbi",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Muhammad Kamalud University Kwara",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Sam Maris University, Ondo",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Aletheia University, Ago-Iwoye Ogun State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Lux Mundi University Umuahia, Abia State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Maduka University, Ekwegbe, Enugu State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "PeaceLand University, Enugu State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Amadeus University, Amizi, Abia State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Vision University, Ikogbo, Ogun State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Azman University, Kano State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Huda University, Gusau, Zamafara State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Franco British International University, Kaduna State",
+      "website": "https://fbiu.edu.ng/",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Canadian University of Nigeria, Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Gerar University of Medical Science Imope Ijebu, Ogun State.",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "British Canadian University, Obufu Cross River State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Hensard University, Toru-Orua, Sagbama, Bayelsa State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Amaj University, Kwali, Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Phoenix University, Agwada, Nasarawa State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Wigwe University, Isiokpo Rivers State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Hillside University of Science and Technology, Okemisi, Ekiti State",
+      "website": "https://www.hust.edu.ng",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "University on the Niger, Umunya, Anambra state",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Elrazi Medical University Yargaya University, Kano State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Venite University, Iloro-Ekiti, Ekiti State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Shanahan University Onitsha, Anambra State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "The Duke Medical University, Calabar, Cross River State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Mercy Medical University, Iwo, Ogun State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Cosmopolitan University Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Miva Open University, Abuja FCT",
+      "website": "https://miva.university/",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Iconic Open University, Sokoto State.",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "West Midlands Open University, Ibadan, Oyo State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Muhibbah Open University, Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "El-Amin University, Minna, Niger State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "College of Petroleum and Energy Studies, Kaduna State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Jewel University, Gombe state",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Prime University, Kuje, FCT Abuja",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Nigerian University of Technology and Management, Apapa, Lagos State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Al-Bayan University, Ankpa, Kogi State",
+      "website": "",
+      "year": "2023"
+    },
+    {
+      "type": "Private",
+      "name": "Lighthouse University, Evbobanosa, Edo State",
+      "website": "",
+      "year": "2024"
+    },
+    {
+      "type": "Private",
+      "name": "African University of Economics, FCT, Abuja",
+      "website": "",
+      "year": "2024"
+    },
+    {
+      "type": "Private",
+      "name": "New City University, Ayetoro, Ogun State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "University of Fortune, Igbotako, Ondo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Eranova University, Abuja",
+      "website": "https://eranova.edu.ng/",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Minaret University, Ikirun, Osun State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Abdulrasaq Abubakar Toyin University, Oke-Ogba, Ganmo, Ilorin, Kwara State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Southern Atlantic University, Uyo, Akwa Ibom State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Lens University, Ilemona, Kwara State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Monarch University, Iyesi-Ota, Ogun State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Tonine Iredia University of Communication, Benin City, Edo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Isaac Balami University of Aeronautics and Management, Lagos State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Kevin Eze University, Mgbowo, Enugu State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Tazkiyah University, Kaduna, Kaduna State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Leadership University, Abuja, FCT",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Jimoh Babalola University, Ilorin, Kwara State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Bridget University Mbaise, Okirika-Nweke, Imo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Greenland University, Jalingo, Taraba State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "JEFAP University, Suleja, Niger State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Azione Verde University, Amaigbo, Imo State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Unique Open University, Ojo, Lagos State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "American Open University, Abeokuta, Ogun State",
+      "website": "",
+      "year": "2025"
+    },
+    {
+      "type": "Private",
+      "name": "Millenium Crest University, Ikare Akoko, Ondo State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Abdulfattah Durojaiye University, Abeokuta Ogun State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Euston University, Abakaliki, Ebonyi State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Adeche Momoh University, Igarra, Edo State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Sani Bello University, Kontagora Niger State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Godday Erewa University, Sapele, Delta State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Owolabi University, Oke Ila Orangun",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Regnum Medical University, Anthony, Lagos State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "City University Abuja",
+      "website": "https://www.cityuniversity.edu.ng/",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Transatlantic University of Medine and Health Sciences, Umuchukwu, Anambra State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Maria Assumpta University Owerri, Imo State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "High Flyers University, Ikere-Ekiti, Ekiti State",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Ummah University of Nigeria, Abuja",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Pearl University, Calabar, Cross river",
+      "website": "",
+      "year": "2026"
+    },
+    {
+      "type": "Private",
+      "name": "Omega University Kaduna",
+      "website": "",
+      "year": "2026"
+    }
+  ]
+}
