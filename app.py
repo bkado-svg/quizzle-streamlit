@@ -21,7 +21,123 @@ DB_PATH = Path(os.getenv("QUIZZLE_DB_PATH", ROOT / "quizzle.db"))
 UPLOADS = ROOT / "uploads"
 UPLOADS.mkdir(exist_ok=True)
 
-st.set_page_config(page_title="Quizzle", page_icon="Q", layout="wide")
+st.set_page_config(page_title="Quizzle", page_icon="🎓", layout="wide", initial_sidebar_state="expanded")
+
+st.markdown("""
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap');
+
+:root {
+  --ink: #15243b;
+  --muted: #64748b;
+  --brand: #5b4bea;
+  --brand-dark: #4033c8;
+  --mint: #21bfa6;
+  --surface: #ffffff;
+  --line: #e7eaf3;
+}
+
+html, body, [class*="css"], [data-testid="stAppViewContainer"] {
+  font-family: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  color: var(--ink);
+}
+
+[data-testid="stAppViewContainer"] {
+  background:
+    radial-gradient(circle at 90% -10%, rgba(91,75,234,.12), transparent 32rem),
+    radial-gradient(circle at 5% 100%, rgba(33,191,166,.09), transparent 28rem),
+    #f7f8fc;
+}
+
+[data-testid="stMainBlockContainer"] { max-width: 1240px; padding: 2.2rem 3rem 4rem; }
+h1, h2, h3 { font-family: "Manrope", sans-serif !important; color: var(--ink); letter-spacing: -.035em; }
+h2 { font-size: 2rem !important; font-weight: 800 !important; margin-bottom: .1rem !important; }
+h3 { font-size: 1.16rem !important; font-weight: 700 !important; margin-top: 1.8rem !important; }
+p, label, .stCaption { letter-spacing: -.005em; }
+[data-testid="stMain"] label, [data-testid="stMain"] [data-testid="stMarkdownContainer"] p { color: var(--ink); }
+[data-testid="stMain"] .stCaption { color: var(--muted) !important; }
+
+[data-testid="stSidebar"] {
+  background: linear-gradient(165deg, #18233e 0%, #29215d 72%, #4033c8 140%);
+  border-right: 0;
+}
+[data-testid="stSidebar"] * { color: #f8fafc !important; }
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p { color: #cbd3e8 !important; }
+[data-testid="stSidebar"] h1 { font-size: 1.45rem !important; letter-spacing: -.03em; }
+[data-testid="stSidebar"] [role="radiogroup"] { gap: .3rem; }
+[data-testid="stSidebar"] label[data-baseweb="radio"] {
+  padding: .62rem .75rem; border-radius: .72rem; transition: .18s ease;
+}
+[data-testid="stSidebar"] label[data-baseweb="radio"]:hover { background: rgba(255,255,255,.09); }
+[data-testid="stSidebar"] label[data-baseweb="radio"]:has(input:checked) {
+  background: rgba(255,255,255,.14); box-shadow: inset 3px 0 #5eead4;
+}
+[data-testid="stSidebar"] .stButton button {
+  background: rgba(255,255,255,.08) !important; border-color: rgba(255,255,255,.15) !important;
+}
+
+[data-testid="stMetric"] {
+  background: rgba(255,255,255,.9); border: 1px solid var(--line); border-radius: 1rem;
+  padding: 1rem 1.15rem; box-shadow: 0 8px 26px rgba(32,40,80,.06);
+}
+[data-testid="stMetricLabel"] { color: var(--muted); font-weight: 600; }
+[data-testid="stMetricValue"] { color: var(--ink); font-family: "Manrope"; font-weight: 800; }
+
+.stButton > button, .stDownloadButton > button, [data-testid="stFormSubmitButton"] > button, a[data-testid="stLinkButton"] {
+  border-radius: .72rem !important; min-height: 2.7rem; border: 1px solid #dfe3ee !important;
+  font-weight: 700 !important; box-shadow: 0 3px 10px rgba(34,42,80,.05); transition: .18s ease !important;
+}
+.stButton > button:hover, .stDownloadButton > button:hover, [data-testid="stFormSubmitButton"] > button:hover {
+  border-color: var(--brand) !important; color: var(--brand) !important; transform: translateY(-1px);
+}
+[data-testid="stFormSubmitButton"] > button, button[kind="primary"] {
+  background: linear-gradient(135deg, var(--brand), var(--brand-dark)) !important;
+  color: white !important; border: 0 !important;
+}
+[data-testid="stFormSubmitButton"] > button:hover { color: white !important; box-shadow: 0 8px 18px rgba(91,75,234,.24); }
+[data-testid="stFormSubmitButton"] > button p { color: white !important; }
+
+[data-testid="stForm"], [data-testid="stExpander"], [data-testid="stDataFrame"], [data-testid="stAlert"] {
+  border-radius: 1rem !important; border-color: var(--line) !important;
+  box-shadow: 0 8px 28px rgba(32,40,80,.055); overflow: hidden;
+}
+[data-testid="stForm"], [data-testid="stExpander"] { background: rgba(255,255,255,.86); }
+[data-testid="stExpander"] details summary { padding: .9rem 1rem; font-weight: 700; }
+
+input, textarea, [data-baseweb="select"] > div, [data-baseweb="input"] {
+  border-radius: .66rem !important; border: 1px solid #dfe3ee !important; background: #fff !important;
+}
+input:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(91,75,234,.12) !important; }
+[data-baseweb="tab-list"] { gap: .45rem; border-bottom: 1px solid var(--line); }
+[data-baseweb="tab"] { border-radius: .7rem .7rem 0 0; padding: .7rem 1.1rem; font-weight: 700; }
+[aria-selected="true"][data-baseweb="tab"] { color: var(--brand); background: rgba(91,75,234,.07); }
+
+.qz-hero {
+  padding: 1.35rem 1.5rem; margin: .15rem 0 1.35rem; border-radius: 1.15rem;
+  background: linear-gradient(120deg, #ffffff 0%, #f0efff 100%); border: 1px solid #e5e2ff;
+  box-shadow: 0 10px 32px rgba(59,50,140,.07);
+}
+.qz-hero h2 { margin: 0 !important; }
+.qz-hero p { margin: .35rem 0 0; color: var(--muted); }
+.qz-login {
+  text-align: center; padding: 2.4rem 1rem 1.2rem;
+}
+.qz-mark {
+  width: 3.5rem; height: 3.5rem; display: inline-grid; place-items: center; border-radius: 1.05rem;
+  color: white; font-family: "Manrope"; font-size: 1.55rem; font-weight: 800;
+  background: linear-gradient(145deg, #6b5cf3, #4033c8); box-shadow: 0 12px 30px rgba(91,75,234,.28);
+}
+.qz-login h1 { margin: .8rem 0 .1rem; font-size: 2rem; }
+.qz-login p { color: var(--muted); margin: 0; }
+.qz-login + div, [data-testid="stMain"] [data-testid="stTabs"] { max-width: 780px; margin-left: auto; margin-right: auto; }
+code { border-radius: .55rem !important; color: var(--brand-dark) !important; background: #eeecff !important; }
+hr { border-color: var(--line) !important; }
+@media (max-width: 760px) {
+  [data-testid="stMainBlockContainer"] { padding: 1.25rem 1rem 3rem; }
+  .qz-hero { padding: 1rem; }
+}
+</style>
+""", unsafe_allow_html=True)
 
 
 def db():
@@ -69,8 +185,8 @@ def code(prefix="QZ"):
 
 
 def title(text, caption=None):
-    st.markdown(f"## {text}")
-    if caption: st.caption(caption)
+    subtitle = f"<p>{caption}</p>" if caption else ""
+    st.markdown(f'<section class="qz-hero"><h2>{text}</h2>{subtitle}</section>', unsafe_allow_html=True)
 
 
 def logout():
@@ -78,7 +194,7 @@ def logout():
 
 
 def login():
-    st.markdown("<h1 style='text-align:center'>Q · Quizzle</h1><p style='text-align:center;color:#777'>Teach · Assess · Improve</p>", unsafe_allow_html=True)
+    st.markdown("<div class='qz-login'><span class='qz-mark'>Q</span><h1>Quizzle</h1><p>Teach smarter. Assess confidently. Improve together.</p></div>", unsafe_allow_html=True)
     teacher, student, admin = st.tabs(["Teacher", "Student", "Admin"])
     with teacher:
         with st.form("teacher_login"):
