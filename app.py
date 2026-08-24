@@ -369,7 +369,11 @@ def teacher_overview(user):
 
 def department_catalog(faculty, department, level, semester):
     catalog = rows("""SELECT cc.code,cc.title FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? AND cc.semester=? ORDER BY cc.code""", (faculty or "", department or "", level, semester))
-    return [f"{item['code']} · {item['title']}" for item in catalog]
+    shared_baseline = False
+    if not catalog:
+        catalog = rows("""SELECT cc.code,cc.title,COUNT(*) frequency FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND cc.level=? AND cc.semester=? GROUP BY cc.code,cc.title ORDER BY frequency DESC,cc.code LIMIT 30""", (faculty or "", level, semester))
+        shared_baseline = bool(catalog)
+    return [f"{item['code']} · {item['title']}" for item in catalog], shared_baseline
 
 
 def courses_page(user):
@@ -378,23 +382,23 @@ def courses_page(user):
     title("Courses", f"Courses for {department} are organised by level, semester, and academic session")
     if st.session_state.pop("course_added", False): st.success("Course added successfully and is now available for quizzes, results, reports, and resources.")
     with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
-        with st.form("new_class"):
-            level_options=[item["level"] for item in rows("SELECT DISTINCT cc.level FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) ORDER BY CAST(cc.level AS INTEGER)",(faculty,department))]
-            level=st.selectbox("Level",level_options,disabled=not level_options)
-            semester_options=[item["semester"] for item in rows("SELECT DISTINCT cc.semester FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) AND cc.level=? ORDER BY CASE cc.semester WHEN 'First semester' THEN 1 ELSE 2 END",(faculty,department,level))] if level else []
-            semester=st.selectbox("Semester",semester_options,disabled=not semester_options)
-            available=department_catalog(faculty,department,level,semester)
-            if available:
-                course=st.selectbox("Department course",available,help=f"Automatically populated from the NUC CCMAS catalogue for {department}")
-            else:
-                st.warning(f"No verified NUC course list is currently loaded for {department} at {level} level. Ask an administrator to add the institution's approved curriculum.")
-                course=None
-            name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L")
-            session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}")
-            if st.form_submit_button("Add course",disabled=not available):
-                run("INSERT INTO classes(teacher_id,name,level,semester,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?,?)",(user["id"],name or f"{department} {level}L",level,semester,session,course,code("CL"),now_iso()))
-                st.session_state.course_added=True
-                st.rerun()
+        verified_levels=[item["level"] for item in rows("SELECT DISTINCT cc.level FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) ORDER BY CAST(cc.level AS INTEGER)",(faculty,department))]
+        level_options=[level for level in ["100","200","300","400","500","600"] if level in {"100","200","300","400",*verified_levels}]
+        level=st.selectbox("Level",level_options,key="course_level")
+        semester=st.selectbox("Semester",["First semester","Second semester"],key="course_semester")
+        available,shared_baseline=department_catalog(faculty,department,level,semester)
+        if available:
+            course=st.selectbox("Department course",available,key="department_course",help=f"Automatically refreshes from the NUC CCMAS catalogue for {department}")
+            if shared_baseline: st.caption(f"No programme-specific table was extracted for this selection. Showing verified {faculty} discipline baseline courses.")
+        else:
+            st.warning(f"No verified NUC course list is currently loaded for {faculty} at {level} level, {semester.lower()}.")
+            course=None
+        name=st.text_input("Course group / class name",placeholder="e.g. Computer Science 200L",key="course_group_name")
+        session=st.text_input("Academic session",f"{datetime.now().year-1}/{str(datetime.now().year)[-2:]}",key="course_session")
+        if st.button("Add course",disabled=not available,key="add_department_course",use_container_width=True):
+            run("INSERT INTO classes(teacher_id,name,level,semester,session,course,join_code,created_at) VALUES(?,?,?,?,?,?,?,?)",(user["id"],name or f"{department} {level}L",level,semester,session,course,code("CL"),now_iso()))
+            st.session_state.course_added=True
+            st.rerun()
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
         with st.expander(f"{cls['level']} · {cls.get('semester') or 'Semester not set'} · {cls['name']} — {cls['course']}"):
             st.code(cls["join_code"]); roster=rows("SELECT * FROM students WHERE class_id=?",(cls["id"],)); st.dataframe(roster,use_container_width=True,hide_index=True)
