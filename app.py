@@ -49,6 +49,10 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"] {
     #f7f8fc;
 }
 
+/* Hide Streamlit's hosted-app action bar (Share/Fork/Deploy). */
+[data-testid="stHeader"], #MainMenu, footer { display: none !important; }
+[data-testid="stAppViewContainer"] > .main { padding-top: 0 !important; }
+
 [data-testid="stMainBlockContainer"] { max-width: 1240px; padding: 2.2rem 3rem 4rem; }
 h1, h2, h3 { font-family: "Manrope", sans-serif !important; color: var(--ink); letter-spacing: -.035em; }
 h2 { font-size: 2rem !important; font-weight: 800 !important; margin-bottom: .1rem !important; }
