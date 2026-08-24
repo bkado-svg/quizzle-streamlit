@@ -130,22 +130,37 @@ input:focus, textarea:focus { box-shadow: 0 0 0 3px rgba(91,75,234,.12) !importa
 }
 .qz-hero h2 { margin: 0 !important; }
 .qz-hero p { margin: .35rem 0 0; color: var(--muted); }
-.qz-login {
-  text-align: center; padding: 2.4rem 1rem 1.2rem;
+.qz-original-hero {
+  position: fixed; z-index: 2; inset: 0 50% 0 0; padding: clamp(4rem, 12vh, 9rem) clamp(3rem, 7vw, 7rem);
+  display: flex; flex-direction: column; justify-content: center; color: white;
+  background:
+    radial-gradient(circle at 85% 80%, rgba(122,109,255,.6), transparent 42%),
+    linear-gradient(145deg, #26205d 0%, #373395 58%, #5c55d9 100%);
 }
-.qz-mark {
-  width: 3.5rem; height: 3.5rem; display: inline-grid; place-items: center; border-radius: 1.05rem;
-  color: white; font-family: "Manrope"; font-size: 1.55rem; font-weight: 800;
-  background: linear-gradient(145deg, #6b5cf3, #4033c8); box-shadow: 0 12px 30px rgba(91,75,234,.28);
-}
-.qz-login h1 { margin: .8rem 0 .1rem; font-size: 2rem; }
-.qz-login p { color: var(--muted); margin: 0; }
-.qz-login + div, [data-testid="stMain"] [data-testid="stTabs"] { max-width: 780px; margin-left: auto; margin-right: auto; }
+.qz-original-brand { position: absolute; top: 10vh; display: flex; align-items: center; gap: .7rem; font: 800 1.35rem "Manrope"; }
+.qz-original-mark { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: .55rem; background: #665cf0; box-shadow: 0 8px 20px rgba(0,0,0,.18); }
+.qz-original-kicker { font-size: .68rem; font-weight: 700; letter-spacing: .28em; opacity: .8; }
+.qz-original-hero h1 { color: white; font-size: clamp(2.45rem, 4vw, 4rem); line-height: 1.08; font-weight: 500; margin: 1.35rem 0 1rem; max-width: 34rem; }
+.qz-original-copy { color: rgba(255,255,255,.72) !important; max-width: 34rem; line-height: 1.7; }
+.qz-original-stats { display: flex; gap: clamp(2rem,4vw,4.5rem); margin-top: 2rem; }
+.qz-original-stats strong { display: block; font: 700 1.05rem "Manrope"; }
+.qz-original-stats span { display: block; margin-top: .35rem; font-size: .68rem; opacity: .62; }
+.qz-form-heading h2 { font-size: 1.55rem !important; margin: .5rem 0 .15rem !important; }
+.qz-form-heading p { color: var(--muted) !important; margin: 0 0 1.2rem; }
+body:has(.qz-original-hero) [data-testid="stMainBlockContainer"] { max-width: none; padding: 8vh 6vw 4rem calc(50% + 6vw); }
+body:has(.qz-original-hero) [data-testid="stTabs"] { max-width: 430px; margin: auto; padding: 2rem; border: 1px solid var(--line); border-radius: 1.25rem; background: rgba(255,255,255,.94); box-shadow: 0 18px 50px rgba(38,32,93,.12); }
+body:has(.qz-original-hero) [data-baseweb="tab-list"] { padding: .25rem; border: 0; border-radius: .75rem; background: #f0f1f6; }
+body:has(.qz-original-hero) [data-baseweb="tab"] { flex: 1; justify-content: center; border-radius: .58rem; }
+body:has(.qz-original-hero) [aria-selected="true"][data-baseweb="tab"] { background: white; box-shadow: 0 3px 10px rgba(30,35,70,.09); }
+body:has(.qz-original-hero) [data-testid="stTabs"] [data-testid="stForm"] { padding: 0; border: 0 !important; background: transparent; box-shadow: none; }
 code { border-radius: .55rem !important; color: var(--brand-dark) !important; background: #eeecff !important; }
 hr { border-color: var(--line) !important; }
 @media (max-width: 760px) {
   [data-testid="stMainBlockContainer"] { padding: 1.25rem 1rem 3rem; }
   .qz-hero { padding: 1rem; }
+  .qz-original-hero { display: none; }
+  body:has(.qz-original-hero) [data-testid="stMainBlockContainer"] { padding: 2.5rem 1rem; }
+  body:has(.qz-original-hero) [data-testid="stTabs"] { padding: 1.25rem; }
 }
 </style>
 """, unsafe_allow_html=True)
@@ -205,12 +220,25 @@ def logout():
 
 
 def login():
-    st.markdown("<div class='qz-login'><span class='qz-mark'>Q</span><h1>Quizzle</h1><p>Teach smarter. Assess confidently. Improve together.</p></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <section class="qz-original-hero">
+      <div class="qz-original-brand"><span class="qz-original-mark">Q</span> Quizzle</div>
+      <div class="qz-original-kicker">TEACH • ASSESS • IMPROVE</div>
+      <h1>One secure doorway for every classroom.</h1>
+      <p class="qz-original-copy">Teachers build assessments, monitor activity and turn every result into a clear teaching decision.</p>
+      <div class="qz-original-stats">
+        <div><strong>3</strong><span>university types</span></div>
+        <div><strong>Linked</strong><span>academic units</span></div>
+        <div><strong>Verified</strong><span>teacher accounts</span></div>
+      </div>
+    </section>
+    """, unsafe_allow_html=True)
     teacher, student, admin = st.tabs(["Teacher", "Student", "Admin"])
     with teacher:
+        st.markdown('<div class="qz-form-heading"><h2>Teacher sign in</h2><p>Use your official institutional email.</p></div>', unsafe_allow_html=True)
         with st.form("teacher_login"):
-            email = st.text_input("Email", key="te"); password = st.text_input("Password", type="password", key="tp")
-            if st.form_submit_button("Sign in", use_container_width=True): authenticate(email, password, "teacher")
+            email = st.text_input("Official institutional email", key="te"); password = st.text_input("Password", type="password", key="tp")
+            if st.form_submit_button("Continue", use_container_width=True): authenticate(email, password, "teacher")
         with st.expander("Create teacher account"):
             with st.form("register"):
                 name=st.text_input("Full name"); email=st.text_input("Institutional email"); password=st.text_input("Create password",type="password")
@@ -219,10 +247,12 @@ def login():
                     try: run("INSERT INTO users(role,name,email,password_hash) VALUES('teacher',?,?,?)",(name,email.lower(),password_hash(password))); st.success("Account created. Please sign in.")
                     except sqlite3.IntegrityError: st.error("That email is already registered.")
     with student:
+        st.markdown('<div class="qz-form-heading"><h2>Student access</h2><p>Enter your class or live quiz code.</p></div>', unsafe_allow_html=True)
         with st.form("student_login"):
             join=st.text_input("Class or quiz code").strip().upper(); number=st.text_input("Student number").strip(); name=st.text_input("Full name")
             if st.form_submit_button("Open class",use_container_width=True): student_signin(join,number,name)
     with admin:
+        st.markdown('<div class="qz-form-heading"><h2>Admin sign in</h2><p>Access account and platform controls.</p></div>', unsafe_allow_html=True)
         with st.form("admin_login"):
             email=st.text_input("Admin email"); password=st.text_input("Admin password",type="password")
             if st.form_submit_button("Sign in as admin",use_container_width=True): authenticate(email,password,"admin")
