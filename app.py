@@ -290,6 +290,10 @@ def login():
     teacher, student, admin = st.tabs(["Teacher", "Student", "Admin"])
     with teacher:
         st.markdown('<div class="qz-form-heading"><h2>Teacher sign in</h2><p>Use your official institutional email.</p></div>', unsafe_allow_html=True)
+        if st.session_state.pop("account_created", False):
+            for key in ("reg_name","reg_email","reg_password","reg_type","reg_university","reg_faculty","reg_department"):
+                st.session_state.pop(key, None)
+            st.success("Account created successfully. Sign in with your new details.")
         with st.form("teacher_login"):
             email = st.text_input("Official institutional email", key="te"); password = st.text_input("Password", type="password", key="tp")
             if st.form_submit_button("Continue", use_container_width=True): authenticate(email, password, "teacher")
@@ -297,16 +301,19 @@ def login():
             name=st.text_input("Full name",key="reg_name"); email=st.text_input("Institutional email",key="reg_email"); password=st.text_input("Create password",type="password",key="reg_password")
             university_type=st.selectbox("University type",["Public","State","Private"],key="reg_type")
             university_options=[x["name"] for x in rows("SELECT name FROM universities WHERE ownership_type=? ORDER BY name",(university_type,))]
-            university=st.selectbox("University",university_options,key="reg_university",help="Official NUC licensed-university register; type to search")
+            university=st.selectbox("University",university_options,index=None,key="reg_university",placeholder="Type to search and select a university",help="Searchable official NUC licensed-university register")
             faculty_options=[x["name"] for x in rows("SELECT name FROM faculties ORDER BY name")]
-            faculty=st.selectbox("Faculty / NUC discipline",faculty_options,key="reg_faculty",help="NUC CCMAS national discipline catalogue; type to search")
-            department_options=[x["name"] for x in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name",(faculty,))]
-            department=st.selectbox("Department / programme",department_options,key="reg_department",help="Filtered by the selected NUC discipline")
+            faculty=st.selectbox("Faculty / NUC discipline",faculty_options,index=None,key="reg_faculty",placeholder="Type to search and select a faculty",disabled=not university,help="Searchable NUC CCMAS national discipline catalogue")
+            department_options=[x["name"] for x in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name",(faculty,))] if faculty else []
+            department=st.selectbox("Department / programme",department_options,index=None,key="reg_department",placeholder="Type to search and select a department",disabled=not faculty,help="Searchable programmes filtered by the selected faculty")
             st.caption("University names are from the NUC register. Faculty and programme choices use the national NUC CCMAS baseline; each university may offer only a subset.")
-            if st.button("Create account",use_container_width=True,key="register_teacher"):
+            if st.button("Create account",use_container_width=True,key="register_teacher",disabled=not (university and faculty and department)):
                 if not name or not email or not password: st.error("Name, email, and password are required.")
                 else:
-                    try: run("INSERT INTO users(role,name,email,password_hash,university_type,university,faculty,department) VALUES('teacher',?,?,?,?,?,?,?)",(name,email.lower(),password_hash(password),university_type,university,faculty,department)); st.success("Account created. Please sign in.")
+                    try:
+                        run("INSERT INTO users(role,name,email,password_hash,university_type,university,faculty,department) VALUES('teacher',?,?,?,?,?,?,?)",(name,email.lower(),password_hash(password),university_type,university,faculty,department))
+                        st.session_state.account_created=True
+                        st.rerun()
                     except sqlite3.IntegrityError: st.error("That email is already registered.")
     with student:
         st.markdown('<div class="qz-form-heading"><h2>Student access</h2><p>Enter your class or live quiz code.</p></div>', unsafe_allow_html=True)
