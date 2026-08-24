@@ -15,6 +15,10 @@ The first launch seeds an administrator account (`admin@quizzle.app` / `Admin123
 
 The licensed-university register in `data/nuc_universities.json` was retrieved from the National Universities Commission lists for federal/public, state, and private universities on 24 August 2026. Faculty/discipline and programme options use the NUC Core Curriculum and Minimum Academic Standards (CCMAS) national baseline. `data/nuc_courses.json` contains course structures extracted from all 17 NUC CCMAS discipline documents. Programme tables with irregular PDF layouts receive only frequently shared, verified courses from the same discipline and are marked `shared_discipline_baseline`. An institution may offer only a subset of the national CCMAS programmes, so Quizzle labels the programme data as a national baseline rather than claiming institution-specific accreditation.
 
+## Database integrity
+
+Administrators can download the live SQLite database and `data/integrity_queries.sql` from the Administration page. The database includes reporting views for the university register, academic catalogue, teacher courses, quiz summaries, attempts, activity events, and shared resources. The SQL suite covers SQLite integrity, foreign keys, orphan records, uniqueness, required fields, hierarchy coverage, valid levels and semesters, score constraints, timestamp ordering, live-attempt duplication, activity durations, and representative view queries.
+
 ## Deployment
 
 Deploy `app.py` from this repository on Streamlit Community Cloud. SQLite is suitable for demonstrations; configure an external persistent database before production use because Community Cloud filesystems may be replaced during redeployment.

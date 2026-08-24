@@ -224,6 +224,14 @@ def init_db():
     CREATE TABLE IF NOT EXISTS faculties(id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, source_url TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS departments(id INTEGER PRIMARY KEY, faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(faculty_id,name), FOREIGN KEY(faculty_id) REFERENCES faculties(id));
     CREATE TABLE IF NOT EXISTS course_catalog(id INTEGER PRIMARY KEY, department_id INTEGER NOT NULL, level TEXT NOT NULL, semester TEXT NOT NULL, code TEXT NOT NULL, title TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(department_id,level,code), FOREIGN KEY(department_id) REFERENCES departments(id));
+    CREATE VIEW IF NOT EXISTS v_university_register AS SELECT ownership_type university_type,name university,website,year_established,source_url FROM universities;
+    CREATE VIEW IF NOT EXISTS v_academic_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code course_code,cc.title course_title,cc.source_url FROM faculties f JOIN departments d ON d.faculty_id=f.id LEFT JOIN course_catalog cc ON cc.department_id=d.id;
+    CREATE VIEW IF NOT EXISTS v_course_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code,cc.title,cc.source_url FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id;
+    CREATE VIEW IF NOT EXISTS v_teacher_courses AS SELECT c.id course_group_id,u.name teacher,u.email,c.name course_group,c.level,c.semester,c.session,c.course,c.join_code,c.created_at FROM classes c JOIN users u ON u.id=c.teacher_id;
+    CREATE VIEW IF NOT EXISTS v_quiz_overview AS SELECT q.id quiz_id,q.title,q.status,q.share_code,q.time_limit,q.show_results,u.name teacher,c.name course_group,c.level,c.semester,c.session,c.course,COUNT(DISTINCT qu.id) question_count,COALESCE(SUM(qu.points),0) total_points FROM quizzes q JOIN users u ON u.id=q.teacher_id JOIN classes c ON c.id=q.class_id LEFT JOIN questions qu ON qu.quiz_id=q.id GROUP BY q.id;
+    CREATE VIEW IF NOT EXISTS v_attempt_reporting AS SELECT a.id attempt_id,q.title quiz,s.name student,s.student_number,c.name course_group,c.level,c.semester,c.session,c.course,a.status,a.started_at,a.submitted_at,a.score,a.max_score,a.last_seen,COUNT(e.id) activity_event_count,COALESCE(SUM(e.duration_seconds),0) inactive_seconds FROM attempts a JOIN quizzes q ON q.id=a.quiz_id JOIN students s ON s.id=a.student_id JOIN classes c ON c.id=q.class_id LEFT JOIN activity_events e ON e.attempt_id=a.id GROUP BY a.id;
+    CREATE VIEW IF NOT EXISTS v_activity_event_audit AS SELECT e.id event_id,e.event_type,e.started_at,e.ended_at,e.duration_seconds,a.id attempt_id,a.status attempt_status,s.name student,s.student_number,q.title quiz,c.course,c.level,c.semester FROM activity_events e JOIN attempts a ON a.id=e.attempt_id JOIN students s ON s.id=a.student_id JOIN quizzes q ON q.id=a.quiz_id JOIN classes c ON c.id=q.class_id;
+    CREATE VIEW IF NOT EXISTS v_resource_sharing AS SELECT r.id resource_id,r.title,r.kind,r.location,r.created_at,u.name teacher,c.name course_group,c.course,c.level,c.semester,c.session,c.join_code FROM resources r JOIN users u ON u.id=r.teacher_id JOIN classes c ON c.id=r.class_id;
     """)
     existing_columns = {item[1] for item in con.execute("PRAGMA table_info(users)").fetchall()}
     for column in ("university_type", "university", "faculty", "department"):
@@ -545,6 +553,15 @@ def show_resources(resources):
 def admin_app():
     with st.sidebar: st.title("Q · Admin"); st.button("Sign out",on_click=logout)
     title("Administration","All teacher capabilities plus account management")
+    st.subheader("Database integrity")
+    db_col,sql_col=st.columns(2)
+    db_col.download_button("Download live SQLite database",DB_PATH.read_bytes(),file_name="quizzle.db",mime="application/vnd.sqlite3",use_container_width=True)
+    integrity_path=ROOT/"data"/"integrity_queries.sql"
+    sql_col.download_button("Download integrity test queries",integrity_path.read_bytes(),file_name="quizzle-integrity-tests.sql",mime="text/plain",use_container_width=True)
+    if st.button("Run core integrity checks",use_container_width=True):
+        con=db(); integrity=con.execute("PRAGMA integrity_check").fetchone()[0]; foreign_keys=con.execute("PRAGMA foreign_key_check").fetchall(); empty_departments=con.execute("SELECT COUNT(*) FROM departments d LEFT JOIN course_catalog cc ON cc.department_id=d.id GROUP BY d.id HAVING COUNT(cc.id)=0").fetchall(); invalid_courses=con.execute("SELECT COUNT(*) FROM course_catalog WHERE level NOT IN ('100','200','300','400','500','600') OR semester NOT IN ('First semester','Second semester') OR trim(code)='' OR trim(title)='' ").fetchone()[0]; con.close()
+        if integrity=="ok" and not foreign_keys and not empty_departments and not invalid_courses: st.success("Integrity check passed: database OK, no foreign-key violations, all departments covered, and all course records valid.")
+        else: st.error(f"Integrity issues found — database: {integrity}; foreign keys: {len(foreign_keys)}; empty departments: {len(empty_departments)}; invalid courses: {invalid_courses}.")
     users=rows("SELECT id,role,name,email,active FROM users ORDER BY id"); st.dataframe(pd.DataFrame(users),use_container_width=True,hide_index=True)
     selected=st.selectbox("Account",{f"{u['name']} · {u['email']}":u["id"] for u in users})
     if st.button("Toggle account status"): run("UPDATE users SET active=CASE active WHEN 1 THEN 0 ELSE 1 END WHERE id=?",(selected,)); st.rerun()

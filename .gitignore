@@ -3,4 +3,5 @@ __pycache__/
 .streamlit/secrets.toml
 quizzle.db
 uploads/
+artifacts/*.db
 .DS_Store
