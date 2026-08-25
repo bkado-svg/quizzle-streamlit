@@ -21,9 +21,9 @@ DB_PATH = Path(os.getenv("QUIZZLE_DB_PATH", ROOT / "quizzle.db"))
 UPLOADS = ROOT / "uploads"
 UPLOADS.mkdir(exist_ok=True)
 
-# NUC CCMAS national discipline/programme baseline. Individual institutions may
-# offer a subset; Quizzle preserves the selected institution alongside this data.
-NUC_PROGRAMMES = {
+# Standardised academic department catalogue aligned to NUC disciplines.
+# Individual institutions may use slightly different department titles.
+FACULTY_DEPARTMENTS = {
     "Administration and Management": ["Accounting", "Actuarial Science", "Aviation Management", "Finance", "Business Administration", "Business Information Technology", "Co-operative and Rural Development", "Employment and Human Resource Management", "Entrepreneurship", "Hospitality and Tourism Management", "Information Resource Management", "Insurance", "Local Government and Development Studies", "Logistics and Supply Chain Management", "Marketing", "Office and Information Management", "Petroleum Information Management", "Procurement Management", "Project Management", "Public Administration", "Securities and Investments Management", "Taxation", "Transport Management"],
     "Allied Health Sciences": ["Medical Laboratory Science", "Nursing Science", "Nutrition and Dietetics", "Occupational Therapy", "Optometry", "Physiotherapy", "Prosthetics and Orthotics", "Radiography and Radiation Science"],
     "Architecture": ["Architecture", "Landscape Architecture"],
@@ -36,7 +36,7 @@ NUC_PROGRAMMES = {
     "Environmental Sciences": ["Building", "Estate Management", "Geography", "Quantity Surveying", "Surveying and Geoinformatics", "Urban and Regional Planning"],
     "Law": ["Law"],
     "Medicine and Dentistry": ["Dentistry", "Medicine and Surgery"],
-    "Pharmacy and Pharmaceutical Sciences": ["Pharmacy"],
+    "Pharmacy and Pharmaceutical Sciences": ["Clinical Pharmacy and Pharmacy Practice", "Pharmaceutical Chemistry", "Pharmaceutical Microbiology and Biotechnology", "Pharmaceutics and Pharmaceutical Technology", "Pharmacognosy", "Pharmacology and Toxicology"],
     "Sciences": ["Biology", "Biotechnology", "Botany", "Chemistry", "Geology", "Mathematics", "Microbiology", "Physics", "Statistics", "Zoology"],
     "Social Sciences": ["Criminology and Security Studies", "Demography and Social Statistics", "Economics", "Geography", "International Relations", "Peace and Conflict Studies", "Political Science", "Psychology", "Social Work", "Sociology"],
     "Veterinary Medicine": ["Veterinary Medicine"],
@@ -245,11 +245,12 @@ def init_db():
         con.execute("INSERT OR IGNORE INTO users(role,name,email,password_hash) VALUES(?,?,?,?)", (role, name, email, password_hash(password)))
     con.execute("UPDATE users SET faculty='Computing' WHERE email='teacher@quizzle.app' AND (faculty IS NULL OR faculty='')")
     con.execute("UPDATE users SET department='Computer Science' WHERE email='teacher@quizzle.app' AND (department IS NULL OR department='')")
+    con.execute("UPDATE users SET department='Clinical Pharmacy and Pharmacy Practice' WHERE faculty='Pharmacy and Pharmaceutical Sciences' AND department='Pharmacy'")
     university_data = json.loads((ROOT / "data" / "nuc_universities.json").read_text())
     for item in university_data["universities"]:
         con.execute("INSERT OR REPLACE INTO universities(ownership_type,name,website,year_established,source_url) VALUES(?,?,?,?,?)", (item["type"], item["name"], item.get("website"), item.get("year"), university_data["sources"][item["type"]]))
     ccmas_url = "https://www.nuc.edu.ng/ccmas/"
-    for faculty_name, department_names in NUC_PROGRAMMES.items():
+    for faculty_name, department_names in FACULTY_DEPARTMENTS.items():
         con.execute("INSERT OR IGNORE INTO faculties(name,source_url) VALUES(?,?)", (faculty_name, ccmas_url))
         faculty_id = con.execute("SELECT id FROM faculties WHERE name=?", (faculty_name,)).fetchone()[0]
         for department_name in department_names:
@@ -258,6 +259,10 @@ def init_db():
     if con.execute("SELECT COUNT(*) FROM course_catalog").fetchone()[0] < len(course_data["courses"]):
         department_ids = {(row["faculty"],row["department"]):row["id"] for row in con.execute("SELECT d.id,f.name faculty,d.name department FROM departments d JOIN faculties f ON f.id=d.faculty_id")}
         con.executemany("INSERT OR IGNORE INTO course_catalog(department_id,level,semester,code,title,source_url) VALUES(?,?,?,?,?,?)", [(department_ids[(item["faculty"],item["department"])],item["level"],course_semester(item["code"]),item["code"],item["title"],item["source_url"]) for item in course_data["courses"] if (item["faculty"],item["department"]) in department_ids])
+    legacy_pharmacy = con.execute("SELECT d.id FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name='Pharmacy and Pharmaceutical Sciences' AND d.name='Pharmacy'").fetchone()
+    if legacy_pharmacy:
+        con.execute("DELETE FROM course_catalog WHERE department_id=?", (legacy_pharmacy[0],))
+        con.execute("DELETE FROM departments WHERE id=?", (legacy_pharmacy[0],))
     for catalog_row in con.execute("SELECT id,code FROM course_catalog WHERE semester IS NULL OR semester='' ").fetchall():
         con.execute("UPDATE course_catalog SET semester=? WHERE id=?", (course_semester(catalog_row["code"]), catalog_row["id"]))
     con.commit(); con.close()
@@ -308,7 +313,8 @@ def login():
         with st.form("teacher_login"):
             email = st.text_input("Official institutional email", key="te"); password = st.text_input("Password", type="password", key="tp")
             if st.form_submit_button("Continue", use_container_width=True): authenticate(email, password, "teacher")
-        with st.expander("Create teacher account"):
+        registration_active=any(st.session_state.get(key) for key in ("reg_name","reg_email","reg_university","reg_faculty","reg_department"))
+        with st.expander("Create teacher account",expanded=registration_active):
             name=st.text_input("Full name",key="reg_name"); email=st.text_input("Institutional email",key="reg_email"); password=st.text_input("Create password",type="password",key="reg_password")
             university_type=st.selectbox("University type",["Public","State","Private"],key="reg_type")
             university_options=[x["name"] for x in rows("SELECT name FROM universities WHERE ownership_type=? ORDER BY name",(university_type,))]
@@ -316,8 +322,8 @@ def login():
             faculty_options=[x["name"] for x in rows("SELECT name FROM faculties ORDER BY name")]
             faculty=st.selectbox("Faculty / NUC discipline",faculty_options,index=None,key="reg_faculty",placeholder="Type to search and select a faculty",disabled=not university,help="Searchable NUC CCMAS national discipline catalogue")
             department_options=[x["name"] for x in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name",(faculty,))] if faculty else []
-            department=st.selectbox("Department / programme",department_options,index=None,key="reg_department",placeholder="Type to search and select a department",disabled=not faculty,help="Searchable programmes filtered by the selected faculty")
-            st.caption("University names are from the NUC register. Faculty and programme choices use the national NUC CCMAS baseline; each university may offer only a subset.")
+            department=st.selectbox("Department",department_options,index=None,key="reg_department",placeholder="Type to search and select a department",disabled=not faculty,help="Searchable organisational departments filtered by the selected faculty")
+            st.caption("University names are from the NUC register. Faculty and department names use a standardised Nigerian university structure; individual institutions may use slightly different titles.")
             if st.button("Create account",use_container_width=True,key="register_teacher",disabled=not (university and faculty and department)):
                 if not name or not email or not password: st.error("Name, email, and password are required.")
                 else:

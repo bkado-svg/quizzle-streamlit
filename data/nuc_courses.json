@@ -37829,291 +37829,1947 @@
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "BIO 101",
       "title": "General Biology I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "BIO 102",
       "title": "General Biology II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "BIO 107",
       "title": "General Biology Practical I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "BIO 108",
       "title": "General Biology Practical II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "CHM 101",
       "title": "General Chemistry I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "CHM 102",
       "title": "General Chemistry II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "CHM 107",
       "title": "General Chemistry Practical I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "CHM 108",
       "title": "General Chemistry Practical II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "COS 101",
       "title": "Introduction to Computing Sciences",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "GST 111",
       "title": "Communication in English",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "GST 112",
       "title": "Nigerian Peoples and Culture",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "MTH 101",
       "title": "Elementary Mathematics I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "MTH 102",
       "title": "Elementary Mathematics II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "PHY 101",
       "title": "General Physics I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "PHY 102",
       "title": "General Physics II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "PHY 107",
       "title": "General Physics Practical I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "PHY 108",
       "title": "General Physics Practical II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "ZOO 101",
       "title": "The Mammalian Body",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "100",
       "code": "ZOO 102",
       "title": "Animal Diversity",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "BIO 201",
       "title": "Genetics I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "BIO 203",
       "title": "General Physiology",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "ENT 211",
       "title": "Entrepreneurship and Innovation",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "GST 212",
       "title": "Philosophy, Logic and Human Existence",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "STA 201",
       "title": "Statistics for Agricultural & Biological Sciences",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "ZOO 211",
       "title": "Invertebrate Zoology I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "200",
       "code": "ZOO 212",
       "title": "Invertebrate Zoology II",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "BIO 307",
       "title": "Field Course I",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ENT 312",
       "title": "Venture Creation",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "GST 312",
       "title": "Peace and Conflict Resolution",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 301",
       "title": "Vertebrate Zoology",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 311",
       "title": "Comparative Animal Physiology",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 312",
       "title": "The Biology of Tropical Parasites",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 313",
       "title": "Arthropod Diversity",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 316",
       "title": "Histology",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 318",
       "title": "Principles of Animal Development",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Pharmacy and Pharmaceutical Sciences",
-      "department": "Pharmacy",
+      "department": "Clinical Pharmacy and Pharmacy Practice",
       "level": "300",
       "code": "ZOO 399",
       "title": "Industrial Attachment II (12 Weeks)",
-      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf"
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "BIO 101",
+      "title": "General Biology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "BIO 102",
+      "title": "General Biology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "BIO 107",
+      "title": "General Biology Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "BIO 108",
+      "title": "General Biology Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "CHM 101",
+      "title": "General Chemistry I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "CHM 102",
+      "title": "General Chemistry II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "CHM 107",
+      "title": "General Chemistry Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "CHM 108",
+      "title": "General Chemistry Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "COS 101",
+      "title": "Introduction to Computing Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "GST 111",
+      "title": "Communication in English",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "GST 112",
+      "title": "Nigerian Peoples and Culture",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "MTH 101",
+      "title": "Elementary Mathematics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "MTH 102",
+      "title": "Elementary Mathematics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "PHY 101",
+      "title": "General Physics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "PHY 102",
+      "title": "General Physics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "PHY 107",
+      "title": "General Physics Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "PHY 108",
+      "title": "General Physics Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "ZOO 101",
+      "title": "The Mammalian Body",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "100",
+      "code": "ZOO 102",
+      "title": "Animal Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "BIO 201",
+      "title": "Genetics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "BIO 203",
+      "title": "General Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "GST 212",
+      "title": "Philosophy, Logic and Human Existence",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "STA 201",
+      "title": "Statistics for Agricultural & Biological Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "ZOO 211",
+      "title": "Invertebrate Zoology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "200",
+      "code": "ZOO 212",
+      "title": "Invertebrate Zoology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "BIO 307",
+      "title": "Field Course I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ENT 312",
+      "title": "Venture Creation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "GST 312",
+      "title": "Peace and Conflict Resolution",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 301",
+      "title": "Vertebrate Zoology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 311",
+      "title": "Comparative Animal Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 312",
+      "title": "The Biology of Tropical Parasites",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 313",
+      "title": "Arthropod Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 316",
+      "title": "Histology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 318",
+      "title": "Principles of Animal Development",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Chemistry",
+      "level": "300",
+      "code": "ZOO 399",
+      "title": "Industrial Attachment II (12 Weeks)",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "BIO 101",
+      "title": "General Biology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "BIO 102",
+      "title": "General Biology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "BIO 107",
+      "title": "General Biology Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "BIO 108",
+      "title": "General Biology Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "CHM 101",
+      "title": "General Chemistry I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "CHM 102",
+      "title": "General Chemistry II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "CHM 107",
+      "title": "General Chemistry Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "CHM 108",
+      "title": "General Chemistry Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "COS 101",
+      "title": "Introduction to Computing Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "GST 111",
+      "title": "Communication in English",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "GST 112",
+      "title": "Nigerian Peoples and Culture",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "MTH 101",
+      "title": "Elementary Mathematics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "MTH 102",
+      "title": "Elementary Mathematics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "PHY 101",
+      "title": "General Physics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "PHY 102",
+      "title": "General Physics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "PHY 107",
+      "title": "General Physics Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "PHY 108",
+      "title": "General Physics Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "ZOO 101",
+      "title": "The Mammalian Body",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "100",
+      "code": "ZOO 102",
+      "title": "Animal Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "BIO 201",
+      "title": "Genetics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "BIO 203",
+      "title": "General Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "GST 212",
+      "title": "Philosophy, Logic and Human Existence",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "STA 201",
+      "title": "Statistics for Agricultural & Biological Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "ZOO 211",
+      "title": "Invertebrate Zoology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "200",
+      "code": "ZOO 212",
+      "title": "Invertebrate Zoology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "BIO 307",
+      "title": "Field Course I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ENT 312",
+      "title": "Venture Creation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "GST 312",
+      "title": "Peace and Conflict Resolution",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 301",
+      "title": "Vertebrate Zoology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 311",
+      "title": "Comparative Animal Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 312",
+      "title": "The Biology of Tropical Parasites",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 313",
+      "title": "Arthropod Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 316",
+      "title": "Histology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 318",
+      "title": "Principles of Animal Development",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutical Microbiology and Biotechnology",
+      "level": "300",
+      "code": "ZOO 399",
+      "title": "Industrial Attachment II (12 Weeks)",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "BIO 101",
+      "title": "General Biology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "BIO 102",
+      "title": "General Biology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "BIO 107",
+      "title": "General Biology Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "BIO 108",
+      "title": "General Biology Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "CHM 101",
+      "title": "General Chemistry I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "CHM 102",
+      "title": "General Chemistry II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "CHM 107",
+      "title": "General Chemistry Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "CHM 108",
+      "title": "General Chemistry Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "COS 101",
+      "title": "Introduction to Computing Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "GST 111",
+      "title": "Communication in English",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "GST 112",
+      "title": "Nigerian Peoples and Culture",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "MTH 101",
+      "title": "Elementary Mathematics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "MTH 102",
+      "title": "Elementary Mathematics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "PHY 101",
+      "title": "General Physics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "PHY 102",
+      "title": "General Physics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "PHY 107",
+      "title": "General Physics Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "PHY 108",
+      "title": "General Physics Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "ZOO 101",
+      "title": "The Mammalian Body",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "100",
+      "code": "ZOO 102",
+      "title": "Animal Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "BIO 201",
+      "title": "Genetics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "BIO 203",
+      "title": "General Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "GST 212",
+      "title": "Philosophy, Logic and Human Existence",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "STA 201",
+      "title": "Statistics for Agricultural & Biological Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "ZOO 211",
+      "title": "Invertebrate Zoology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "200",
+      "code": "ZOO 212",
+      "title": "Invertebrate Zoology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "BIO 307",
+      "title": "Field Course I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ENT 312",
+      "title": "Venture Creation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "GST 312",
+      "title": "Peace and Conflict Resolution",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 301",
+      "title": "Vertebrate Zoology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 311",
+      "title": "Comparative Animal Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 312",
+      "title": "The Biology of Tropical Parasites",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 313",
+      "title": "Arthropod Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 316",
+      "title": "Histology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 318",
+      "title": "Principles of Animal Development",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmaceutics and Pharmaceutical Technology",
+      "level": "300",
+      "code": "ZOO 399",
+      "title": "Industrial Attachment II (12 Weeks)",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "BIO 101",
+      "title": "General Biology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "BIO 102",
+      "title": "General Biology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "BIO 107",
+      "title": "General Biology Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "BIO 108",
+      "title": "General Biology Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "CHM 101",
+      "title": "General Chemistry I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "CHM 102",
+      "title": "General Chemistry II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "CHM 107",
+      "title": "General Chemistry Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "CHM 108",
+      "title": "General Chemistry Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "COS 101",
+      "title": "Introduction to Computing Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "GST 111",
+      "title": "Communication in English",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "GST 112",
+      "title": "Nigerian Peoples and Culture",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "MTH 101",
+      "title": "Elementary Mathematics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "MTH 102",
+      "title": "Elementary Mathematics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "PHY 101",
+      "title": "General Physics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "PHY 102",
+      "title": "General Physics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "PHY 107",
+      "title": "General Physics Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "PHY 108",
+      "title": "General Physics Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "ZOO 101",
+      "title": "The Mammalian Body",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "100",
+      "code": "ZOO 102",
+      "title": "Animal Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "BIO 201",
+      "title": "Genetics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "BIO 203",
+      "title": "General Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "GST 212",
+      "title": "Philosophy, Logic and Human Existence",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "STA 201",
+      "title": "Statistics for Agricultural & Biological Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "ZOO 211",
+      "title": "Invertebrate Zoology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "200",
+      "code": "ZOO 212",
+      "title": "Invertebrate Zoology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "BIO 307",
+      "title": "Field Course I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ENT 312",
+      "title": "Venture Creation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "GST 312",
+      "title": "Peace and Conflict Resolution",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 301",
+      "title": "Vertebrate Zoology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 311",
+      "title": "Comparative Animal Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 312",
+      "title": "The Biology of Tropical Parasites",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 313",
+      "title": "Arthropod Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 316",
+      "title": "Histology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 318",
+      "title": "Principles of Animal Development",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacognosy",
+      "level": "300",
+      "code": "ZOO 399",
+      "title": "Industrial Attachment II (12 Weeks)",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "BIO 101",
+      "title": "General Biology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "BIO 102",
+      "title": "General Biology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "BIO 107",
+      "title": "General Biology Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "BIO 108",
+      "title": "General Biology Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "CHM 101",
+      "title": "General Chemistry I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "CHM 102",
+      "title": "General Chemistry II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "CHM 107",
+      "title": "General Chemistry Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "CHM 108",
+      "title": "General Chemistry Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "COS 101",
+      "title": "Introduction to Computing Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "GST 111",
+      "title": "Communication in English",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "GST 112",
+      "title": "Nigerian Peoples and Culture",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "MTH 101",
+      "title": "Elementary Mathematics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "MTH 102",
+      "title": "Elementary Mathematics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "PHY 101",
+      "title": "General Physics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "PHY 102",
+      "title": "General Physics II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "PHY 107",
+      "title": "General Physics Practical I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "PHY 108",
+      "title": "General Physics Practical II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "ZOO 101",
+      "title": "The Mammalian Body",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "100",
+      "code": "ZOO 102",
+      "title": "Animal Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "BIO 201",
+      "title": "Genetics I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "BIO 203",
+      "title": "General Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "ENT 211",
+      "title": "Entrepreneurship and Innovation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "GST 212",
+      "title": "Philosophy, Logic and Human Existence",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "STA 201",
+      "title": "Statistics for Agricultural & Biological Sciences",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "ZOO 211",
+      "title": "Invertebrate Zoology I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "200",
+      "code": "ZOO 212",
+      "title": "Invertebrate Zoology II",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "BIO 307",
+      "title": "Field Course I",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ENT 312",
+      "title": "Venture Creation",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "GST 312",
+      "title": "Peace and Conflict Resolution",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 301",
+      "title": "Vertebrate Zoology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 311",
+      "title": "Comparative Animal Physiology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 312",
+      "title": "The Biology of Tropical Parasites",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 313",
+      "title": "Arthropod Diversity",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 316",
+      "title": "Histology",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 318",
+      "title": "Principles of Animal Development",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
+    },
+    {
+      "faculty": "Pharmacy and Pharmaceutical Sciences",
+      "department": "Pharmacology and Toxicology",
+      "level": "300",
+      "code": "ZOO 399",
+      "title": "Industrial Attachment II (12 Weeks)",
+      "source_url": "https://www.nuc.edu.ng/wp-content/uploads/2026/03/Sciences-CCMAS-2023-FINAL.pdf",
+      "shared_discipline_baseline": true
     },
     {
       "faculty": "Sciences",
@@ -47127,5 +48783,5 @@
     }
   ],
   "missing_departments": [],
-  "normalization_note": "Departments whose PDF tables used irregular layouts receive the most frequently shared, verified courses from the same NUC discipline; these records are marked shared_discipline_baseline."
+  "normalization_note": "Departments whose PDF tables used irregular layouts receive the most frequently shared, verified courses from the same NUC discipline; these records are marked shared_discipline_baseline. Pharmaceutical Sciences uses six organisational departments verified against official Nigerian university faculty structures; shared undergraduate foundation courses are marked as discipline baselines."
 }

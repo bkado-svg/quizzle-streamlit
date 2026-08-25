@@ -13,7 +13,7 @@ The first launch seeds an administrator account (`admin@quizzle.app` / `Admin123
 
 ## Academic catalogue data
 
-The licensed-university register in `data/nuc_universities.json` was retrieved from the National Universities Commission lists for federal/public, state, and private universities on 24 August 2026. Faculty/discipline and programme options use the NUC Core Curriculum and Minimum Academic Standards (CCMAS) national baseline. `data/nuc_courses.json` contains course structures extracted from all 17 NUC CCMAS discipline documents. Programme tables with irregular PDF layouts receive only frequently shared, verified courses from the same discipline and are marked `shared_discipline_baseline`. An institution may offer only a subset of the national CCMAS programmes, so Quizzle labels the programme data as a national baseline rather than claiming institution-specific accreditation.
+The licensed-university register in `data/nuc_universities.json` was retrieved from the National Universities Commission lists for federal/public, state, and private universities on 24 August 2026. Faculties use the NUC discipline structure, while the Department field contains organisational department names rather than degree-programme names. `data/nuc_courses.json` contains course structures extracted from all 17 NUC CCMAS discipline documents. Programme tables with irregular PDF layouts receive only frequently shared, verified courses from the same discipline and are marked `shared_discipline_baseline`. An institution may offer only a subset of the national CCMAS programmes, so Quizzle labels the programme data as a national baseline rather than claiming institution-specific accreditation.
 
 ## Database integrity
 
