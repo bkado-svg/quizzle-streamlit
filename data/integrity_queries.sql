@@ -7,7 +7,7 @@ PRAGMA quick_check;
 
 -- Schema and row-count inventory
 SELECT type, name FROM sqlite_master WHERE type IN ('table','view','index') ORDER BY type,name;
-SELECT 'users' entity,COUNT(*) rows FROM users UNION ALL SELECT 'universities',COUNT(*) FROM universities UNION ALL SELECT 'faculties',COUNT(*) FROM faculties UNION ALL SELECT 'departments',COUNT(*) FROM departments UNION ALL SELECT 'course_catalog',COUNT(*) FROM course_catalog UNION ALL SELECT 'classes',COUNT(*) FROM classes UNION ALL SELECT 'students',COUNT(*) FROM students UNION ALL SELECT 'quizzes',COUNT(*) FROM quizzes UNION ALL SELECT 'questions',COUNT(*) FROM questions UNION ALL SELECT 'attempts',COUNT(*) FROM attempts UNION ALL SELECT 'activity_events',COUNT(*) FROM activity_events UNION ALL SELECT 'resources',COUNT(*) FROM resources;
+SELECT 'users' entity,COUNT(*) rows FROM users UNION ALL SELECT 'universities',COUNT(*) FROM universities UNION ALL SELECT 'faculties',COUNT(*) FROM faculties UNION ALL SELECT 'departments',COUNT(*) FROM departments UNION ALL SELECT 'course_catalog',COUNT(*) FROM course_catalog UNION ALL SELECT 'university_faculties',COUNT(*) FROM university_faculties UNION ALL SELECT 'university_departments',COUNT(*) FROM university_departments UNION ALL SELECT 'university_programmes',COUNT(*) FROM university_programmes UNION ALL SELECT 'classes',COUNT(*) FROM classes UNION ALL SELECT 'students',COUNT(*) FROM students UNION ALL SELECT 'quizzes',COUNT(*) FROM quizzes UNION ALL SELECT 'questions',COUNT(*) FROM questions UNION ALL SELECT 'attempts',COUNT(*) FROM attempts UNION ALL SELECT 'activity_events',COUNT(*) FROM activity_events UNION ALL SELECT 'resources',COUNT(*) FROM resources;
 
 -- University and curriculum reference data
 SELECT ownership_type,COUNT(*) universities FROM universities GROUP BY ownership_type ORDER BY ownership_type;
@@ -64,6 +64,7 @@ SELECT * FROM resources WHERE kind NOT IN ('file','link') OR trim(title)='' OR t
 SELECT * FROM v_university_register ORDER BY university_type,university LIMIT 20;
 SELECT * FROM v_academic_catalog ORDER BY faculty,department,CAST(level AS INTEGER),semester,course_code LIMIT 100;
 SELECT * FROM v_course_catalog ORDER BY faculty,department,CAST(level AS INTEGER),semester,code LIMIT 100;
+SELECT * FROM v_university_academic_catalog ORDER BY university,faculty,department,programme;
 SELECT * FROM v_teacher_courses ORDER BY teacher,session DESC,level,semester;
 SELECT * FROM v_quiz_overview ORDER BY teacher,course_group,quiz_id;
 SELECT * FROM v_attempt_reporting ORDER BY started_at DESC;

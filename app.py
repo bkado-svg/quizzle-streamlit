@@ -224,9 +224,13 @@ def init_db():
     CREATE TABLE IF NOT EXISTS faculties(id INTEGER PRIMARY KEY, name TEXT UNIQUE NOT NULL, source_url TEXT NOT NULL);
     CREATE TABLE IF NOT EXISTS departments(id INTEGER PRIMARY KEY, faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(faculty_id,name), FOREIGN KEY(faculty_id) REFERENCES faculties(id));
     CREATE TABLE IF NOT EXISTS course_catalog(id INTEGER PRIMARY KEY, department_id INTEGER NOT NULL, level TEXT NOT NULL, semester TEXT NOT NULL, code TEXT NOT NULL, title TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(department_id,level,code), FOREIGN KEY(department_id) REFERENCES departments(id));
+    CREATE TABLE IF NOT EXISTS university_faculties(id INTEGER PRIMARY KEY, university_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_id,name), FOREIGN KEY(university_id) REFERENCES universities(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS university_departments(id INTEGER PRIMARY KEY, university_faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_faculty_id,name), FOREIGN KEY(university_faculty_id) REFERENCES university_faculties(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS university_programmes(id INTEGER PRIMARY KEY, university_department_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_department_id,name), FOREIGN KEY(university_department_id) REFERENCES university_departments(id) ON DELETE CASCADE);
     CREATE VIEW IF NOT EXISTS v_university_register AS SELECT ownership_type university_type,name university,website,year_established,source_url FROM universities;
     CREATE VIEW IF NOT EXISTS v_academic_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code course_code,cc.title course_title,cc.source_url FROM faculties f JOIN departments d ON d.faculty_id=f.id LEFT JOIN course_catalog cc ON cc.department_id=d.id;
     CREATE VIEW IF NOT EXISTS v_course_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code,cc.title,cc.source_url FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id;
+    CREATE VIEW IF NOT EXISTS v_university_academic_catalog AS SELECT u.name university,uf.name faculty,ud.name department,up.name programme,up.source_url FROM university_programmes up JOIN university_departments ud ON ud.id=up.university_department_id JOIN university_faculties uf ON uf.id=ud.university_faculty_id JOIN universities u ON u.id=uf.university_id;
     CREATE VIEW IF NOT EXISTS v_teacher_courses AS SELECT c.id course_group_id,u.name teacher,u.email,c.name course_group,c.level,c.semester,c.session,c.course,c.join_code,c.created_at FROM classes c JOIN users u ON u.id=c.teacher_id;
     CREATE VIEW IF NOT EXISTS v_quiz_overview AS SELECT q.id quiz_id,q.title,q.status,q.share_code,q.time_limit,q.show_results,u.name teacher,c.name course_group,c.level,c.semester,c.session,c.course,COUNT(DISTINCT qu.id) question_count,COALESCE(SUM(qu.points),0) total_points FROM quizzes q JOIN users u ON u.id=q.teacher_id JOIN classes c ON c.id=q.class_id LEFT JOIN questions qu ON qu.quiz_id=q.id GROUP BY q.id;
     CREATE VIEW IF NOT EXISTS v_attempt_reporting AS SELECT a.id attempt_id,q.title quiz,s.name student,s.student_number,c.name course_group,c.level,c.semester,c.session,c.course,a.status,a.started_at,a.submitted_at,a.score,a.max_score,a.last_seen,COUNT(e.id) activity_event_count,COALESCE(SUM(e.duration_seconds),0) inactive_seconds FROM attempts a JOIN quizzes q ON q.id=a.quiz_id JOIN students s ON s.id=a.student_id JOIN classes c ON c.id=q.class_id LEFT JOIN activity_events e ON e.attempt_id=a.id GROUP BY a.id;
@@ -249,6 +253,15 @@ def init_db():
     university_data = json.loads((ROOT / "data" / "nuc_universities.json").read_text())
     for item in university_data["universities"]:
         con.execute("INSERT OR REPLACE INTO universities(ownership_type,name,website,year_established,source_url) VALUES(?,?,?,?,?)", (item["type"], item["name"], item.get("website"), item.get("year"), university_data["sources"][item["type"]]))
+    buk_catalog = json.loads((ROOT / "data" / "buk_academic_catalog.json").read_text())
+    buk_university_id = con.execute("SELECT id FROM universities WHERE name=?", (buk_catalog["university"],)).fetchone()[0]
+    con.execute("DELETE FROM university_faculties WHERE university_id=?", (buk_university_id,))
+    buk_source = buk_catalog["sources"][0]
+    for faculty_item in buk_catalog["faculties"]:
+        faculty_id = con.execute("INSERT INTO university_faculties(university_id,name,source_url) VALUES(?,?,?)", (buk_university_id, faculty_item["name"], buk_source)).lastrowid
+        for department_item in faculty_item["departments"]:
+            department_id = con.execute("INSERT INTO university_departments(university_faculty_id,name,source_url) VALUES(?,?,?)", (faculty_id, department_item["name"], buk_source)).lastrowid
+            con.executemany("INSERT INTO university_programmes(university_department_id,name,source_url) VALUES(?,?,?)", [(department_id, programme, buk_catalog["sources"][1]) for programme in department_item["programmes"]])
     ccmas_url = "https://www.nuc.edu.ng/ccmas/"
     for faculty_name, department_names in FACULTY_DEPARTMENTS.items():
         con.execute("INSERT OR IGNORE INTO faculties(name,source_url) VALUES(?,?)", (faculty_name, ccmas_url))
@@ -270,6 +283,22 @@ def init_db():
 
 def rows(sql, params=()):
     con = db(); result = [dict(row) for row in con.execute(sql, params).fetchall()]; con.close(); return result
+
+
+def university_faculty_options(university):
+    institution_rows = rows("""SELECT uf.name FROM university_faculties uf JOIN universities u ON u.id=uf.university_id WHERE u.name=? ORDER BY uf.name""", (university,))
+    return [item["name"] for item in institution_rows] or [item["name"] for item in rows("SELECT name FROM faculties ORDER BY name")]
+
+
+def university_department_options(university, faculty):
+    institution_rows = rows("""SELECT ud.name FROM university_departments ud JOIN university_faculties uf ON uf.id=ud.university_faculty_id JOIN universities u ON u.id=uf.university_id WHERE u.name=? AND uf.name=? ORDER BY ud.name""", (university, faculty))
+    if institution_rows:
+        return [item["name"] for item in institution_rows]
+    return [item["name"] for item in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name", (faculty,))]
+
+
+def university_programme_options(university, faculty, department):
+    return [item["name"] for item in rows("""SELECT up.name FROM university_programmes up JOIN university_departments ud ON ud.id=up.university_department_id JOIN university_faculties uf ON uf.id=ud.university_faculty_id JOIN universities u ON u.id=uf.university_id WHERE u.name=? AND uf.name=? AND ud.name=? ORDER BY up.name""", (university, faculty, department))]
 
 
 def run(sql, params=()):
@@ -319,11 +348,12 @@ def login():
             university_type=st.selectbox("University type",["Public","State","Private"],key="reg_type")
             university_options=[x["name"] for x in rows("SELECT name FROM universities WHERE ownership_type=? ORDER BY name",(university_type,))]
             university=st.selectbox("University",university_options,index=None,key="reg_university",placeholder="Type to search and select a university",help="Searchable official NUC licensed-university register")
-            faculty_options=[x["name"] for x in rows("SELECT name FROM faculties ORDER BY name")]
+            faculty_options=university_faculty_options(university) if university else []
             faculty=st.selectbox("Faculty / NUC discipline",faculty_options,index=None,key="reg_faculty",placeholder="Type to search and select a faculty",disabled=not university,help="Searchable NUC CCMAS national discipline catalogue")
-            department_options=[x["name"] for x in rows("SELECT d.name FROM departments d JOIN faculties f ON f.id=d.faculty_id WHERE f.name=? ORDER BY d.name",(faculty,))] if faculty else []
+            department_options=university_department_options(university, faculty) if faculty else []
             department=st.selectbox("Department",department_options,index=None,key="reg_department",placeholder="Type to search and select a department",disabled=not faculty,help="Searchable organisational departments filtered by the selected faculty")
-            st.caption("University names are from the NUC register. Faculty and department names use a standardised Nigerian university structure; individual institutions may use slightly different titles.")
+            if university == "Bayero University, Kano": st.caption("Bayero faculties and departments are verified against the university's 2023 Annual Report; programme offerings use BUK's official undergraduate register.")
+            else: st.caption("University names are from the NUC register. Faculty and department names use a standardised Nigerian university structure; individual institutions may use slightly different titles.")
             if st.button("Create account",use_container_width=True,key="register_teacher",disabled=not (university and faculty and department)):
                 if not name or not email or not password: st.error("Name, email, and password are required.")
                 else:
@@ -393,6 +423,7 @@ def department_catalog(faculty, department, level, semester):
 def courses_page(user):
     department = user.get("department") or "Not configured"
     faculty = user.get("faculty") or ""
+    university = user.get("university") or ""
     title("Courses", f"Courses for {department} are organised by level, semester, and academic session")
     if st.session_state.pop("course_added", False): st.success("Course added successfully and is now available for quizzes, results, reports, and resources.")
     with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
@@ -400,9 +431,13 @@ def courses_page(user):
         level_options=[level for level in ["100","200","300","400","500","600"] if level in {"100","200","300","400",*verified_levels}]
         level=st.selectbox("Level",level_options,key="course_level")
         semester=st.selectbox("Semester",["First semester","Second semester"],key="course_semester")
-        available,shared_baseline=department_catalog(faculty,department,level,semester)
+        official_programmes=university_programme_options(university,faculty,department)
+        available,shared_baseline=(official_programmes,False) if official_programmes else department_catalog(faculty,department,level,semester)
         if available:
-            course=st.selectbox("Department course",available,key="department_course",help=f"Automatically refreshes from the NUC CCMAS catalogue for {department}")
+            course_label="BUK degree programme" if official_programmes else "Department course"
+            course_help="Verified against Bayero University's undergraduate programme register" if official_programmes else f"Automatically refreshes from the NUC CCMAS catalogue for {department}"
+            course=st.selectbox(course_label,available,key="department_course",help=course_help)
+            if official_programmes: st.caption(f"Showing the official programme offerings assigned to BUK's Department of {department}.")
             if shared_baseline: st.caption(f"No programme-specific table was extracted for this selection. Showing verified {faculty} discipline baseline courses.")
         else:
             st.warning(f"No verified NUC course list is currently loaded for {faculty} at {level} level, {semester.lower()}.")

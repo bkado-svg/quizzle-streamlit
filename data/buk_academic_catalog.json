@@ -1,0 +1,140 @@
+{
+  "university": "Bayero University, Kano",
+  "verified": "2026-09-02",
+  "sources": [
+    "https://buk.edu.ng/sites/default/files/publication/ar2023.pdf",
+    "https://mybuk2.buk.edu.ng/bukat2025/eligibility.php",
+    "https://buk.edu.ng/buk_gear"
+  ],
+  "faculties": [
+    {"name":"Faculty of Agriculture","departments":[
+      {"name":"Agricultural Economics and Extension","programmes":["B. Agric Economics and Extension","B. Agriculture"]},
+      {"name":"Agronomy","programmes":["B. Agriculture"]},
+      {"name":"Animal Science","programmes":["B. Agriculture"]},
+      {"name":"Crop Protection","programmes":["B. Agriculture"]},
+      {"name":"Fisheries and Aquaculture","programmes":["B. Fisheries and Aquaculture"]},
+      {"name":"Food Science and Technology","programmes":["B. Food Science and Technology"]},
+      {"name":"Forestry and Wildlife Management","programmes":["B. Forestry and Wildlife Management"]},
+      {"name":"Soil Science","programmes":["B. Agriculture"]}
+    ]},
+    {"name":"Faculty of Arts and Islamic Studies","departments":[
+      {"name":"Arabic","programmes":["B.A. Arabic"]},
+      {"name":"English and Literary Studies","programmes":["B.A. English"]},
+      {"name":"History","programmes":["B.A. History"]},
+      {"name":"Islamic Studies and Shari'ah","programmes":["B.A. Islamic Studies","B.A. Sharia"]},
+      {"name":"Linguistics and Foreign Languages","programmes":["B.A. French","B.A. Linguistics"]},
+      {"name":"Nigerian Languages","programmes":["B.A. Hausa"]}
+    ]},
+    {"name":"Faculty of Allied Health Sciences","departments":[
+      {"name":"Environmental Health Sciences","programmes":["B.Sc. Environmental Health Science"]},
+      {"name":"Medical Laboratory Science","programmes":["B. Medical Laboratory Science"]},
+      {"name":"Medical Radiography","programmes":["B. Radiography"]},
+      {"name":"Nursing Science","programmes":["B. Nursing"]},
+      {"name":"Optometry","programmes":["Doctor of Optometry"]},
+      {"name":"Physiotherapy","programmes":["B. Physiotherapy"]}
+    ]},
+    {"name":"Faculty of Basic Medical Sciences","departments":[
+      {"name":"Anatomy","programmes":["B.Sc. Anatomy"]},
+      {"name":"Biochemistry","programmes":["B.Sc. Biochemistry","B.Sc. Nutrition and Dietetics"]},
+      {"name":"Human Physiology","programmes":["B.Sc. Human Physiology"]}
+    ]},
+    {"name":"Faculty of Clinical Sciences","departments":[
+      {"name":"Anaesthesia","programmes":["MBBS"]},
+      {"name":"Chemical Pathology","programmes":["MBBS"]},
+      {"name":"Community Medicine","programmes":["MBBS"]},
+      {"name":"Haematology","programmes":["MBBS"]},
+      {"name":"Internal Medicine","programmes":["MBBS"]},
+      {"name":"Medical Microbiology and Parasitology","programmes":["MBBS"]},
+      {"name":"Obstetrics and Gynaecology","programmes":["MBBS"]},
+      {"name":"Ophthalmology","programmes":["MBBS"]},
+      {"name":"Otorhinolaryngology","programmes":["MBBS"]},
+      {"name":"Paediatrics","programmes":["MBBS"]},
+      {"name":"Pathology","programmes":["MBBS"]},
+      {"name":"Psychiatry","programmes":["MBBS"]},
+      {"name":"Radiology","programmes":["MBBS"]},
+      {"name":"Surgery","programmes":["MBBS"]}
+    ]},
+    {"name":"Faculty of Dentistry","departments":[
+      {"name":"Child Dental Health","programmes":["B. Dentistry/Dental Surgery"]},
+      {"name":"Oral and Maxillofacial Surgery","programmes":["B. Dentistry/Dental Surgery"]},
+      {"name":"Oral Diagnostic Sciences","programmes":["B. Dentistry/Dental Surgery"]},
+      {"name":"Preventive Dentistry","programmes":["B. Dentistry/Dental Surgery"]},
+      {"name":"Restorative Dentistry","programmes":["B. Dentistry/Dental Surgery"]}
+    ]},
+    {"name":"Faculty of Communication","departments":[
+      {"name":"Information and Media Studies","programmes":["B.Sc. Information and Media Studies"]},
+      {"name":"Mass Communication","programmes":["B.Sc. Mass Communication"]},
+      {"name":"Theatre and Performing Arts","programmes":["B.A. Theatre and Performing Arts"]}
+    ]},
+    {"name":"Faculty of Computing","departments":[
+      {"name":"Computer Science","programmes":["B.Sc. Computer Science","B.Sc. Cyber Security"]},
+      {"name":"Information Technology","programmes":["B.Sc. Information Technology"]},
+      {"name":"Software Engineering","programmes":["B.Sc. Software Engineering"]}
+    ]},
+    {"name":"Faculty of Earth and Environmental Sciences","departments":[
+      {"name":"Architecture","programmes":["B.Sc. Architecture"]},
+      {"name":"Environmental Management","programmes":["B.Sc. Environmental Management"]},
+      {"name":"Estate Management","programmes":["B.Sc. Estate Management"]},
+      {"name":"Geography","programmes":["B.Sc. Geography","B.Sc. Meteorology"]},
+      {"name":"Geology","programmes":["B.Sc. Geology"]},
+      {"name":"Quantity Surveying","programmes":["B.Sc. Quantity Surveying"]},
+      {"name":"Urban and Regional Planning","programmes":["B. Urban and Regional Planning"]}
+    ]},
+    {"name":"Faculty of Education","departments":[
+      {"name":"Adult Education and Community Services","programmes":["B.A. (Ed) Adult Education and Community Services"]},
+      {"name":"Education","programmes":["B.A. (Ed) Arabic","B.A. (Ed) Early Childhood Education","B.A. (Ed) Economics","B.A. (Ed) English","B.A. (Ed) Hausa","B.A. (Ed) History","B.A. (Ed) Islamic Studies","B.A. (Ed) Primary Education"]},
+      {"name":"Human Kinetics and Health Education","programmes":["B.Sc. (Ed) Health Education","B.Sc. (Ed) Physical Education","B.Sc. (Ed) Physical and Health Education"]},
+      {"name":"Library and Information Sciences","programmes":["B.Sc. Library and Information Science"]},
+      {"name":"Science and Technology Education","programmes":["B.Sc. (Ed) Agriculture","B.Sc. (Ed) Biology","B.Sc. (Ed) Chemistry","B.Sc. (Ed) Geography","B.Sc. (Ed) Mathematics","B.Sc. (Ed) Physics"]},
+      {"name":"Special Education","programmes":["B.A. (Ed) Special Education"]}
+    ]},
+    {"name":"Faculty of Engineering","departments":[
+      {"name":"Agricultural and Environmental Engineering","programmes":["B.Eng. Agricultural Engineering"]},
+      {"name":"Chemical and Petroleum Engineering","programmes":["B.Eng. Chemical Engineering","B.Eng. Petroleum Engineering"]},
+      {"name":"Civil Engineering","programmes":["B.Eng. Civil Engineering"]},
+      {"name":"Electrical Engineering","programmes":["B.Eng. Computer Engineering","B.Eng. Electrical Engineering","B.Eng. Telecommunication Engineering"]},
+      {"name":"Mechanical Engineering","programmes":["B.Eng. Automotive Engineering","B.Eng. Mechanical Engineering"]},
+      {"name":"Mechatronics Engineering","programmes":["B.Eng. Mechatronics Engineering"]}
+    ]},
+    {"name":"Faculty of Law","departments":[
+      {"name":"International Law and Jurisprudence","programmes":["LL.B."]},
+      {"name":"Islamic Law","programmes":["LL.B."]},
+      {"name":"Private and Commercial Law","programmes":["LL.B."]},
+      {"name":"Public and International Law","programmes":["LL.B."]}
+    ]},
+    {"name":"Faculty of Pharmaceutical Sciences","departments":[
+      {"name":"Clinical Pharmacy and Pharmacy Practice","programmes":["Doctor of Pharmacy"]},
+      {"name":"Pharmaceutical and Medicinal Chemistry","programmes":["Doctor of Pharmacy"]},
+      {"name":"Pharmaceutical Microbiology and Biotechnology","programmes":["Doctor of Pharmacy"]},
+      {"name":"Pharmaceutics and Pharmaceutical Technology","programmes":["Doctor of Pharmacy"]},
+      {"name":"Pharmacognosy and Herbal Medicine","programmes":["Doctor of Pharmacy"]},
+      {"name":"Pharmacology and Therapeutics","programmes":["Doctor of Pharmacy"]}
+    ]},
+    {"name":"Faculty of Life Sciences","departments":[
+      {"name":"Biological Sciences","programmes":["B.Sc. Applied Biology","B.Sc. Zoology"]},
+      {"name":"Microbiology","programmes":["B.Sc. Microbiology"]},
+      {"name":"Plant Biology","programmes":["B.Sc. Botany"]}
+    ]},
+    {"name":"Faculty of Physical Sciences","departments":[
+      {"name":"Mathematical Sciences","programmes":["B.Sc. Mathematics","B.Sc. Statistics"]},
+      {"name":"Physics","programmes":["B.Sc. Electronics with Physics","B.Sc. Physics"]},
+      {"name":"Pure and Industrial Chemistry","programmes":["B.Sc. Chemistry","B.Sc. Forensic Science","B.Sc. Industrial Chemistry"]}
+    ]},
+    {"name":"Faculty of Economics and Management Sciences","departments":[
+      {"name":"Accounting","programmes":["B.Sc. Accounting","B.Sc. Taxation"]},
+      {"name":"Banking and Finance","programmes":["B.Sc. Banking and Finance"]},
+      {"name":"Business Administration and Entrepreneurship","programmes":["B.Sc. Business Administration","B.Sc. Entrepreneurship"]},
+      {"name":"Public Administration","programmes":["B.Sc. Public Administration"]}
+    ]},
+    {"name":"Faculty of Social Sciences","departments":[
+      {"name":"Economics","programmes":["B.Sc. Economics"]},
+      {"name":"Political Science","programmes":["B.Sc. International Relations","B.Sc. Political Science"]},
+      {"name":"Sociology","programmes":["B.Sc. Criminology","B.Sc. Sociology"]}
+    ]},
+    {"name":"Faculty of Veterinary Medicine","departments":[
+      {"name":"Veterinary Anatomy","programmes":["Doctor of Veterinary Medicine"]},
+      {"name":"Veterinary Pathobiology","programmes":["Doctor of Veterinary Medicine"]},
+      {"name":"Veterinary Physiology and Biochemistry","programmes":["Doctor of Veterinary Medicine"]}
+    ]}
+  ]
+}
