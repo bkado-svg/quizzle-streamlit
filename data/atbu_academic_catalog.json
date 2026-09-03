@@ -1,0 +1,439 @@
+{
+  "university": "Abubakar Tafawa Balewa University, Bauchi",
+  "verified": "2026-09-03",
+  "sources": [
+    "https://atbu.edu.ng/?p=services",
+    "https://recruitment.atbu.edu.ng/adverts",
+    "https://atbu.edu.ng/wp-content/uploads/2025/05/Student_Handbook_Finally_23-3.pdf"
+  ],
+  "faculties": [
+    {
+      "name": "Faculty of Agriculture and Agricultural Technology",
+      "departments": [
+        {
+          "name": "Agricultural Economics",
+          "programmes": [
+            "B.Tech Agricultural Economics"
+          ]
+        },
+        {
+          "name": "Agricultural Extension and Rural Development",
+          "programmes": [
+            "B.Tech Agricultural Extension and Rural Development"
+          ]
+        },
+        {
+          "name": "Animal Production",
+          "programmes": [
+            "B.Tech Animal Production"
+          ]
+        },
+        {
+          "name": "Crop Production",
+          "programmes": [
+            "B.Tech Crop Production"
+          ]
+        },
+        {
+          "name": "Soil Science",
+          "programmes": [
+            "B.Tech Soil Science"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Allied Medical Sciences",
+      "departments": [
+        {
+          "name": "Nursing Science",
+          "programmes": [
+            "B.NSc Nursing Science"
+          ]
+        },
+        {
+          "name": "Public Health",
+          "programmes": [
+            "B.Sc Public Health"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Basic Clinical Sciences",
+      "departments": [
+        {
+          "name": "Chemical Pathology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Haematology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Histopathology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Medical Microbiology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Clinical Pharmacology",
+          "programmes": [
+            "MBBS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Basic Medical Sciences",
+      "departments": [
+        {
+          "name": "Human Anatomy",
+          "programmes": [
+            "B.Tech Human Anatomy"
+          ]
+        },
+        {
+          "name": "Medical Biochemistry",
+          "programmes": [
+            "B.Tech Medical Biochemistry"
+          ]
+        },
+        {
+          "name": "Human Physiology",
+          "programmes": [
+            "B.Tech Human Physiology"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Clinical Sciences",
+      "departments": [
+        {
+          "name": "Internal Medicine",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Surgery",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Paediatrics",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Obstetrics and Gynaecology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Community Medicine",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Ophthalmology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Anaesthesia",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Otorhinolaryngology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Orthopaedics",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Radiology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Psychiatry",
+          "programmes": [
+            "MBBS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Computing",
+      "departments": [
+        {
+          "name": "Computer Science",
+          "programmes": [
+            "B.Tech Computer Science"
+          ]
+        },
+        {
+          "name": "Software Engineering",
+          "programmes": [
+            "B.Tech Software Engineering"
+          ]
+        },
+        {
+          "name": "Cyber Security",
+          "programmes": [
+            "B.Tech Cyber Security"
+          ]
+        },
+        {
+          "name": "Artificial Intelligence",
+          "programmes": [
+            "B.Tech Artificial Intelligence"
+          ]
+        },
+        {
+          "name": "Information Technology",
+          "programmes": [
+            "B.Tech Information Technology"
+          ]
+        },
+        {
+          "name": "Information Systems",
+          "programmes": [
+            "B.Tech Information Systems"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Engineering and Engineering Technology",
+      "departments": [
+        {
+          "name": "Agricultural and Bio-Resource Engineering",
+          "programmes": [
+            "B.Eng Agricultural and Bio-Resource Engineering"
+          ]
+        },
+        {
+          "name": "Automobile Engineering",
+          "programmes": [
+            "B.Eng Automobile Engineering"
+          ]
+        },
+        {
+          "name": "Chemical Engineering",
+          "programmes": [
+            "B.Eng Chemical Engineering"
+          ]
+        },
+        {
+          "name": "Civil Engineering",
+          "programmes": [
+            "B.Eng Civil Engineering"
+          ]
+        },
+        {
+          "name": "Computer and Communications Engineering",
+          "programmes": [
+            "B.Eng Computer and Communications Engineering"
+          ]
+        },
+        {
+          "name": "Electrical and Electronics Engineering",
+          "programmes": [
+            "B.Eng Electrical and Electronics Engineering"
+          ]
+        },
+        {
+          "name": "Mechanical and Production Engineering",
+          "programmes": [
+            "B.Eng Mechanical and Production Engineering"
+          ]
+        },
+        {
+          "name": "Mechatronics and Systems Engineering",
+          "programmes": [
+            "B.Eng Mechatronics and Systems Engineering"
+          ]
+        },
+        {
+          "name": "Petroleum Engineering",
+          "programmes": [
+            "B.Eng Petroleum Engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Environmental Technology",
+      "departments": [
+        {
+          "name": "Architecture",
+          "programmes": [
+            "B.Tech Architecture"
+          ]
+        },
+        {
+          "name": "Building",
+          "programmes": [
+            "B.Tech Building"
+          ]
+        },
+        {
+          "name": "Environmental Management Technology",
+          "programmes": [
+            "B.Tech Environmental Management Technology"
+          ]
+        },
+        {
+          "name": "Estate Management and Valuation",
+          "programmes": [
+            "B.Tech Estate Management and Valuation"
+          ]
+        },
+        {
+          "name": "Industrial Design",
+          "programmes": [
+            "B.Tech Industrial Design"
+          ]
+        },
+        {
+          "name": "Quantity Surveying",
+          "programmes": [
+            "B.Tech Quantity Surveying"
+          ]
+        },
+        {
+          "name": "Surveying and Geoinformatics",
+          "programmes": [
+            "B.Tech Surveying and Geoinformatics"
+          ]
+        },
+        {
+          "name": "Urban and Regional Planning",
+          "programmes": [
+            "B.Tech Urban and Regional Planning"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Science",
+      "departments": [
+        {
+          "name": "Biochemistry",
+          "programmes": [
+            "B.Tech Biochemistry"
+          ]
+        },
+        {
+          "name": "Microbiology",
+          "programmes": [
+            "B.Tech Microbiology"
+          ]
+        },
+        {
+          "name": "Botany",
+          "programmes": [
+            "B.Tech Botany"
+          ]
+        },
+        {
+          "name": "Zoology",
+          "programmes": [
+            "B.Tech Zoology"
+          ]
+        },
+        {
+          "name": "Mathematics",
+          "programmes": [
+            "B.Tech Mathematics"
+          ]
+        },
+        {
+          "name": "Chemistry",
+          "programmes": [
+            "B.Tech Chemistry"
+          ]
+        },
+        {
+          "name": "Physics",
+          "programmes": [
+            "B.Tech Physics"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Veterinary Medicine",
+      "departments": [
+        {
+          "name": "Veterinary Anatomy",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Physiology and Biochemistry",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Pharmacology and Toxicology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Theriogenology and Production",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Microbiology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Parasitology and Entomology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Pathology",
+          "programmes": [
+            "DVM"
+          ]
+        }
+      ]
+    }
+  ]
+}

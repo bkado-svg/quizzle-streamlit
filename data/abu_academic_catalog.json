@@ -1,0 +1,726 @@
+{
+  "university": "Ahmadu Bello University, Zaria",
+  "verified": "2026-09-03",
+  "sources": [
+    "https://abu.edu.ng/wp-content/uploads/2026/06/ABU-Student-Handbook-for-the-2025-2026-Session.pdf",
+    "https://programmes.abu.edu.ng/programmes_list.php?tab=6&page=list"
+  ],
+  "faculties": [
+    {
+      "name": "ABU Business School",
+      "departments": [
+        {
+          "name": "Accounting",
+          "programmes": [
+            "B.Sc Accounting"
+          ]
+        },
+        {
+          "name": "Actuarial Science and Insurance",
+          "programmes": [
+            "B.Sc Actuarial Science",
+            "B.Sc Insurance"
+          ]
+        },
+        {
+          "name": "Banking and Finance",
+          "programmes": [
+            "B.Sc Banking & Finance"
+          ]
+        },
+        {
+          "name": "Business Administration",
+          "programmes": [
+            "B.Sc Business Administration",
+            "B.Sc Business Management",
+            "B.Sc Insurance"
+          ]
+        },
+        {
+          "name": "Economics",
+          "programmes": [
+            "B.Sc Economics"
+          ]
+        },
+        {
+          "name": "Marketing",
+          "programmes": [
+            "B.Sc Marketing"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Administration",
+      "departments": [
+        {
+          "name": "Local Government and Development Studies",
+          "programmes": [
+            "B.A Local Government & Development Studies"
+          ]
+        },
+        {
+          "name": "Public Administration",
+          "programmes": [
+            "B.Sc Public Administration"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Agriculture",
+      "departments": [
+        {
+          "name": "Agricultural Economics",
+          "programmes": [
+            "B. Agriculture"
+          ]
+        },
+        {
+          "name": "Agricultural Extension and Rural Development",
+          "programmes": [
+            "B.Sc Agricultural Extension"
+          ]
+        },
+        {
+          "name": "Agronomy",
+          "programmes": []
+        },
+        {
+          "name": "Animal Science",
+          "programmes": []
+        },
+        {
+          "name": "Crop Protection",
+          "programmes": []
+        },
+        {
+          "name": "Fisheries and Aquaculture",
+          "programmes": [
+            "B. Fisheries and Aquaculture"
+          ]
+        },
+        {
+          "name": "Forestry and Wildlife Management",
+          "programmes": [
+            "B. Forestry and Wildlife"
+          ]
+        },
+        {
+          "name": "Plant Science",
+          "programmes": []
+        },
+        {
+          "name": "Soil Science",
+          "programmes": []
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Allied Health Sciences",
+      "departments": [
+        {
+          "name": "Clinical Pharmacology",
+          "programmes": []
+        },
+        {
+          "name": "Medical Biology",
+          "programmes": []
+        },
+        {
+          "name": "Medical Laboratory Sciences",
+          "programmes": [
+            "Bachelor of Medical Lab. Science"
+          ]
+        },
+        {
+          "name": "Medical Radiography",
+          "programmes": [
+            "Bachelor of Medical Radiography"
+          ]
+        },
+        {
+          "name": "Nursing Sciences",
+          "programmes": [
+            "BNSc. Nursing Science"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Arts",
+      "departments": [
+        {
+          "name": "African Languages and Cultures",
+          "programmes": [
+            "B.A Hausa"
+          ]
+        },
+        {
+          "name": "Arabic",
+          "programmes": [
+            "B.A Arabic"
+          ]
+        },
+        {
+          "name": "Archaeology",
+          "programmes": [
+            "B.A Archeology",
+            "B.A Archeology/History"
+          ]
+        },
+        {
+          "name": "English",
+          "programmes": [
+            "B.A English (Language)",
+            "B.A English (Literature)"
+          ]
+        },
+        {
+          "name": "French",
+          "programmes": [
+            "B.A French"
+          ]
+        },
+        {
+          "name": "History",
+          "programmes": [
+            "B.A History"
+          ]
+        },
+        {
+          "name": "Theatre and Performing Arts",
+          "programmes": [
+            "B.A English (Drama)",
+            "B.A Theatre and Performing Arts"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Basic Clinical Sciences",
+      "departments": [
+        {
+          "name": "Chemical Pathology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Haematology and Blood Transfusion",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Medical Microbiology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Pathology",
+          "programmes": [
+            "MBBS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Basic Medical Sciences",
+      "departments": [
+        {
+          "name": "Anatomy",
+          "programmes": [
+            "B.Sc Human Anatomy"
+          ]
+        },
+        {
+          "name": "Human Physiology",
+          "programmes": [
+            "B.Sc Human Physiology"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Clinical Sciences",
+      "departments": [
+        {
+          "name": "Anaesthesia",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Community Medicine",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Dental Surgery",
+          "programmes": [
+            "Bachelor of Dental Surgery",
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Medicine",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Obstetrics and Gynaecology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Ophthalmology",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Paediatrics",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Psychiatry",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Surgery",
+          "programmes": [
+            "MBBS"
+          ]
+        },
+        {
+          "name": "Traumatic and Orthopaedic Surgery",
+          "programmes": [
+            "MBBS"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Education",
+      "departments": [
+        {
+          "name": "Arts and Social Studies Education",
+          "programmes": [
+            "B.Ed Arabic Education",
+            "B.Ed Christian Religious Studies",
+            "B.Ed Creative Art",
+            "B.Ed Economics Education",
+            "B.Ed Hausa Education",
+            "B.Ed Islamic Religious Studies",
+            "B.Ed Language Arts",
+            "B.Ed Social Studies"
+          ]
+        },
+        {
+          "name": "Educational Foundations and Curriculum",
+          "programmes": [
+            "B.Ed (Education Foundation and Curriculum)",
+            "B.Ed Adult Education",
+            "B.Ed Education Administration and Planning"
+          ]
+        },
+        {
+          "name": "Educational Psychology and Counselling",
+          "programmes": [
+            "B.Ed (Education Psychology and Counselling)",
+            "B.Ed Guidance and Counselling"
+          ]
+        },
+        {
+          "name": "Home Economics",
+          "programmes": [
+            "B.Ed Home Economics"
+          ]
+        },
+        {
+          "name": "Human Kinetics and Health Education",
+          "programmes": [
+            "B.Sc (Ed) Health Education",
+            "B.Sc (Ed) Human Kinetics",
+            "BS.Ed Human Kinetics Health Education"
+          ]
+        },
+        {
+          "name": "Library and Information Science",
+          "programmes": [
+            "BLIS (Bachelor of Library & Information Science)"
+          ]
+        },
+        {
+          "name": "Science Education",
+          "programmes": [
+            "B.A(Ed) ARABIC",
+            "B.Ed Biology Education",
+            "B.Ed Chemistry Education",
+            "B.Ed Geography Education",
+            "B.Ed Integrated Science",
+            "B.Ed Mathematics Education",
+            "B.Ed Physics Education",
+            "B.Ed Science Education",
+            "B.Sc (Ed) Computer Science Education",
+            "B.Sc (Ed) Computer Science Education (Special)"
+          ]
+        },
+        {
+          "name": "Vocational and Technical Education",
+          "programmes": [
+            "B.Sc (Ed) Agriculture Education",
+            "B.Sc (Ed) Business Education"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Engineering",
+      "departments": [
+        {
+          "name": "Agricultural Engineering",
+          "programmes": [
+            "B.Eng. Agricultural Engineering",
+            "B.Eng. Agricultural and Bio-Resources Engineering"
+          ]
+        },
+        {
+          "name": "Automotive Engineering",
+          "programmes": []
+        },
+        {
+          "name": "Chemical Engineering",
+          "programmes": [
+            "B.Eng. Chemical Engineering"
+          ]
+        },
+        {
+          "name": "Civil Engineering",
+          "programmes": [
+            "B.Eng. Civil Engineering"
+          ]
+        },
+        {
+          "name": "Computer Engineering",
+          "programmes": [
+            "B.Eng. Computer Engineering"
+          ]
+        },
+        {
+          "name": "Electrical Engineering",
+          "programmes": [
+            "B.Eng. Electrical Engineering"
+          ]
+        },
+        {
+          "name": "Electronics and Telecommunications Engineering",
+          "programmes": [
+            "B.Eng. Electronics & Telecommunications Engineering"
+          ]
+        },
+        {
+          "name": "Mechanical Engineering",
+          "programmes": [
+            "B.Eng. Automotive Engineering",
+            "B.Eng. Mechanical Engineering",
+            "B.Eng. Mechatronics Engineering"
+          ]
+        },
+        {
+          "name": "Mechatronics Engineering",
+          "programmes": []
+        },
+        {
+          "name": "Metallurgical and Materials Engineering",
+          "programmes": [
+            "B Eng. Mining and Minerals Engineering",
+            "B.Eng. Metallurgical and Materials Engineering"
+          ]
+        },
+        {
+          "name": "Polymer and Textile Engineering",
+          "programmes": [
+            "B.Eng. Polymer and Textile Engineering"
+          ]
+        },
+        {
+          "name": "Water Resources and Environmental Engineering",
+          "programmes": [
+            "B.Eng. Water Resources & Environmental Engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Environmental Design",
+      "departments": [
+        {
+          "name": "Architecture",
+          "programmes": [
+            "B.Sc Architecture"
+          ]
+        },
+        {
+          "name": "Building",
+          "programmes": [
+            "B.Sc Building"
+          ]
+        },
+        {
+          "name": "Fine Arts",
+          "programmes": [
+            "B.A Fine Arts"
+          ]
+        },
+        {
+          "name": "Geomatics",
+          "programmes": [
+            "B.Eng. Geomatic Engineering",
+            "B.Sc Geomatics"
+          ]
+        },
+        {
+          "name": "Industrial Design",
+          "programmes": [
+            "B.A Industrial Design"
+          ]
+        },
+        {
+          "name": "Quantity Surveying",
+          "programmes": [
+            "B.Sc Quantity Surveying"
+          ]
+        },
+        {
+          "name": "Urban and Regional Planning",
+          "programmes": [
+            "B.Urban & Regional Planning"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Law",
+      "departments": [
+        {
+          "name": "Commercial Law",
+          "programmes": [
+            "LL.B"
+          ]
+        },
+        {
+          "name": "Islamic Law",
+          "programmes": [
+            "LL.B",
+            "LLB With Specialization in Islamic Law"
+          ]
+        },
+        {
+          "name": "Private Law",
+          "programmes": [
+            "LL.B",
+            "LLB Civil Law",
+            "LLB Civil Law2"
+          ]
+        },
+        {
+          "name": "Public Law",
+          "programmes": [
+            "LL.B"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Life Sciences",
+      "departments": [
+        {
+          "name": "Biochemistry",
+          "programmes": [
+            "B.Sc Biochemistry"
+          ]
+        },
+        {
+          "name": "Biological Sciences",
+          "programmes": [
+            "B.Sc Biological Science"
+          ]
+        },
+        {
+          "name": "Microbiology",
+          "programmes": [
+            "B.Sc Microbiology"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Pharmaceutical Sciences",
+      "departments": [
+        {
+          "name": "Pharmaceutical and Medicinal Chemistry",
+          "programmes": [
+            "B. Pharmacy"
+          ]
+        },
+        {
+          "name": "Pharmaceutics and Pharmaceutical Microbiology",
+          "programmes": [
+            "B. Pharmacy"
+          ]
+        },
+        {
+          "name": "Pharmacognosy and Drug Development",
+          "programmes": [
+            "B. Pharmacy"
+          ]
+        },
+        {
+          "name": "Pharmacology and Clinical Pharmacy",
+          "programmes": [
+            "B. Pharmacy"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Physical Sciences",
+      "departments": [
+        {
+          "name": "Chemistry",
+          "programmes": [
+            "B.Sc Chemistry"
+          ]
+        },
+        {
+          "name": "Computer Science",
+          "programmes": [
+            "B.Sc Computer Science"
+          ]
+        },
+        {
+          "name": "Geography",
+          "programmes": [
+            "B.Sc Geography"
+          ]
+        },
+        {
+          "name": "Geology",
+          "programmes": [
+            "B.Sc Geology"
+          ]
+        },
+        {
+          "name": "Mathematics",
+          "programmes": [
+            "B.Sc Mathematics",
+            "B.Sc Mathematics with Computer Science"
+          ]
+        },
+        {
+          "name": "Physics",
+          "programmes": [
+            "B.Sc Physics"
+          ]
+        },
+        {
+          "name": "Statistics",
+          "programmes": [
+            "B.Sc Statistics"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Social Sciences",
+      "departments": [
+        {
+          "name": "Economics",
+          "programmes": []
+        },
+        {
+          "name": "Mass Communication",
+          "programmes": [
+            "B.Sc Mass Communication"
+          ]
+        },
+        {
+          "name": "Political Science",
+          "programmes": [
+            "B.Sc International Studies",
+            "B.Sc Political Science"
+          ]
+        },
+        {
+          "name": "Sociology",
+          "programmes": [
+            "B.Sc Sociology"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Faculty of Veterinary Medicine",
+      "departments": [
+        {
+          "name": "Veterinary Anatomy",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Microbiology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Parasitology and Entomology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Pathology and Microbiology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Physiology and Pharmacology",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Public Health and Preventive Medicine",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Surgery and Medicine",
+          "programmes": [
+            "DVM"
+          ]
+        },
+        {
+          "name": "Veterinary Surgery and Radiology",
+          "programmes": [
+            "DVM"
+          ]
+        }
+      ]
+    }
+  ]
+}

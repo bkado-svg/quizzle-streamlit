@@ -253,15 +253,19 @@ def init_db():
     university_data = json.loads((ROOT / "data" / "nuc_universities.json").read_text())
     for item in university_data["universities"]:
         con.execute("INSERT OR REPLACE INTO universities(ownership_type,name,website,year_established,source_url) VALUES(?,?,?,?,?)", (item["type"], item["name"], item.get("website"), item.get("year"), university_data["sources"][item["type"]]))
-    buk_catalog = json.loads((ROOT / "data" / "buk_academic_catalog.json").read_text())
-    buk_university_id = con.execute("SELECT id FROM universities WHERE name=?", (buk_catalog["university"],)).fetchone()[0]
-    con.execute("DELETE FROM university_faculties WHERE university_id=?", (buk_university_id,))
-    buk_source = buk_catalog["sources"][0]
-    for faculty_item in buk_catalog["faculties"]:
-        faculty_id = con.execute("INSERT INTO university_faculties(university_id,name,source_url) VALUES(?,?,?)", (buk_university_id, faculty_item["name"], buk_source)).lastrowid
-        for department_item in faculty_item["departments"]:
-            department_id = con.execute("INSERT INTO university_departments(university_faculty_id,name,source_url) VALUES(?,?,?)", (faculty_id, department_item["name"], buk_source)).lastrowid
-            con.executemany("INSERT INTO university_programmes(university_department_id,name,source_url) VALUES(?,?,?)", [(department_id, programme, buk_catalog["sources"][1]) for programme in department_item["programmes"]])
+    for institution_path in sorted((ROOT / "data").glob("*_academic_catalog.json")):
+        institution_catalog = json.loads(institution_path.read_text())
+        university_row = con.execute("SELECT id FROM universities WHERE name=?", (institution_catalog["university"],)).fetchone()
+        if not university_row:
+            continue
+        university_id = university_row[0]
+        con.execute("DELETE FROM university_faculties WHERE university_id=?", (university_id,))
+        institution_source = institution_catalog["sources"][0]
+        for faculty_item in institution_catalog["faculties"]:
+            faculty_id = con.execute("INSERT INTO university_faculties(university_id,name,source_url) VALUES(?,?,?)", (university_id, faculty_item["name"], institution_source)).lastrowid
+            for department_item in faculty_item["departments"]:
+                department_id = con.execute("INSERT INTO university_departments(university_faculty_id,name,source_url) VALUES(?,?,?)", (faculty_id, department_item["name"], institution_source)).lastrowid
+                con.executemany("INSERT INTO university_programmes(university_department_id,name,source_url) VALUES(?,?,?)", [(department_id, programme, institution_catalog["sources"][-1]) for programme in department_item["programmes"]])
     ccmas_url = "https://www.nuc.edu.ng/ccmas/"
     for faculty_name, department_names in FACULTY_DEPARTMENTS.items():
         con.execute("INSERT OR IGNORE INTO faculties(name,source_url) VALUES(?,?)", (faculty_name, ccmas_url))
@@ -352,7 +356,7 @@ def login():
             faculty=st.selectbox("Faculty / NUC discipline",faculty_options,index=None,key="reg_faculty",placeholder="Type to search and select a faculty",disabled=not university,help="Searchable NUC CCMAS national discipline catalogue")
             department_options=university_department_options(university, faculty) if faculty else []
             department=st.selectbox("Department",department_options,index=None,key="reg_department",placeholder="Type to search and select a department",disabled=not faculty,help="Searchable organisational departments filtered by the selected faculty")
-            if university == "Bayero University, Kano": st.caption("Bayero faculties and departments are verified against the university's 2023 Annual Report; programme offerings use BUK's official undergraduate register.")
+            if faculty_options and university_faculty_options(university) != [item["name"] for item in rows("SELECT name FROM faculties ORDER BY name")]: st.caption("This institution's faculties, departments, and programme offerings are loaded from its verified university-specific catalogue.")
             else: st.caption("University names are from the NUC register. Faculty and department names use a standardised Nigerian university structure; individual institutions may use slightly different titles.")
             if st.button("Create account",use_container_width=True,key="register_teacher",disabled=not (university and faculty and department)):
                 if not name or not email or not password: st.error("Name, email, and password are required.")
@@ -434,10 +438,10 @@ def courses_page(user):
         official_programmes=university_programme_options(university,faculty,department)
         available,shared_baseline=(official_programmes,False) if official_programmes else department_catalog(faculty,department,level,semester)
         if available:
-            course_label="BUK degree programme" if official_programmes else "Department course"
-            course_help="Verified against Bayero University's undergraduate programme register" if official_programmes else f"Automatically refreshes from the NUC CCMAS catalogue for {department}"
+            course_label="University degree programme" if official_programmes else "Department course"
+            course_help=f"Verified against {university}'s official programme register" if official_programmes else f"Automatically refreshes from the NUC CCMAS catalogue for {department}"
             course=st.selectbox(course_label,available,key="department_course",help=course_help)
-            if official_programmes: st.caption(f"Showing the official programme offerings assigned to BUK's Department of {department}.")
+            if official_programmes: st.caption(f"Showing the official programme offerings assigned to {university}'s Department of {department}.")
             if shared_baseline: st.caption(f"No programme-specific table was extracted for this selection. Showing verified {faculty} discipline baseline courses.")
         else:
             st.warning(f"No verified NUC course list is currently loaded for {faculty} at {level} level, {semester.lower()}.")
