@@ -80,12 +80,10 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"] {
 #MainMenu,
 footer,
 .viewerBadge_container__1QSob { display: none !important; }
-[data-testid="stHeader"] { display: block !important; height: 0 !important; background: transparent !important; }
+[data-testid="stHeader"] { display: block !important; height: 0 !important; overflow: visible !important; background: transparent !important; }
 [data-testid="stSidebarCollapsedControl"] {
-  display: flex !important; visibility: visible !important; opacity: 1 !important;
-  position: fixed !important; top: .8rem !important; left: .8rem !important; z-index: 1000000 !important;
+  z-index: 1000000 !important;
 }
-[data-testid="stSidebarCollapsedControl"],
 [data-testid="stSidebarCollapsedControl"] button {
   background: #ffffff !important; color: #4033c8 !important; border: 1px solid #d9dbea !important;
   border-radius: .7rem !important; box-shadow: 0 5px 18px rgba(32,40,80,.16) !important;
@@ -354,15 +352,12 @@ def normal_view_control():
       function reopenSidebar(doc) {
         const control = doc.querySelector('[data-testid="stSidebarCollapsedControl"]');
         if (!control) return false;
+        const bounds = control.getBoundingClientRect();
+        if (!bounds.width || !bounds.height) return false;
         const reopen = control.matches('button') ? control : control.querySelector('button');
         if (reopen) { reopen.click(); return true; }
         return false;
       }
-      let attempts = 0;
-      const sidebarTimer = setInterval(() => {
-        attempts += 1;
-        if (reopenSidebar(window.parent.document) || attempts >= 15) clearInterval(sidebarTimer);
-      }, 200);
     </script>
     """, height=43)
 
