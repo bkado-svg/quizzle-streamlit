@@ -73,7 +73,6 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"] {
 }
 
 /* Hide Streamlit's hosted-app chrome (Share/Fork/Deploy and hosting badge). */
-[data-testid="stHeader"],
 [data-testid="stToolbar"],
 [data-testid="stDecoration"],
 [data-testid="stStatusWidget"],
@@ -81,6 +80,15 @@ html, body, [class*="css"], [data-testid="stAppViewContainer"] {
 #MainMenu,
 footer,
 .viewerBadge_container__1QSob { display: none !important; }
+[data-testid="stHeader"] { display: block !important; height: 0 !important; background: transparent !important; }
+[data-testid="stSidebarCollapsedControl"] {
+  display: flex !important; visibility: visible !important; opacity: 1 !important;
+  position: fixed !important; top: .8rem !important; left: .8rem !important; z-index: 1000000 !important;
+}
+[data-testid="stSidebarCollapsedControl"] button {
+  background: #ffffff !important; color: #4033c8 !important; border: 1px solid #d9dbea !important;
+  border-radius: .7rem !important; box-shadow: 0 5px 18px rgba(32,40,80,.16) !important;
+}
 [data-testid="stAppViewContainer"] > .main { padding-top: 0 !important; }
 
 [data-testid="stMainBlockContainer"] { max-width: 1240px; padding: 2.2rem 3rem 4rem; }
@@ -328,7 +336,7 @@ def normal_view_control():
     components.html("""
     <button type="button" onclick="restoreNormalView()"
       style="width:100%;border:1px solid #d9dbea;border-radius:9px;background:#fff;color:#4033c8;
-      padding:8px 10px;font:600 13px system-ui;cursor:pointer">↙ Back to normal view</button>
+      padding:8px 10px;font:600 13px system-ui;cursor:pointer">☰ Navigation / normal view</button>
     <script>
       function restoreNormalView() {
         const doc = window.parent.document;
@@ -338,6 +346,8 @@ def normal_view_control():
           return label.includes('close fullscreen') || label.includes('exit fullscreen') || label.includes('close expanded');
         });
         if (closeButton) closeButton.click();
+        const reopen = doc.querySelector('[data-testid="stSidebarCollapsedControl"] button');
+        if (reopen) reopen.click();
       }
     </script>
     """, height=43)
@@ -419,7 +429,8 @@ def student_signin(join,number,name):
 def teacher_app():
     user=st.session_state.user
     with st.sidebar:
-        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Courses","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); normal_view_control(); st.button("Sign out",on_click=logout)
+        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Courses","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); st.button("Sign out",on_click=logout)
+    normal_view_control()
     if page=="Overview": teacher_overview(user)
     elif page=="Courses": courses_page(user)
     elif page=="My quizzes": quizzes_page(user)
@@ -619,7 +630,8 @@ def resources_page(user):
 
 def student_app():
     student=st.session_state.student; class_id=st.session_state.class_id
-    with st.sidebar: st.title("Q · Student"); st.write(student["name"]); normal_view_control(); st.button("Sign out",on_click=logout)
+    with st.sidebar: st.title("Q · Student"); st.write(student["name"]); st.button("Sign out",on_click=logout)
+    normal_view_control()
     quiz_id=st.session_state.get("direct_quiz"); quizzes=rows("SELECT * FROM quizzes WHERE class_id=? AND status='Live' ORDER BY id DESC",(class_id,))
     quiz=next((q for q in quizzes if q["id"]==quiz_id),quizzes[0] if quizzes else None)
     resources=rows("SELECT * FROM resources WHERE class_id=? ORDER BY id DESC",(class_id,))
@@ -663,7 +675,8 @@ def show_resources(resources):
 
 
 def admin_app():
-    with st.sidebar: st.title("Q · Admin"); normal_view_control(); st.button("Sign out",on_click=logout)
+    with st.sidebar: st.title("Q · Admin"); st.button("Sign out",on_click=logout)
+    normal_view_control()
     title("Administration","All teacher capabilities plus account management")
     st.subheader("Database integrity")
     db_col,sql_col=st.columns(2)
