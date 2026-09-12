@@ -499,8 +499,8 @@ def courses_page(user):
             st.rerun()
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
         with st.expander(f"{cls['level']} · {cls.get('semester') or 'Semester not set'} · {cls['name']} — {cls['course']}"):
-            st.code(cls["join_code"]); roster=rows("SELECT * FROM students WHERE class_id=?",(cls["id"],)); st.dataframe(roster,use_container_width=True,hide_index=True)
-            student_roster_uploader(cls["id"], f"course_{cls['id']}")
+            st.code(cls["join_code"])
+            student_roster_manager(cls["id"], f"course_{cls['id']}")
 
 
 def student_list_template():
@@ -546,6 +546,47 @@ def student_roster_uploader(class_id, key_prefix):
             st.rerun()
         except Exception as error:
             st.error(f"Student list could not be uploaded: {error}")
+
+
+def student_roster_manager(class_id, key_prefix):
+    roster = rows("SELECT id,name,student_number,email,phone FROM students WHERE class_id=? ORDER BY name,student_number", (class_id,))
+    st.markdown(f"**Student list · {len(roster)} student{'s' if len(roster) != 1 else ''}**")
+    with st.expander("Add one student"):
+        with st.form(f"add_student_{key_prefix}", clear_on_submit=True):
+            name = st.text_input("Student name", key=f"new_name_{key_prefix}")
+            number = st.text_input("Student number", key=f"new_number_{key_prefix}")
+            email = st.text_input("Email", key=f"new_email_{key_prefix}")
+            phone = st.text_input("Phone", key=f"new_phone_{key_prefix}")
+            if st.form_submit_button("Add student", use_container_width=True):
+                if not name.strip() or not number.strip():
+                    st.error("Student name and student number are required.")
+                else:
+                    try:
+                        run("INSERT INTO students(class_id,name,student_number,email,phone) VALUES(?,?,?,?,?)", (class_id, name.strip(), number.strip(), email.strip(), phone.strip()))
+                        st.success("Student added."); st.rerun()
+                    except sqlite3.IntegrityError:
+                        st.error("That student number is already on this class list.")
+    if roster:
+        st.dataframe(pd.DataFrame(roster), use_container_width=True, hide_index=True)
+        with st.expander("Edit students"):
+            for student in roster:
+                with st.form(f"edit_student_{key_prefix}_{student['id']}"):
+                    st.markdown(f"**{student['name']} · {student['student_number']}**")
+                    name = st.text_input("Student name", student["name"], key=f"edit_name_{key_prefix}_{student['id']}")
+                    number = st.text_input("Student number", student["student_number"] or "", key=f"edit_number_{key_prefix}_{student['id']}")
+                    email = st.text_input("Email", student["email"] or "", key=f"edit_email_{key_prefix}_{student['id']}")
+                    phone = st.text_input("Phone", student["phone"] or "", key=f"edit_phone_{key_prefix}_{student['id']}")
+                    if st.form_submit_button("Save student changes", use_container_width=True):
+                        if not name.strip() or not number.strip():
+                            st.error("Student name and student number are required.")
+                        else:
+                            try:
+                                run("UPDATE students SET name=?,student_number=?,email=?,phone=? WHERE id=? AND class_id=?", (name.strip(), number.strip(), email.strip(), phone.strip(), student["id"], class_id))
+                                st.success("Student details updated."); st.rerun()
+                            except sqlite3.IntegrityError:
+                                st.error("That student number is already used by another student in this class.")
+    with st.expander("Upload or update student list"):
+        student_roster_uploader(class_id, key_prefix)
 
 
 def quiz_question_template():
@@ -605,6 +646,34 @@ def quiz_question_uploader(quiz_id):
             st.error(f"Questions could not be imported: {error}")
 
 
+def quiz_question_editor(quiz_id, questions):
+    if not questions:
+        st.info("No questions have been added yet.")
+        return
+    with st.expander(f"Edit all questions · {len(questions)}"):
+        st.caption("Each form keeps the question, options, answer, and points together.")
+        for index, question in enumerate(questions, 1):
+            with st.form(f"edit_question_{quiz_id}_{question['id']}"):
+                st.markdown(f"**Question {index}**")
+                types = ["Multiple choice", "Open ended"]
+                current_type = question["question_type"] if question["question_type"] in types else "Multiple choice"
+                question_type = st.selectbox("Question type", types, index=types.index(current_type), key=f"edit_qtype_{question['id']}")
+                prompt = st.text_area("Question", question["prompt"], key=f"edit_prompt_{question['id']}")
+                options = "\n".join(json.loads(question["options_json"] or "[]"))
+                options_text = st.text_area("Options, one per line (leave blank for open-ended)", options, key=f"edit_options_{question['id']}")
+                answer = st.text_input("Correct answer", question["correct_answer"] or "", key=f"edit_answer_{question['id']}")
+                points = st.number_input("Points", 0.5, 100.0, float(question["points"] or 1), 0.5, key=f"edit_points_{question['id']}")
+                if st.form_submit_button("Save question changes", use_container_width=True):
+                    updated_options = [item.strip() for item in options_text.splitlines() if item.strip()]
+                    if not prompt.strip():
+                        st.error("Question text is required.")
+                    elif question_type == "Multiple choice" and len(updated_options) < 2:
+                        st.error("A multiple-choice question needs at least two options.")
+                    else:
+                        run("UPDATE questions SET prompt=?,question_type=?,options_json=?,correct_answer=?,points=? WHERE id=? AND quiz_id=?", (prompt.strip(), question_type, json.dumps(updated_options if question_type == "Multiple choice" else []), answer.strip(), points, question["id"], quiz_id))
+                        st.success("Question updated."); st.rerun()
+
+
 def quizzes_page(user):
     title("My quizzes","Create, edit, copy, share, open, close, and delete quizzes")
     classes=rows("SELECT * FROM classes WHERE teacher_id=?",(user["id"],)); labels={f"{c['level']} · {c['name']} · {c['course']}":c["id"] for c in classes}
@@ -627,10 +696,11 @@ def quizzes_page(user):
             if quiz["status"] == "Live":
                 roster_count=rows("SELECT COUNT(*) total FROM students WHERE class_id=?",(quiz["class_id"],))[0]["total"]
                 st.info(f"Published quiz · {roster_count} student{'s' if roster_count != 1 else ''} currently on the class list")
-                with st.expander("Upload student list for this quiz", expanded=roster_count == 0):
-                    st.caption("Uploaded students are added to this quiz's course roster and can use the class code to open the quiz.")
-                    student_roster_uploader(quiz["class_id"], f"quiz_{quiz['id']}")
+                with st.expander("Manage student list for this quiz", expanded=roster_count == 0):
+                    st.caption("Add, edit, or upload students for this quiz's course roster. Students use the class code to open the quiz.")
+                    student_roster_manager(quiz["class_id"], f"quiz_{quiz['id']}")
             questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],)); st.dataframe(pd.DataFrame(questions),use_container_width=True,hide_index=True)
+            quiz_question_editor(quiz["id"], questions)
             with st.expander("Upload quiz questions"):
                 quiz_question_uploader(quiz["id"])
             with st.form(f"question{quiz['id']}"):
