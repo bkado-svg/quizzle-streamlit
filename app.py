@@ -455,11 +455,52 @@ def courses_page(user):
     for cls in rows("SELECT * FROM classes WHERE teacher_id=? ORDER BY session DESC,level,name",(user["id"],)):
         with st.expander(f"{cls['level']} · {cls.get('semester') or 'Semester not set'} · {cls['name']} — {cls['course']}"):
             st.code(cls["join_code"]); roster=rows("SELECT * FROM students WHERE class_id=?",(cls["id"],)); st.dataframe(roster,use_container_width=True,hide_index=True)
-            upload=st.file_uploader("Replace/upload student list (CSV)",type=["csv"],key=f"roster{cls['id']}")
-            if upload:
-                frame=pd.read_csv(upload)
-                for _,item in frame.iterrows(): run("INSERT OR REPLACE INTO students(class_id,name,student_number,email,phone) VALUES(?,?,?,?,?)",(cls["id"],str(item.get("name","")),str(item.get("student_number","")),str(item.get("email","")),str(item.get("phone",""))))
-                st.success("Roster uploaded.")
+            student_roster_uploader(cls["id"], f"course_{cls['id']}")
+
+
+def student_list_template():
+    return pd.DataFrame([
+        {"name": "Example Student", "student_number": "STU001", "email": "student@example.edu", "phone": "+2348000000000"}
+    ]).to_csv(index=False).encode("utf-8")
+
+
+def import_student_roster(class_id, upload):
+    upload.seek(0)
+    frame = pd.read_excel(upload, dtype=str) if upload.name.lower().endswith(".xlsx") else pd.read_csv(upload, dtype=str)
+    frame.columns = [str(column).strip().lower().replace(" ", "_") for column in frame.columns]
+    aliases = {"student_name": "name", "full_name": "name", "matric_number": "student_number", "registration_number": "student_number", "reg_number": "student_number"}
+    frame = frame.rename(columns={column: aliases[column] for column in frame.columns if column in aliases})
+    missing = [column for column in ("name", "student_number") if column not in frame.columns]
+    if missing:
+        raise ValueError("Missing required column(s): " + ", ".join(missing))
+    imported = 0
+    for _, item in frame.fillna("").iterrows():
+        name = str(item.get("name", "")).strip()
+        student_number = str(item.get("student_number", "")).strip()
+        if not name or not student_number:
+            continue
+        run("""INSERT INTO students(class_id,name,student_number,email,phone) VALUES(?,?,?,?,?)
+            ON CONFLICT(class_id,student_number) DO UPDATE SET
+            name=excluded.name,email=excluded.email,phone=excluded.phone""",
+            (class_id, name, student_number, str(item.get("email", "")).strip(), str(item.get("phone", "")).strip()))
+        imported += 1
+    if not imported:
+        raise ValueError("No valid students found. Every row needs a name and student_number.")
+    return imported
+
+
+def student_roster_uploader(class_id, key_prefix):
+    st.markdown("**Upload student list**")
+    st.caption("CSV or Excel columns: name, student_number, email, phone. Name and student number are required.")
+    st.download_button("Download CSV template", student_list_template(), "quizzle-student-list-template.csv", "text/csv", key=f"template_{key_prefix}")
+    upload = st.file_uploader("Choose student list", type=["csv", "xlsx"], key=f"roster_{key_prefix}")
+    if st.button("Upload students", disabled=upload is None, key=f"upload_{key_prefix}", use_container_width=True):
+        try:
+            imported = import_student_roster(class_id, upload)
+            st.success(f"{imported} student{'s' if imported != 1 else ''} added or updated.")
+            st.rerun()
+        except Exception as error:
+            st.error(f"Student list could not be uploaded: {error}")
 
 
 def quizzes_page(user):
@@ -474,6 +515,12 @@ def quizzes_page(user):
     for quiz in rows("SELECT q.*,c.name class_name,c.course FROM quizzes q JOIN classes c ON c.id=q.class_id WHERE q.teacher_id=? ORDER BY q.id DESC",(user["id"],)):
         with st.expander(f"{quiz['status']} · {quiz['title']} — {quiz['class_name']}"):
             st.code(quiz["share_code"]); st.caption("Share code remains available while live or closed.")
+            if quiz["status"] == "Live":
+                roster_count=rows("SELECT COUNT(*) total FROM students WHERE class_id=?",(quiz["class_id"],))[0]["total"]
+                st.info(f"Published quiz · {roster_count} student{'s' if roster_count != 1 else ''} currently on the class list")
+                with st.expander("Upload student list for this quiz", expanded=roster_count == 0):
+                    st.caption("Uploaded students are added to this quiz's course roster and can use the class code to open the quiz.")
+                    student_roster_uploader(quiz["class_id"], f"quiz_{quiz['id']}")
             questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],)); st.dataframe(pd.DataFrame(questions),use_container_width=True,hide_index=True)
             with st.form(f"question{quiz['id']}"):
                 qtype=st.selectbox("Question type",["Multiple choice","Open ended"],key=f"qt{quiz['id']}"); prompt=st.text_area("Question"); options=st.text_area("Options, one per line") if qtype=="Multiple choice" else ""; answer=st.text_input("Correct answer"); points=st.number_input("Points",0.5,100.0,1.0,0.5)
