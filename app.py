@@ -9,6 +9,7 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib.styles import getSampleStyleSheet
@@ -134,6 +135,7 @@ p, label, .stCaption { letter-spacing: -.005em; }
   border-radius: 1rem !important; border-color: var(--line) !important;
   box-shadow: 0 8px 28px rgba(32,40,80,.055); overflow: hidden;
 }
+[data-testid="stElementToolbar"] { visibility: visible !important; opacity: 1 !important; }
 [data-testid="stForm"], [data-testid="stExpander"] { background: rgba(255,255,255,.86); }
 [data-testid="stExpander"] details summary { padding: .9rem 1rem; font-weight: 700; }
 
@@ -322,6 +324,25 @@ def logout():
     st.session_state.clear(); st.rerun()
 
 
+def normal_view_control():
+    components.html("""
+    <button type="button" onclick="restoreNormalView()"
+      style="width:100%;border:1px solid #d9dbea;border-radius:9px;background:#fff;color:#4033c8;
+      padding:8px 10px;font:600 13px system-ui;cursor:pointer">↙ Back to normal view</button>
+    <script>
+      function restoreNormalView() {
+        const doc = window.parent.document;
+        if (doc.fullscreenElement && doc.exitFullscreen) doc.exitFullscreen();
+        const closeButton = [...doc.querySelectorAll('button')].find(button => {
+          const label = `${button.getAttribute('aria-label') || ''} ${button.getAttribute('title') || ''} ${button.textContent || ''}`.toLowerCase();
+          return label.includes('close fullscreen') || label.includes('exit fullscreen') || label.includes('close expanded');
+        });
+        if (closeButton) closeButton.click();
+      }
+    </script>
+    """, height=43)
+
+
 def login():
     st.markdown("""
     <section class="qz-original-hero">
@@ -398,7 +419,7 @@ def student_signin(join,number,name):
 def teacher_app():
     user=st.session_state.user
     with st.sidebar:
-        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Courses","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); st.button("Sign out",on_click=logout)
+        st.title("Q · Quizzle"); page=st.radio("Workspace",["Overview","Courses","My quizzes","Monitoring","Reports","Results","Resources"]); st.caption(user["name"]); normal_view_control(); st.button("Sign out",on_click=logout)
     if page=="Overview": teacher_overview(user)
     elif page=="Courses": courses_page(user)
     elif page=="My quizzes": quizzes_page(user)
@@ -431,8 +452,7 @@ def courses_page(user):
     title("Courses", f"Courses for {department} are organised by level, semester, and academic session")
     if st.session_state.pop("course_added", False): st.success("Course added successfully and is now available for quizzes, results, reports, and resources.")
     with st.expander("Add course",expanded=not rows("SELECT id FROM classes WHERE teacher_id=?",(user["id"],))):
-        verified_levels=[item["level"] for item in rows("SELECT DISTINCT cc.level FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id WHERE lower(f.name)=lower(?) AND lower(d.name)=lower(?) ORDER BY CAST(cc.level AS INTEGER)",(faculty,department))]
-        level_options=[level for level in ["100","200","300","400","500","600"] if level in {"100","200","300","400",*verified_levels}]
+        level_options=["100","200","300","400","500","600","Postgraduate"]
         level=st.selectbox("Level",level_options,key="course_level")
         semester=st.selectbox("Semester",["First semester","Second semester"],key="course_semester")
         official_programmes=university_programme_options(university,faculty,department)
@@ -599,7 +619,7 @@ def resources_page(user):
 
 def student_app():
     student=st.session_state.student; class_id=st.session_state.class_id
-    with st.sidebar: st.title("Q · Student"); st.write(student["name"]); st.button("Sign out",on_click=logout)
+    with st.sidebar: st.title("Q · Student"); st.write(student["name"]); normal_view_control(); st.button("Sign out",on_click=logout)
     quiz_id=st.session_state.get("direct_quiz"); quizzes=rows("SELECT * FROM quizzes WHERE class_id=? AND status='Live' ORDER BY id DESC",(class_id,))
     quiz=next((q for q in quizzes if q["id"]==quiz_id),quizzes[0] if quizzes else None)
     resources=rows("SELECT * FROM resources WHERE class_id=? ORDER BY id DESC",(class_id,))
@@ -643,7 +663,7 @@ def show_resources(resources):
 
 
 def admin_app():
-    with st.sidebar: st.title("Q · Admin"); st.button("Sign out",on_click=logout)
+    with st.sidebar: st.title("Q · Admin"); normal_view_control(); st.button("Sign out",on_click=logout)
     title("Administration","All teacher capabilities plus account management")
     st.subheader("Database integrity")
     db_col,sql_col=st.columns(2)
