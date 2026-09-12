@@ -226,7 +226,7 @@ def init_db():
     CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, role TEXT NOT NULL, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, active INTEGER DEFAULT 1);
     CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, name TEXT NOT NULL, level TEXT, semester TEXT, session TEXT, course TEXT, join_code TEXT UNIQUE NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(teacher_id) REFERENCES users(id));
     CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, class_id INTEGER NOT NULL, name TEXT NOT NULL, student_number TEXT, phone TEXT, email TEXT, UNIQUE(class_id,student_number), FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
-    CREATE TABLE IF NOT EXISTS quizzes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, status TEXT DEFAULT 'Draft', share_code TEXT UNIQUE NOT NULL, time_limit INTEGER DEFAULT 30, show_results INTEGER DEFAULT 1, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS quizzes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, status TEXT DEFAULT 'Draft', share_code TEXT UNIQUE NOT NULL, time_limit INTEGER DEFAULT 30, is_timed INTEGER DEFAULT 1, show_results INTEGER DEFAULT 1, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, prompt TEXT NOT NULL, question_type TEXT DEFAULT 'Multiple choice', options_json TEXT DEFAULT '[]', correct_answer TEXT, points REAL DEFAULT 1, FOREIGN KEY(quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, student_id INTEGER NOT NULL, status TEXT DEFAULT 'in_progress', started_at TEXT NOT NULL, submitted_at TEXT, score REAL DEFAULT 0, max_score REAL DEFAULT 0, answers_json TEXT DEFAULT '{}', last_seen TEXT, UNIQUE(quiz_id,student_id,status), FOREIGN KEY(quiz_id) REFERENCES quizzes(id), FOREIGN KEY(student_id) REFERENCES students(id));
     CREATE TABLE IF NOT EXISTS activity_events(id INTEGER PRIMARY KEY, attempt_id INTEGER NOT NULL, event_type TEXT NOT NULL, started_at TEXT NOT NULL, ended_at TEXT, duration_seconds INTEGER DEFAULT 0, FOREIGN KEY(attempt_id) REFERENCES attempts(id) ON DELETE CASCADE);
@@ -254,6 +254,8 @@ def init_db():
             con.execute(f"ALTER TABLE users ADD COLUMN {column} TEXT")
     class_columns = {item[1] for item in con.execute("PRAGMA table_info(classes)").fetchall()}
     if "semester" not in class_columns: con.execute("ALTER TABLE classes ADD COLUMN semester TEXT")
+    quiz_columns = {item[1] for item in con.execute("PRAGMA table_info(quizzes)").fetchall()}
+    if "is_timed" not in quiz_columns: con.execute("ALTER TABLE quizzes ADD COLUMN is_timed INTEGER DEFAULT 1")
     catalog_columns = {item[1] for item in con.execute("PRAGMA table_info(course_catalog)").fetchall()}
     if "semester" not in catalog_columns: con.execute("ALTER TABLE course_catalog ADD COLUMN semester TEXT")
     for role, name, email, password in [("admin", "Quizzle Administrator", "admin@quizzle.app", "Admin123!"), ("teacher", "Demo Teacher", "teacher@quizzle.app", "Teacher123!")]:
@@ -546,18 +548,82 @@ def student_roster_uploader(class_id, key_prefix):
             st.error(f"Student list could not be uploaded: {error}")
 
 
+def quiz_question_template():
+    return pd.DataFrame([
+        {"question_type": "Multiple choice", "question": "Which option is correct?", "option_a": "Option A", "option_b": "Option B", "option_c": "Option C", "option_d": "Option D", "correct_answer": "Option A", "points": 1},
+        {"question_type": "Open ended", "question": "Explain your answer.", "option_a": "", "option_b": "", "option_c": "", "option_d": "", "correct_answer": "Expected answer", "points": 5},
+    ]).to_csv(index=False).encode("utf-8")
+
+
+def import_quiz_questions(quiz_id, upload):
+    upload.seek(0)
+    frame = pd.read_excel(upload, dtype=str) if upload.name.lower().endswith(".xlsx") else pd.read_csv(upload, dtype=str)
+    frame.columns = [str(column).strip().lower().replace(" ", "_") for column in frame.columns]
+    frame = frame.rename(columns={"prompt": "question", "type": "question_type", "answer": "correct_answer"})
+    required = [column for column in ("question_type", "question", "correct_answer", "points") if column not in frame.columns]
+    if required:
+        raise ValueError("Missing required column(s): " + ", ".join(required))
+    prepared = []
+    for row_number, item in frame.fillna("").iterrows():
+        question_type = str(item["question_type"]).strip().lower()
+        if question_type in ("multiple choice", "multiple_choice", "mcq"):
+            question_type = "Multiple choice"
+        elif question_type in ("open ended", "open_ended", "open-ended"):
+            question_type = "Open ended"
+        else:
+            raise ValueError(f"Row {row_number + 2}: question_type must be Multiple choice or Open ended.")
+        prompt = str(item["question"]).strip()
+        answer = str(item["correct_answer"]).strip()
+        try:
+            points = float(item["points"])
+        except (TypeError, ValueError):
+            raise ValueError(f"Row {row_number + 2}: points must be a number.")
+        if not prompt or not answer or points <= 0:
+            raise ValueError(f"Row {row_number + 2}: question, correct_answer, and positive points are required.")
+        options = [str(item.get(f"option_{letter}", "")).strip() for letter in "abcdefgh"]
+        options = [option for option in options if option]
+        if question_type == "Multiple choice" and len(options) < 2:
+            raise ValueError(f"Row {row_number + 2}: a multiple-choice question needs at least two options.")
+        prepared.append((quiz_id, prompt, question_type, json.dumps(options), answer, points))
+    if not prepared:
+        raise ValueError("No question rows were found in the uploaded file.")
+    for question in prepared:
+        run("INSERT INTO questions(quiz_id,prompt,question_type,options_json,correct_answer,points) VALUES(?,?,?,?,?,?)", question)
+    return len(prepared)
+
+
+def quiz_question_uploader(quiz_id):
+    st.caption("Download the template, enter one question per row, then upload it as CSV or XLSX.")
+    st.download_button("Download quiz upload template", quiz_question_template(), "quizzle-quiz-template.csv", "text/csv", key=f"quiz_template_{quiz_id}")
+    upload = st.file_uploader("Upload completed quiz template", type=["csv", "xlsx"], key=f"quiz_upload_{quiz_id}")
+    if st.button("Import questions", disabled=upload is None, key=f"quiz_import_{quiz_id}", use_container_width=True):
+        try:
+            imported = import_quiz_questions(quiz_id, upload)
+            st.success(f"{imported} question{'s' if imported != 1 else ''} imported successfully.")
+            st.rerun()
+        except Exception as error:
+            st.error(f"Questions could not be imported: {error}")
+
+
 def quizzes_page(user):
     title("My quizzes","Create, edit, copy, share, open, close, and delete quizzes")
     classes=rows("SELECT * FROM classes WHERE teacher_id=?",(user["id"],)); labels={f"{c['level']} · {c['name']} · {c['course']}":c["id"] for c in classes}
     if labels:
         with st.expander("Create quiz"):
             with st.form("new_quiz"):
-                cls=st.selectbox("Class and course",labels); name=st.text_input("Quiz title"); limit=st.number_input("Time limit (minutes)",1,300,30); show=st.checkbox("Students can see reviewed answers",True)
+                cls=st.selectbox("Class and course",labels); name=st.text_input("Quiz title"); timed=st.checkbox("Timed quiz",True); limit=st.number_input("Time limit (minutes; ignored when untimed)",1,300,30); show=st.checkbox("Students can see reviewed answers",True)
                 if st.form_submit_button("Create"):
-                    run("INSERT INTO quizzes(teacher_id,class_id,title,share_code,time_limit,show_results,created_at) VALUES(?,?,?,?,?,?,?)",(user["id"],labels[cls],name,code(),limit,int(show),now_iso())); st.rerun()
+                    run("INSERT INTO quizzes(teacher_id,class_id,title,share_code,time_limit,is_timed,show_results,created_at) VALUES(?,?,?,?,?,?,?,?)",(user["id"],labels[cls],name,code(),limit,int(timed),int(show),now_iso())); st.rerun()
     for quiz in rows("SELECT q.*,c.name class_name,c.course FROM quizzes q JOIN classes c ON c.id=q.class_id WHERE q.teacher_id=? ORDER BY q.id DESC",(user["id"],)):
         with st.expander(f"{quiz['status']} · {quiz['title']} — {quiz['class_name']}"):
             st.code(quiz["share_code"]); st.caption("Share code remains available while live or closed.")
+            with st.expander("Quiz timing and result settings"):
+                with st.form(f"settings_{quiz['id']}"):
+                    timed=st.checkbox("Timed quiz",bool(quiz.get("is_timed",1)),key=f"timed_{quiz['id']}")
+                    limit=st.number_input("Time limit (minutes; ignored when untimed)",1,300,int(quiz["time_limit"] or 30),key=f"limit_{quiz['id']}")
+                    show=st.checkbox("Students can see reviewed answers",bool(quiz["show_results"]),key=f"show_{quiz['id']}")
+                    if st.form_submit_button("Save quiz settings"):
+                        run("UPDATE quizzes SET is_timed=?,time_limit=?,show_results=? WHERE id=?",(int(timed),limit,int(show),quiz["id"])); st.success("Quiz settings saved."); st.rerun()
             if quiz["status"] == "Live":
                 roster_count=rows("SELECT COUNT(*) total FROM students WHERE class_id=?",(quiz["class_id"],))[0]["total"]
                 st.info(f"Published quiz · {roster_count} student{'s' if roster_count != 1 else ''} currently on the class list")
@@ -565,6 +631,8 @@ def quizzes_page(user):
                     st.caption("Uploaded students are added to this quiz's course roster and can use the class code to open the quiz.")
                     student_roster_uploader(quiz["class_id"], f"quiz_{quiz['id']}")
             questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],)); st.dataframe(pd.DataFrame(questions),use_container_width=True,hide_index=True)
+            with st.expander("Upload quiz questions"):
+                quiz_question_uploader(quiz["id"])
             with st.form(f"question{quiz['id']}"):
                 qtype=st.selectbox("Question type",["Multiple choice","Open ended"],key=f"qt{quiz['id']}"); prompt=st.text_area("Question"); options=st.text_area("Options, one per line") if qtype=="Multiple choice" else ""; answer=st.text_input("Correct answer"); points=st.number_input("Points",0.5,100.0,1.0,0.5)
                 if st.form_submit_button("Add question"):
@@ -573,7 +641,7 @@ def quizzes_page(user):
             if c1.button("Go live",key=f"live{quiz['id']}"): run("UPDATE quizzes SET status='Live' WHERE id=?",(quiz["id"],)); st.rerun()
             if c2.button("Close",key=f"close{quiz['id']}"): run("UPDATE quizzes SET status='Closed' WHERE id=?",(quiz["id"],)); st.rerun()
             if c3.button("Copy",key=f"copy{quiz['id']}"):
-                new=run("INSERT INTO quizzes(teacher_id,class_id,title,status,share_code,time_limit,show_results,created_at) VALUES(?,?,?,'Draft',?,?,?,?)",(user["id"],quiz["class_id"],quiz["title"]+" (Copy)",code(),quiz["time_limit"],quiz["show_results"],now_iso()))
+                new=run("INSERT INTO quizzes(teacher_id,class_id,title,status,share_code,time_limit,is_timed,show_results,created_at) VALUES(?,?,?,'Draft',?,?,?,?,?)",(user["id"],quiz["class_id"],quiz["title"]+" (Copy)",code(),quiz["time_limit"],quiz.get("is_timed",1),quiz["show_results"],now_iso()))
                 for q in questions: run("INSERT INTO questions(quiz_id,prompt,question_type,options_json,correct_answer,points) VALUES(?,?,?,?,?,?)",(new,q["prompt"],q["question_type"],q["options_json"],q["correct_answer"],q["points"])); st.rerun()
             if c4.button("Delete",key=f"delete{quiz['id']}"): run("DELETE FROM quizzes WHERE id=?",(quiz["id"],)); st.rerun()
 
@@ -659,7 +727,8 @@ def student_app():
     previous=datetime.fromisoformat(attempt["last_seen"] or attempt["started_at"]); gap=int((datetime.now(timezone.utc)-previous).total_seconds())
     if gap>=15: run("INSERT INTO activity_events(attempt_id,event_type,started_at,ended_at,duration_seconds) VALUES(?,?,?,?,?)",(attempt["id"],"Quiz inactive",previous.isoformat(),now_iso(),gap))
     run("UPDATE attempts SET last_seen=? WHERE id=?",(now_iso(),attempt["id"])); st_autorefresh(interval=3000,key=f"student_ping_{attempt['id']}")
-    title(quiz["title"],f"Protected quiz · {quiz['time_limit']} minutes · Activity is monitored")
+    timing = f"{quiz['time_limit']} minutes" if quiz.get("is_timed", 1) else "Untimed"
+    title(quiz["title"],f"Protected quiz · {timing} · Activity is monitored")
     questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],)); answers={}
     with st.form("quiz_answers"):
         for index,q in enumerate(questions,1):
