@@ -85,6 +85,7 @@ footer,
   display: flex !important; visibility: visible !important; opacity: 1 !important;
   position: fixed !important; top: .8rem !important; left: .8rem !important; z-index: 1000000 !important;
 }
+[data-testid="stSidebarCollapsedControl"],
 [data-testid="stSidebarCollapsedControl"] button {
   background: #ffffff !important; color: #4033c8 !important; border: 1px solid #d9dbea !important;
   border-radius: .7rem !important; box-shadow: 0 5px 18px rgba(32,40,80,.16) !important;
@@ -346,9 +347,20 @@ def normal_view_control():
           return label.includes('close fullscreen') || label.includes('exit fullscreen') || label.includes('close expanded');
         });
         if (closeButton) closeButton.click();
-        const reopen = doc.querySelector('[data-testid="stSidebarCollapsedControl"] button');
-        if (reopen) reopen.click();
+        reopenSidebar(doc);
       }
+      function reopenSidebar(doc) {
+        const control = doc.querySelector('[data-testid="stSidebarCollapsedControl"]');
+        if (!control) return false;
+        const reopen = control.matches('button') ? control : control.querySelector('button');
+        if (reopen) { reopen.click(); return true; }
+        return false;
+      }
+      let attempts = 0;
+      const sidebarTimer = setInterval(() => {
+        attempts += 1;
+        if (reopenSidebar(window.parent.document) || attempts >= 15) clearInterval(sidebarTimer);
+      }, 200);
     </script>
     """, height=43)
 
