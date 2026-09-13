@@ -875,7 +875,10 @@ def student_app():
             options=json.loads(q["options_json"] or "[]")
             answers[str(q["id"])]=st.radio("Choose an answer",options,key=f"a{q['id']}",label_visibility="collapsed") if options else st.text_area("Your answer",key=f"a{q['id']}")
         ready=st.checkbox("I am ready to submit and understand my answers cannot be changed.")
-        if st.form_submit_button("Submit quiz",disabled=not ready): submit_attempt(attempt,questions,answers)
+        if st.form_submit_button("Submit quiz",use_container_width=True):
+            if not ready: st.error("Confirm that you are ready before submitting your quiz.")
+            elif not questions: st.error("This quiz has no questions and cannot be submitted.")
+            else: submit_attempt(attempt,questions,answers)
     show_resources(resources)
 
 
