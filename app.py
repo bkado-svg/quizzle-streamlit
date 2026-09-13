@@ -748,14 +748,88 @@ def pdf_report(frame,title_text):
     columns=[x for x in ["student","student_number","started_at","submitted_at","score","alert_count","activity_details"] if x in frame.columns]; values=[columns]+[[str(row.get(c,"")) for c in columns] for _,row in frame.iterrows()]; table=Table(values,repeatRows=1); table.setStyle(TableStyle([("BACKGROUND",(0,0),(-1,0),colors.HexColor("#635bdf")),("TEXTCOLOR",(0,0),(-1,0),colors.white),("GRID",(0,0),(-1,-1),.4,colors.grey),("FONTSIZE",(0,0),(-1,-1),7),("VALIGN",(0,0),(-1,-1),"TOP")])); content.append(table); doc.build(content); return output.getvalue()
 
 
+def individual_answer_frame(attempt, questions):
+    answers = json.loads(attempt["answers_json"] or "{}")
+    details = []
+    for index, question in enumerate(questions, 1):
+        response = str(answers.get(str(question["id"]), ""))
+        correct = str(question["correct_answer"] or "")
+        is_correct = response.strip().lower() == correct.strip().lower()
+        details.append({
+            "No.": index, "Question": question["prompt"], "Type": question["question_type"],
+            "Response": response, "Correct answer": correct, "Auto result": "Correct" if is_correct else "Incorrect",
+            "Auto points": question["points"] if is_correct else 0, "Maximum points": question["points"],
+        })
+    return pd.DataFrame(details)
+
+
+def results_workbook(attempts_frame, questions, attempts):
+    detail_frames = []
+    for attempt in attempts:
+        detail = individual_answer_frame(attempt, questions)
+        if not detail.empty:
+            detail.insert(0, "Student number", attempt["student_number"])
+            detail.insert(0, "Student", attempt["student"])
+            detail_frames.append(detail)
+    details = pd.concat(detail_frames, ignore_index=True) if detail_frames else pd.DataFrame()
+    output = io.BytesIO()
+    with pd.ExcelWriter(output, engine="openpyxl") as writer:
+        attempts_frame.to_excel(writer, sheet_name="Responses", index=False)
+        details.to_excel(writer, sheet_name="Answer details", index=False)
+    return output.getvalue()
+
+
 def results_page(user):
-    title("Results","Review individual answers and update scores")
+    title("Results","Google Forms-style summaries, question analysis, individual responses, and downloads")
     attempts=[x for x in teacher_attempts(user["id"]) if x["status"]=="submitted"]
     if not attempts: st.info("No submitted results."); return
-    labels={f"{a['student']} · {a['quiz']} · {a['score']}/{a['max_score']}":a for a in attempts}; chosen=labels[st.selectbox("Student result",labels)]
-    answers=json.loads(chosen["answers_json"] or "{}"); st.json(answers)
-    score=st.number_input("Reviewed score",0.0,float(chosen["max_score"] or 100),float(chosen["score"] or 0))
-    if st.button("Save reviewed result"): run("UPDATE attempts SET score=? WHERE id=?",(score,chosen["id"])); st.success("Reviewed result saved.")
+    quiz_rows=rows("""SELECT DISTINCT q.id,q.title,c.name class_name,c.course,c.level,c.semester,c.session
+        FROM quizzes q JOIN classes c ON c.id=q.class_id JOIN attempts a ON a.quiz_id=q.id
+        WHERE q.teacher_id=? AND a.status='submitted' ORDER BY q.title,c.name""",(user["id"],))
+    quiz_labels={f"{q['title']} · {q['class_name']} · {q['course']}":q for q in quiz_rows}
+    selected_quiz=quiz_labels[st.selectbox("Choose quiz",quiz_labels,key="results_quiz")]
+    selected=[attempt for attempt in attempts if attempt["quiz_id"]==selected_quiz["id"]]
+    questions=rows("SELECT * FROM questions WHERE quiz_id=? ORDER BY id",(selected_quiz["id"],))
+    response_frame=pd.DataFrame([{
+        "Student":a["student"],"Student number":a["student_number"],"Started":a["started_at"],
+        "Submitted":a["submitted_at"],"Score":a["score"],"Maximum score":a["max_score"],
+        "Percentage":round((a["score"]/(a["max_score"] or 1))*100,1),"Activity alerts":a["alert_count"]
+    } for a in selected])
+    st.caption(f"{selected_quiz['session']} · {selected_quiz['level']} · {selected_quiz.get('semester') or ''} · {selected_quiz['course']}")
+    summary_tab,questions_tab,individual_tab=st.tabs(["Summary","Questions","Individual"])
+    with summary_tab:
+        scores=pd.to_numeric(response_frame["Score"],errors="coerce")
+        a,b,c,d=st.columns(4); a.metric("Responses",len(response_frame)); b.metric("Average score",f"{scores.mean():.1f}"); c.metric("Median",f"{scores.median():.1f}"); d.metric("Highest",f"{scores.max():.1f}")
+        st.subheader("Score distribution")
+        distribution=scores.value_counts().sort_index().rename_axis("Score").reset_index(name="Students")
+        st.bar_chart(distribution.set_index("Score"),use_container_width=True)
+        st.subheader("Responses"); st.dataframe(response_frame,use_container_width=True,hide_index=True)
+    with questions_tab:
+        for index,question in enumerate(questions,1):
+            answer_values=[]
+            correct_count=0
+            for attempt in selected:
+                response=str(json.loads(attempt["answers_json"] or "{}").get(str(question["id"]),""))
+                answer_values.append(response or "No response")
+                if response.strip().lower()==str(question["correct_answer"] or "").strip().lower(): correct_count+=1
+            st.markdown(f"**{index}. {question['prompt']}** · {question['points']} point{'s' if question['points'] != 1 else ''}")
+            st.caption(f"Correct answer: {question['correct_answer'] or 'Manual review'} · {correct_count}/{len(selected)} correct")
+            counts=pd.Series(answer_values).value_counts().rename_axis("Answer").reset_index(name="Responses")
+            st.bar_chart(counts.set_index("Answer"),use_container_width=True)
+    with individual_tab:
+        individual_labels={f"{a['student']} · {a['student_number']} · {a['score']}/{a['max_score']}":a for a in selected}
+        chosen=individual_labels[st.selectbox("Choose response",individual_labels,key="individual_result")]
+        st.dataframe(individual_answer_frame(chosen,questions),use_container_width=True,hide_index=True)
+        score=st.number_input("Reviewed total score",0.0,float(chosen["max_score"] or 100),float(chosen["score"] or 0),key=f"reviewed_{chosen['id']}")
+        if st.button("Save reviewed result",key=f"save_reviewed_{chosen['id']}"):
+            run("UPDATE attempts SET score=? WHERE id=?",(score,chosen["id"])); st.success("Reviewed result saved."); st.rerun()
+    st.subheader("Download results")
+    d1,d2,d3=st.columns(3)
+    safe_name="".join(character if character.isalnum() or character in "-_" else "-" for character in selected_quiz["title"]).strip("-") or "quiz-results"
+    d1.download_button("Download CSV",response_frame.to_csv(index=False).encode("utf-8"),f"{safe_name}.csv","text/csv",use_container_width=True)
+    d2.download_button("Download Excel",results_workbook(response_frame,questions,selected),f"{safe_name}.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True)
+    raw_frame=pd.DataFrame(selected)
+    d3.download_button("Download PDF",pdf_report(raw_frame,selected_quiz["title"]),f"{safe_name}.pdf","application/pdf",use_container_width=True)
 
 
 def resources_page(user):
