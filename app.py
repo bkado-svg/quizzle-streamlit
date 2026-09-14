@@ -142,6 +142,11 @@ p, label, .stCaption { letter-spacing: -.005em; }
   border-radius: 1rem !important; border-color: var(--line) !important;
   box-shadow: 0 8px 28px rgba(32,40,80,.055); overflow: hidden;
 }
+[data-testid="stVegaLiteChart"], [data-testid="stArrowVegaLiteChart"] {
+  background: rgba(255,255,255,.92); border: 1px solid var(--line); border-radius: 1rem;
+  padding: 1rem; box-shadow: 0 8px 28px rgba(32,40,80,.055);
+}
+[data-testid="stDataFrame"] { background: #fff; }
 [data-testid="stElementToolbar"] { visibility: visible !important; opacity: 1 !important; }
 [data-testid="stForm"], [data-testid="stExpander"] { background: rgba(255,255,255,.86); }
 [data-testid="stExpander"] details summary { padding: .9rem 1rem; font-weight: 700; }
@@ -223,7 +228,7 @@ def init_db():
     con.executescript("""
     CREATE TABLE IF NOT EXISTS users(id INTEGER PRIMARY KEY, role TEXT NOT NULL, name TEXT NOT NULL, email TEXT UNIQUE NOT NULL, password_hash TEXT NOT NULL, active INTEGER DEFAULT 1);
     CREATE TABLE IF NOT EXISTS classes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, name TEXT NOT NULL, level TEXT, semester TEXT, session TEXT, course TEXT, join_code TEXT UNIQUE NOT NULL, created_at TEXT NOT NULL, FOREIGN KEY(teacher_id) REFERENCES users(id));
-    CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, class_id INTEGER NOT NULL, name TEXT NOT NULL, student_number TEXT, phone TEXT, email TEXT, UNIQUE(class_id,student_number), FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS students(id INTEGER PRIMARY KEY, class_id INTEGER NOT NULL, name TEXT NOT NULL, student_number TEXT, phone TEXT, email TEXT, active INTEGER DEFAULT 1, UNIQUE(class_id,student_number), FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS quizzes(id INTEGER PRIMARY KEY, teacher_id INTEGER NOT NULL, class_id INTEGER NOT NULL, title TEXT NOT NULL, status TEXT DEFAULT 'Draft', share_code TEXT UNIQUE NOT NULL, time_limit INTEGER DEFAULT 30, is_timed INTEGER DEFAULT 1, show_results INTEGER DEFAULT 1, created_at TEXT NOT NULL, FOREIGN KEY(class_id) REFERENCES classes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS questions(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, prompt TEXT NOT NULL, question_type TEXT DEFAULT 'Multiple choice', options_json TEXT DEFAULT '[]', correct_answer TEXT, points REAL DEFAULT 1, FOREIGN KEY(quiz_id) REFERENCES quizzes(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS attempts(id INTEGER PRIMARY KEY, quiz_id INTEGER NOT NULL, student_id INTEGER NOT NULL, status TEXT DEFAULT 'in_progress', started_at TEXT NOT NULL, submitted_at TEXT, score REAL DEFAULT 0, max_score REAL DEFAULT 0, answers_json TEXT DEFAULT '{}', last_seen TEXT, UNIQUE(quiz_id,student_id,status), FOREIGN KEY(quiz_id) REFERENCES quizzes(id), FOREIGN KEY(student_id) REFERENCES students(id));
@@ -252,6 +257,8 @@ def init_db():
             con.execute(f"ALTER TABLE users ADD COLUMN {column} TEXT")
     class_columns = {item[1] for item in con.execute("PRAGMA table_info(classes)").fetchall()}
     if "semester" not in class_columns: con.execute("ALTER TABLE classes ADD COLUMN semester TEXT")
+    student_columns = {item[1] for item in con.execute("PRAGMA table_info(students)").fetchall()}
+    if "active" not in student_columns: con.execute("ALTER TABLE students ADD COLUMN active INTEGER DEFAULT 1")
     quiz_columns = {item[1] for item in con.execute("PRAGMA table_info(quizzes)").fetchall()}
     if "is_timed" not in quiz_columns: con.execute("ALTER TABLE quizzes ADD COLUMN is_timed INTEGER DEFAULT 1")
     catalog_columns = {item[1] for item in con.execute("PRAGMA table_info(course_catalog)").fetchall()}
@@ -429,6 +436,7 @@ def student_signin(join,number,name):
     class_id=classes[0]["id"] if classes else quizzes[0]["class_id"] if quizzes else None
     if not class_id: st.error("Code not found or quiz is not live."); return
     found=rows("SELECT * FROM students WHERE class_id=? AND student_number=?",(class_id,number))
+    if found and not found[0].get("active",1): st.error("This student is no longer on the active class list. Contact your teacher."); return
     if found: student=found[0]
     else:
         sid=run("INSERT INTO students(class_id,name,student_number) VALUES(?,?,?)",(class_id,name or number,number)); student=rows("SELECT * FROM students WHERE id=?",(sid,))[0]
@@ -519,9 +527,9 @@ def import_student_roster(class_id, upload):
         student_number = str(item.get("student_number", "")).strip()
         if not name or not student_number:
             continue
-        run("""INSERT INTO students(class_id,name,student_number,email,phone) VALUES(?,?,?,?,?)
+        run("""INSERT INTO students(class_id,name,student_number,email,phone,active) VALUES(?,?,?,?,?,1)
             ON CONFLICT(class_id,student_number) DO UPDATE SET
-            name=excluded.name,email=excluded.email,phone=excluded.phone""",
+            name=excluded.name,email=excluded.email,phone=excluded.phone,active=1""",
             (class_id, name, student_number, str(item.get("email", "")).strip(), str(item.get("phone", "")).strip()))
         imported += 1
     if not imported:
@@ -544,9 +552,10 @@ def student_roster_uploader(class_id, key_prefix):
 
 
 def student_roster_manager(class_id, key_prefix):
-    roster = rows("SELECT id,name,student_number,email,phone FROM students WHERE class_id=? ORDER BY name,student_number", (class_id,))
+    roster = rows("SELECT id,name,student_number,email,phone FROM students WHERE class_id=? AND active=1 ORDER BY name,student_number", (class_id,))
     st.markdown(f"**Student list · {len(roster)} student{'s' if len(roster) != 1 else ''}**")
-    with st.expander("Add one student"):
+    add_tab,edit_tab,upload_tab=st.tabs(["Add student","Edit or remove","Bulk upload"])
+    with add_tab:
         with st.form(f"add_student_{key_prefix}", clear_on_submit=True):
             name = st.text_input("Student name", key=f"new_name_{key_prefix}")
             number = st.text_input("Student number", key=f"new_number_{key_prefix}")
@@ -557,31 +566,37 @@ def student_roster_manager(class_id, key_prefix):
                     st.error("Student name and student number are required.")
                 else:
                     try:
-                        run("INSERT INTO students(class_id,name,student_number,email,phone) VALUES(?,?,?,?,?)", (class_id, name.strip(), number.strip(), email.strip(), phone.strip()))
+                        run("""INSERT INTO students(class_id,name,student_number,email,phone,active) VALUES(?,?,?,?,?,1)
+                            ON CONFLICT(class_id,student_number) DO UPDATE SET name=excluded.name,email=excluded.email,phone=excluded.phone,active=1""",
+                            (class_id, name.strip(), number.strip(), email.strip(), phone.strip()))
                         st.success("Student added."); st.rerun()
                     except sqlite3.IntegrityError:
                         st.error("That student number is already on this class list.")
-    if roster:
-        st.dataframe(pd.DataFrame(roster), use_container_width=True, hide_index=True)
-        with st.expander("Edit students"):
-            for student in roster:
-                with st.form(f"edit_student_{key_prefix}_{student['id']}"):
-                    st.markdown(f"**{student['name']} · {student['student_number']}**")
-                    name = st.text_input("Student name", student["name"], key=f"edit_name_{key_prefix}_{student['id']}")
-                    number = st.text_input("Student number", student["student_number"] or "", key=f"edit_number_{key_prefix}_{student['id']}")
-                    email = st.text_input("Email", student["email"] or "", key=f"edit_email_{key_prefix}_{student['id']}")
-                    phone = st.text_input("Phone", student["phone"] or "", key=f"edit_phone_{key_prefix}_{student['id']}")
-                    if st.form_submit_button("Save student changes", use_container_width=True):
-                        if not name.strip() or not number.strip():
-                            st.error("Student name and student number are required.")
-                        else:
-                            try:
-                                run("UPDATE students SET name=?,student_number=?,email=?,phone=? WHERE id=? AND class_id=?", (name.strip(), number.strip(), email.strip(), phone.strip(), student["id"], class_id))
-                                st.success("Student details updated."); st.rerun()
-                            except sqlite3.IntegrityError:
-                                st.error("That student number is already used by another student in this class.")
-    with st.expander("Upload or update student list"):
+    with edit_tab:
+        if not roster:
+            st.info("No students have been added to this class yet.")
+        else:
+            labels={f"{student['name']} · {student['student_number']}":student for student in roster}
+            selected=labels[st.selectbox("Select student",labels,key=f"selected_student_{key_prefix}")]
+            with st.form(f"edit_student_{key_prefix}_{selected['id']}"):
+                name=st.text_input("Student name",selected["name"],key=f"edit_name_{key_prefix}_{selected['id']}")
+                number=st.text_input("Student number",selected["student_number"] or "",key=f"edit_number_{key_prefix}_{selected['id']}")
+                email=st.text_input("Email",selected["email"] or "",key=f"edit_email_{key_prefix}_{selected['id']}")
+                phone=st.text_input("Phone",selected["phone"] or "",key=f"edit_phone_{key_prefix}_{selected['id']}")
+                if st.form_submit_button("Save changes",use_container_width=True):
+                    if not name.strip() or not number.strip(): st.error("Student name and student number are required.")
+                    else:
+                        try:
+                            run("UPDATE students SET name=?,student_number=?,email=?,phone=? WHERE id=? AND class_id=?",(name.strip(),number.strip(),email.strip(),phone.strip(),selected["id"],class_id)); st.success("Student details updated."); st.rerun()
+                        except sqlite3.IntegrityError: st.error("That student number is already used by another student in this class.")
+            confirm=st.checkbox(f"Confirm removal of {selected['name']} from the active class list",key=f"confirm_remove_{key_prefix}_{selected['id']}")
+            if st.button("Remove selected student",disabled=not confirm,key=f"remove_student_{key_prefix}_{selected['id']}",use_container_width=True):
+                run("UPDATE students SET active=0 WHERE id=? AND class_id=?",(selected["id"],class_id)); st.success("Student removed from the active list. Existing results were preserved."); st.rerun()
+    with upload_tab:
         student_roster_uploader(class_id, key_prefix)
+    if roster:
+        display=pd.DataFrame(roster).drop(columns=["id"],errors="ignore").rename(columns={"name":"Name","student_number":"Student number","email":"Email","phone":"Phone"})
+        st.dataframe(display,use_container_width=True,hide_index=True)
 
 
 def quiz_question_template():
@@ -689,12 +704,14 @@ def quizzes_page(user):
                     if st.form_submit_button("Save quiz settings"):
                         run("UPDATE quizzes SET is_timed=?,time_limit=?,show_results=? WHERE id=?",(int(timed),limit,int(show),quiz["id"])); st.success("Quiz settings saved."); st.rerun()
             if quiz["status"] == "Live":
-                roster_count=rows("SELECT COUNT(*) total FROM students WHERE class_id=?",(quiz["class_id"],))[0]["total"]
+                roster_count=rows("SELECT COUNT(*) total FROM students WHERE class_id=? AND active=1",(quiz["class_id"],))[0]["total"]
                 st.info(f"Published quiz · {roster_count} student{'s' if roster_count != 1 else ''} currently on the class list")
                 with st.expander("Manage student list for this quiz", expanded=roster_count == 0):
                     st.caption("Add, edit, or upload students for this quiz's course roster. Students use the class code to open the quiz.")
                     student_roster_manager(quiz["class_id"], f"quiz_{quiz['id']}")
-            questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],)); st.dataframe(pd.DataFrame(questions),use_container_width=True,hide_index=True)
+            questions=rows("SELECT * FROM questions WHERE quiz_id=?",(quiz["id"],))
+            question_summary=pd.DataFrame([{"No.":index,"Question":item["prompt"],"Type":item["question_type"],"Points":item["points"]} for index,item in enumerate(questions,1)])
+            if not question_summary.empty: st.dataframe(question_summary,use_container_width=True,hide_index=True)
             quiz_question_editor(quiz["id"], questions)
             with st.expander("Upload quiz questions"):
                 quiz_question_uploader(quiz["id"])
@@ -719,14 +736,29 @@ def teacher_attempts(teacher_id):
 
 
 def monitoring_page(user):
-    st_autorefresh(interval=2000,key="monitor_refresh"); title("Live monitoring","Students disappear after submission; activity refreshes every two seconds")
+    st_autorefresh(interval=2000,key="monitor_refresh"); title("Live monitoring","A clear real-time view of students currently taking a quiz")
     live=[x for x in teacher_attempts(user["id"]) if x["status"]=="in_progress"]
     now=datetime.now(timezone.utc)
     for item in live:
         last=datetime.fromisoformat(item["last_seen"] or item["started_at"]); gap=int((now-last).total_seconds())
         if gap>=15 and not rows("SELECT id FROM activity_events WHERE attempt_id=? AND event_type='Page hidden' AND ended_at IS NULL",(item["id"],)):
             run("INSERT INTO activity_events(attempt_id,event_type,started_at,duration_seconds) VALUES(?,?,?,?)",(item["id"],"Page hidden",item["last_seen"] or item["started_at"],gap))
-    frame=pd.DataFrame(live); st.dataframe(frame[[x for x in ["student","student_number","quiz","class_name","started_at","last_seen","alert_count","activity_details"] if x in frame.columns]] if not frame.empty else frame,use_container_width=True,hide_index=True)
+    if not live:
+        st.info("No students are taking a quiz right now. Students appear here automatically when they open a live quiz and disappear after submission.")
+        return
+    live=teacher_attempts(user["id"]); live=[item for item in live if item["status"]=="in_progress"]
+    quiz_options=["All live quizzes",*sorted({item["quiz"] for item in live})]
+    quiz_filter=st.selectbox("Show students for",quiz_options,key="monitor_quiz_filter")
+    visible=live if quiz_filter=="All live quizzes" else [item for item in live if item["quiz"]==quiz_filter]
+    a,b,c,d=st.columns(4); a.metric("Students live",len(visible)); b.metric("Flagged",sum(item["alert_count"]>0 for item in visible)); c.metric("Quizzes active",len({item["quiz"] for item in visible})); d.metric("Refresh",datetime.now().strftime("%H:%M:%S"))
+    records=[]
+    for item in visible:
+        last=datetime.fromisoformat(item["last_seen"] or item["started_at"]); seconds=max(0,int((datetime.now(timezone.utc)-last).total_seconds()))
+        records.append({"Student":item["student"],"Student number":item["student_number"],"Quiz":item["quiz"],"Class":item["class_name"],"Connection":"Live" if seconds<10 else "Delayed","Last activity":f"{seconds}s ago","Alerts":item["alert_count"],"Activity":item["activity_details"]})
+    frame=pd.DataFrame(records).sort_values(["Alerts","Student"],ascending=[False,True])
+    def highlight_alert(row): return ["background-color: #fee2e2; color: #991b1b" if row["Alerts"] else "" for _ in row]
+    st.dataframe(frame.style.apply(highlight_alert,axis=1),use_container_width=True,hide_index=True)
+    st.caption("Updates every two seconds · Red rows require attention · Submitted students are removed automatically")
 
 
 def report_frame(user):
@@ -763,6 +795,16 @@ def individual_answer_frame(attempt, questions):
     return pd.DataFrame(details)
 
 
+def all_responses_frame(attempts, questions):
+    records=[]
+    for attempt in attempts:
+        answers=json.loads(attempt["answers_json"] or "{}")
+        record={"Student":attempt["student"],"Student number":attempt["student_number"],"Submitted":attempt["submitted_at"],"Score":attempt["score"],"Maximum score":attempt["max_score"]}
+        for index,question in enumerate(questions,1): record[f"Q{index}: {question['prompt']}"]=answers.get(str(question["id"]),"")
+        records.append(record)
+    return pd.DataFrame(records)
+
+
 def results_workbook(attempts_frame, questions, attempts):
     detail_frames = []
     for attempt in attempts:
@@ -775,6 +817,7 @@ def results_workbook(attempts_frame, questions, attempts):
     output = io.BytesIO()
     with pd.ExcelWriter(output, engine="openpyxl") as writer:
         attempts_frame.to_excel(writer, sheet_name="Responses", index=False)
+        all_responses_frame(attempts,questions).to_excel(writer,sheet_name="All student answers",index=False)
         details.to_excel(writer, sheet_name="Answer details", index=False)
     return output.getvalue()
 
@@ -802,7 +845,7 @@ def results_page(user):
         a,b,c,d=st.columns(4); a.metric("Responses",len(response_frame)); b.metric("Average score",f"{scores.mean():.1f}"); c.metric("Median",f"{scores.median():.1f}"); d.metric("Highest",f"{scores.max():.1f}")
         st.subheader("Score distribution")
         distribution=scores.value_counts().sort_index().rename_axis("Score").reset_index(name="Students")
-        st.bar_chart(distribution.set_index("Score"),use_container_width=True)
+        st.bar_chart(distribution.set_index("Score"),use_container_width=True,color="#5b4bea")
         st.subheader("Responses"); st.dataframe(response_frame,use_container_width=True,hide_index=True)
     with questions_tab:
         for index,question in enumerate(questions,1):
@@ -815,7 +858,7 @@ def results_page(user):
             st.markdown(f"**{index}. {question['prompt']}** · {question['points']} point{'s' if question['points'] != 1 else ''}")
             st.caption(f"Correct answer: {question['correct_answer'] or 'Manual review'} · {correct_count}/{len(selected)} correct")
             counts=pd.Series(answer_values).value_counts().rename_axis("Answer").reset_index(name="Responses")
-            st.bar_chart(counts.set_index("Answer"),use_container_width=True)
+            st.bar_chart(counts.set_index("Answer"),use_container_width=True,color="#21bfa6")
     with individual_tab:
         individual_labels={f"{a['student']} · {a['student_number']} · {a['score']}/{a['max_score']}":a for a in selected}
         chosen=individual_labels[st.selectbox("Choose response",individual_labels,key="individual_result")]
@@ -826,8 +869,9 @@ def results_page(user):
     st.subheader("Download results")
     d1,d2,d3=st.columns(3)
     safe_name="".join(character if character.isalnum() or character in "-_" else "-" for character in selected_quiz["title"]).strip("-") or "quiz-results"
-    d1.download_button("Download CSV",response_frame.to_csv(index=False).encode("utf-8"),f"{safe_name}.csv","text/csv",use_container_width=True)
-    d2.download_button("Download Excel",results_workbook(response_frame,questions,selected),f"{safe_name}.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True)
+    all_answers=all_responses_frame(selected,questions)
+    d1.download_button("Download all responses CSV",all_answers.to_csv(index=False).encode("utf-8"),f"{safe_name}-all-responses.csv","text/csv",use_container_width=True)
+    d2.download_button("Download all responses Excel",results_workbook(response_frame,questions,selected),f"{safe_name}-all-responses.xlsx","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",use_container_width=True)
     raw_frame=pd.DataFrame(selected)
     d3.download_button("Download PDF",pdf_report(raw_frame,selected_quiz["title"]),f"{safe_name}.pdf","application/pdf",use_container_width=True)
 
