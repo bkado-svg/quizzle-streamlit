@@ -414,10 +414,11 @@ def login():
                         st.rerun()
                     except sqlite3.IntegrityError: st.error("That email is already registered.")
     with student:
-        st.markdown('<div class="qz-form-heading"><h2>Student access</h2><p>Enter your class or live quiz code.</p></div>', unsafe_allow_html=True)
+        st.markdown('<div class="qz-form-heading"><h2>Student quiz access</h2><p>Enter the live quiz code supplied by your teacher and your registered student number.</p></div>', unsafe_allow_html=True)
         with st.form("student_login"):
-            join=st.text_input("Class or quiz code").strip().upper(); number=st.text_input("Student number").strip(); name=st.text_input("Full name")
-            if st.form_submit_button("Open class",use_container_width=True): student_signin(join,number,name)
+            join=st.text_input("Quiz code").strip().upper(); number=st.text_input("Registration number").strip()
+            st.caption("Access is limited to students already registered on this quiz's course list.")
+            if st.form_submit_button("Open quiz",use_container_width=True): student_signin(join,number)
     with admin:
         st.markdown('<div class="qz-form-heading"><h2>Admin sign in</h2><p>Access account and platform controls.</p></div>', unsafe_allow_html=True)
         with st.form("admin_login"):
@@ -431,16 +432,24 @@ def authenticate(email,password,role):
     st.session_state.update(role=role,user=found[0]); st.rerun()
 
 
-def student_signin(join,number,name):
-    classes=rows("SELECT * FROM classes WHERE join_code=?",(join,)); quizzes=rows("SELECT * FROM quizzes WHERE share_code=? AND status='Live'",(join,))
-    class_id=classes[0]["id"] if classes else quizzes[0]["class_id"] if quizzes else None
-    if not class_id: st.error("Code not found or quiz is not live."); return
-    found=rows("SELECT * FROM students WHERE class_id=? AND student_number=?",(class_id,number))
-    if found and not found[0].get("active",1): st.error("This student is no longer on the active class list. Contact your teacher."); return
-    if found: student=found[0]
-    else:
-        sid=run("INSERT INTO students(class_id,name,student_number) VALUES(?,?,?)",(class_id,name or number,number)); student=rows("SELECT * FROM students WHERE id=?",(sid,))[0]
-    st.session_state.update(role="student",student=student,class_id=class_id,direct_quiz=quizzes[0]["id"] if quizzes else None); st.rerun()
+def student_signin(join,number):
+    if not join or not number:
+        st.error("Enter both the quiz code and your registration number.")
+        return
+    quizzes=rows("SELECT * FROM quizzes WHERE upper(share_code)=? AND status='Live'",(join.upper(),))
+    if not quizzes:
+        st.error("The quiz code is invalid or the quiz is not live.")
+        return
+    quiz=quizzes[0]
+    eligible=rows("""SELECT * FROM students
+        WHERE class_id=? AND active=1 AND lower(trim(student_number))=lower(trim(?))""",
+        (quiz["class_id"],number))
+    if not eligible:
+        st.error("This registration number is not eligible for this quiz. Ask your teacher to add you to the student list.")
+        return
+    student=eligible[0]
+    st.session_state.update(role="student",student=student,class_id=quiz["class_id"],direct_quiz=quiz["id"])
+    st.rerun()
 
 
 def teacher_app():
