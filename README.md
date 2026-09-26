@@ -24,3 +24,20 @@ Administrators can download the live SQLite database and `data/integrity_queries
 ## Deployment
 
 Deploy `app.py` from this repository on Streamlit Community Cloud. SQLite is suitable for demonstrations; configure an external persistent database before production use because Community Cloud filesystems may be replaced during redeployment.
+
+### Password-reset email
+
+The teacher sign-in page supports secure, single-use password-reset links that expire after 30 minutes. Configure the following private values in the Streamlit Community Cloud app settings under **Secrets** (do not commit real credentials):
+
+```toml
+app_url = "https://quizzle-classroom.streamlit.app"
+
+[smtp]
+host = "smtp.example.com"
+port = 587
+username = "smtp-user"
+password = "smtp-password"
+sender = "Quizzle <no-reply@example.com>"
+```
+
+Port 465 uses implicit TLS. Other ports use STARTTLS. The SMTP account must be permitted to send from the configured `sender` address.

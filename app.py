@@ -2,9 +2,13 @@ import hashlib
 import io
 import json
 import os
+import secrets
+import smtplib
+import ssl
 import sqlite3
 import time
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
+from email.message import EmailMessage
 from pathlib import Path
 
 import pandas as pd
@@ -241,6 +245,7 @@ def init_db():
     CREATE TABLE IF NOT EXISTS university_faculties(id INTEGER PRIMARY KEY, university_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_id,name), FOREIGN KEY(university_id) REFERENCES universities(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS university_departments(id INTEGER PRIMARY KEY, university_faculty_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_faculty_id,name), FOREIGN KEY(university_faculty_id) REFERENCES university_faculties(id) ON DELETE CASCADE);
     CREATE TABLE IF NOT EXISTS university_programmes(id INTEGER PRIMARY KEY, university_department_id INTEGER NOT NULL, name TEXT NOT NULL, source_url TEXT NOT NULL, UNIQUE(university_department_id,name), FOREIGN KEY(university_department_id) REFERENCES university_departments(id) ON DELETE CASCADE);
+    CREATE TABLE IF NOT EXISTS password_reset_tokens(id INTEGER PRIMARY KEY, user_id INTEGER NOT NULL, token_hash TEXT UNIQUE NOT NULL, expires_at TEXT NOT NULL, used_at TEXT, created_at TEXT NOT NULL, FOREIGN KEY(user_id) REFERENCES users(id) ON DELETE CASCADE);
     CREATE VIEW IF NOT EXISTS v_university_register AS SELECT ownership_type university_type,name university,website,year_established,source_url FROM universities;
     CREATE VIEW IF NOT EXISTS v_academic_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code course_code,cc.title course_title,cc.source_url FROM faculties f JOIN departments d ON d.faculty_id=f.id LEFT JOIN course_catalog cc ON cc.department_id=d.id;
     CREATE VIEW IF NOT EXISTS v_course_catalog AS SELECT f.name faculty,d.name department,cc.level,cc.semester,cc.code,cc.title,cc.source_url FROM course_catalog cc JOIN departments d ON d.id=cc.department_id JOIN faculties f ON f.id=d.faculty_id;
@@ -369,7 +374,96 @@ def normal_view_control():
     """, height=43)
 
 
+def smtp_settings():
+    try:
+        configured = dict(st.secrets.get("smtp", {}))
+    except Exception:
+        configured = {}
+    required = ("host", "port", "username", "password", "sender")
+    if any(not configured.get(item) for item in required):
+        raise RuntimeError("Password reset email is not configured. Please contact the Quizzle administrator.")
+    return configured
+
+
+def send_reset_email(recipient, name, reset_link):
+    settings = smtp_settings()
+    message = EmailMessage()
+    message["Subject"] = "Reset your Quizzle password"
+    message["From"] = settings["sender"]
+    message["To"] = recipient
+    message.set_content(
+        f"Hello {name},\n\nUse this secure link to reset your Quizzle password:\n{reset_link}\n\n"
+        "The link expires in 30 minutes and can only be used once. If you did not request this, you can ignore this email."
+    )
+    context = ssl.create_default_context()
+    port = int(settings["port"])
+    if port == 465:
+        with smtplib.SMTP_SSL(settings["host"], port, context=context, timeout=20) as server:
+            server.login(settings["username"], settings["password"])
+            server.send_message(message)
+    else:
+        with smtplib.SMTP(settings["host"], port, timeout=20) as server:
+            server.ehlo()
+            server.starttls(context=context)
+            server.ehlo()
+            server.login(settings["username"], settings["password"])
+            server.send_message(message)
+
+
+def request_password_reset(email):
+    account = rows("SELECT id,name,email FROM users WHERE lower(email)=? AND role='teacher' AND active=1", (email.strip().lower(),))
+    if not account:
+        return True
+    raw_token = secrets.token_urlsafe(32)
+    token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+    expiry = (datetime.now(timezone.utc) + timedelta(minutes=30)).isoformat()
+    run("DELETE FROM password_reset_tokens WHERE user_id=? AND used_at IS NULL", (account[0]["id"],))
+    token_id = run("INSERT INTO password_reset_tokens(user_id,token_hash,expires_at,created_at) VALUES(?,?,?,?)", (account[0]["id"],token_hash,expiry,now_iso()))
+    try:
+        try:
+            app_url = str(st.secrets.get("app_url", "https://quizzle-classroom.streamlit.app")).rstrip("/")
+        except Exception:
+            app_url = "https://quizzle-classroom.streamlit.app"
+        send_reset_email(account[0]["email"], account[0]["name"], f"{app_url}/?reset_token={raw_token}")
+    except Exception:
+        run("DELETE FROM password_reset_tokens WHERE id=?", (token_id,))
+        raise
+    return True
+
+
+def password_reset_page(raw_token):
+    title("Choose a new password", "This secure reset link expires after 30 minutes and works only once.")
+    token_hash = hashlib.sha256(raw_token.encode()).hexdigest()
+    matches = rows("""SELECT prt.id,prt.user_id,prt.expires_at,prt.used_at,u.email
+        FROM password_reset_tokens prt JOIN users u ON u.id=prt.user_id
+        WHERE prt.token_hash=?""", (token_hash,))
+    valid = matches and not matches[0]["used_at"] and datetime.fromisoformat(matches[0]["expires_at"]) > datetime.now(timezone.utc)
+    if not valid:
+        st.error("This password reset link is invalid, expired, or has already been used.")
+        if st.button("Return to sign in", use_container_width=True):
+            st.query_params.clear(); st.rerun()
+        return
+    with st.form("reset_password"):
+        password = st.text_input("New password", type="password")
+        confirmation = st.text_input("Confirm new password", type="password")
+        if st.form_submit_button("Reset password", use_container_width=True):
+            if len(password) < 8:
+                st.error("Use at least 8 characters for your new password.")
+            elif password != confirmation:
+                st.error("The passwords do not match.")
+            else:
+                run("UPDATE users SET password_hash=? WHERE id=?", (password_hash(password),matches[0]["user_id"]))
+                run("UPDATE password_reset_tokens SET used_at=? WHERE id=?", (now_iso(),matches[0]["id"]))
+                st.session_state.password_reset_complete = True
+                st.query_params.clear()
+                st.rerun()
+
+
 def login():
+    reset_token = st.query_params.get("reset_token")
+    if reset_token:
+        password_reset_page(str(reset_token))
+        return
     st.markdown("""
     <section class="qz-original-hero">
       <div class="qz-original-brand"><span class="qz-original-mark">Q</span> Quizzle</div>
@@ -390,9 +484,23 @@ def login():
             for key in ("reg_name","reg_email","reg_password","reg_type","reg_university","reg_faculty","reg_department"):
                 st.session_state.pop(key, None)
             st.success("Account created successfully. Sign in with your new details.")
+        if st.session_state.pop("password_reset_complete", False):
+            st.success("Your password has been reset. Sign in with your new password.")
         with st.form("teacher_login"):
             email = st.text_input("Official institutional email", key="te"); password = st.text_input("Password", type="password", key="tp")
             if st.form_submit_button("Continue", use_container_width=True): authenticate(email, password, "teacher")
+        with st.expander("Forgot password?"):
+            with st.form("forgot_password"):
+                reset_email = st.text_input("Registered email address", key="reset_email")
+                if st.form_submit_button("Send reset link", use_container_width=True):
+                    if not reset_email.strip():
+                        st.error("Enter your registered email address.")
+                    else:
+                        try:
+                            request_password_reset(reset_email)
+                            st.success("If that email is registered, a password reset link has been sent. Check your inbox and spam folder.")
+                        except Exception as error:
+                            st.error(str(error))
         registration_active=any(st.session_state.get(key) for key in ("reg_name","reg_email","reg_university","reg_faculty","reg_department"))
         with st.expander("Create teacher account",expanded=registration_active):
             name=st.text_input("Full name",key="reg_name"); email=st.text_input("Institutional email",key="reg_email"); password=st.text_input("Create password",type="password",key="reg_password")
